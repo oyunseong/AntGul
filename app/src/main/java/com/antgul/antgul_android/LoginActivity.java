@@ -7,28 +7,29 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.antgul.antgul_android.databinding.ActivityLoginBinding;
+import com.antgul.antgul_android.databinding.ActivityMainBinding;
+
 
 public class LoginActivity extends AppCompatActivity {
-    /*ActivityLoginBinding binding;
+    ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
-        binding.setLoginActivity(this);
-        User user = new User("gkrlsanj","qlapdls2");
-        binding.setUser(user);
-    }
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-    public void loginButton(View view)
-    {
-        Toast.makeText(this, "클릭되었습니다.", Toast.LENGTH_LONG).show();
+        //User user = new User("gkrlsanj","qlapdls2");
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-    public void goMainActivity(View view)
-    {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    }*/
 }
 

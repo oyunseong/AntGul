@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">개미굴</string>
+    <string name="login_button">개미굴 로그인</string>
 </resources>
