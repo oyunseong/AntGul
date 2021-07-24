@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import com.appchild.csc.antgul.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
-    ActivityLoginBinding binding;
+    /*ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
 
