@@ -23,15 +23,20 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int MAIN_ACTIVITY = 0;
-    private final int FRAGMENT_HOME = 1;
-    private final int FRAGMENT_BOARD = 2;
+    private final int FRAGMENT_HOME = 0;
+    private final int FRAGMENT_BOARD = 1;
+    private final int FRAGMENT_NOTION = 2;
+    private final int FRAGMENT_MY_PAGE = 3;
 
     private ActivityMainBinding binding;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
     private HomeActivity homeActivity;
     private BoardActivity boardActivity;
+    private NotionActivity notionActivity;
+    private MyPageActivity myPageActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
 
-
+        // 바텀 네비게이션 클릭
         binding.bottomNav.setOnNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
                     case R.id.menu_home:
                         callFragment(0);
                         break;
@@ -65,27 +69,37 @@ public class MainActivity extends AppCompatActivity {
 
         homeActivity = new HomeActivity();
         boardActivity = new BoardActivity();
+        notionActivity = new NotionActivity();
+        myPageActivity = new MyPageActivity();
 
-        // 액티비티 호출 시점에 있는 어느 플래그먼트를 프레임레이아웃에 올릴건지 정함
+        // 첫 화면 fragment_home.xml을 호출합니다.
         callFragment(FRAGMENT_HOME);
     }
 
 
+    // 프래그먼트 호출 메서드입니다.
     public void callFragment(int index) {
-        // 프래그먼트 사용을 위해
-        fragmentManager= getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
         switch (index) {
-            // HomeActivity 프래그먼트 호출
-            case 0:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(),homeActivity);
+            case 0: // 홈
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), homeActivity);
                 fragmentTransaction.commit();
                 break;
-            case 1:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(),boardActivity);
+            case 1: // 게시판
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), boardActivity);
                 fragmentTransaction.commit();
                 break;
+            case 2: // 알림
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), notionActivity);
+                fragmentTransaction.commit();
+                break;
+            case 3: // 마이페이지
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageActivity);
+                fragmentTransaction.commit();
+                break;
+
         }
     }
 }
