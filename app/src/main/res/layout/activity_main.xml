@@ -8,15 +8,19 @@
     >
 
     <FrameLayout
-        android:id="@+id/frame_layout"
+        android:id="@+id/fragment_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
         app:menu="@menu/bottom_nav_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

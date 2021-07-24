@@ -8,25 +8,32 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.antgul.antgul_android.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
     private final int MAIN_ACTIVITY = 0;
     private final int FRAGMENT_HOME = 1;
     private final int FRAGMENT_BOARD = 2;
 
-    private TextView activity_main_home_button;
-    private TextView activity_main_board_button;
+    private ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // 위젯
-        activity_main_home_button = (TextView) findViewById(R.id.activity_main_home_button);
-        activity_main_board_button = (TextView) findViewById(R.id.activity_main_board_button);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         // 홈버튼 클릭
+        binding.bottomNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         activity_main_home_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
-import com.appchild.csc.antgul.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     /*ActivityLoginBinding binding;
