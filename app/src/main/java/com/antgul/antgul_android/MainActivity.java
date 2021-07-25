@@ -52,16 +52,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menu_home:
-                        callFragment(0);
+                        callFragment(FRAGMENT_HOME);
                         break;
                     case R.id.menu_board:
-                        callFragment(1);
+                        callFragment(FRAGMENT_BOARD);
                         break;
                     case R.id.menu_notion:
-                        callFragment(2);
+                        callFragment(FRAGMENT_NOTION);
                         break;
                     case R.id.menu_my_page:
-                        callFragment(3);
+                        callFragment(FRAGMENT_MY_PAGE);
                 }
                 return true;
             }
@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         homeFragment = new HomeFragment();
         boardFragment = new BoardFragment();
-//        notionFragment = new NotionFragment();
+        notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
 
         // 첫 화면 fragment_home.xml을 호출합니다.
@@ -92,7 +92,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 fragmentTransaction.commit();
                 break;
             case 2: // 알림
-                replaceFragment(new NotionFragment());
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), notionFragment);
+                fragmentTransaction.commit();
                 break;
             case 3: // 마이페이지
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
