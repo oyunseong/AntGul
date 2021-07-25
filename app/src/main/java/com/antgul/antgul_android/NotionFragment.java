@@ -1,24 +1,38 @@
 package com.antgul.antgul_android;
 
-import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class NotionFragment extends Fragment {
-    MainActivity mainActivity;
+import com.antgul.antgul_android.base.BaseFragment;
+import com.antgul.antgul_android.databinding.FragmentNotionBinding;
+
+public class NotionFragment extends BaseFragment<FragmentNotionBinding> {
 
     public NotionFragment(){
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notion,container,false);
+    protected FragmentNotionBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentNotionBinding.inflate(inflater, container, false);
     }
+
+    @Override
+    protected void setUpView() {
+        Log.d(TAG, "start setUpView()");
+        //뷰 초기화 작업.
+        binding.testbtn2.setText("뷰 초기화");
+
+        binding.testbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("클릭");
+            }
+        });
+    }
+
 }

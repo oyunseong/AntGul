@@ -1,29 +1,34 @@
 package com.antgul.antgul_android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static com.antgul.antgul_android.R.id.menu_board;
+import static com.antgul.antgul_android.R.id.menu_home;
 import static com.antgul.antgul_android.R.id.menu_my_page;
 import static com.antgul.antgul_android.R.id.menu_notion;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private final int FRAGMENT_HOME = 0;
     private final int FRAGMENT_BOARD = 1;
     private final int FRAGMENT_NOTION = 2;
     private final int FRAGMENT_MY_PAGE = 3;
 
-    private ActivityMainBinding binding;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -32,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
     private NotionFragment notionFragment;
     private MyPageFragment myPageFragment;
 
+    @Override
+    protected ActivityMainBinding getViewBinding() {
+        return ActivityMainBinding.inflate(getLayoutInflater());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-
 
         // 바텀 네비게이션 클릭
         binding.bottomNav.setOnNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
@@ -49,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_home:
                         callFragment(0);
                         break;
-                    case menu_board:
+                    case R.id.menu_board:
                         callFragment(1);
                         break;
-                    case menu_notion:
+                    case R.id.menu_notion:
                         callFragment(2);
                         break;
-                    case menu_my_page:
+                    case R.id.menu_my_page:
                         callFragment(3);
                 }
                 return true;
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         boardFragment = new BoardFragment();
-        notionFragment = new NotionFragment();
+//        notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
 
         // 첫 화면 fragment_home.xml을 호출합니다.
@@ -87,8 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 break;
             case 2: // 알림
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), notionFragment);
-                fragmentTransaction.commit();
+                replaceFragment(new NotionFragment());
                 break;
             case 3: // 마이페이지
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
