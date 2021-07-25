@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
+import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
 
 /**
