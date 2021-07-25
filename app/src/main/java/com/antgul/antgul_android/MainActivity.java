@@ -1,26 +1,16 @@
 package com.antgul.antgul_android;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import static com.antgul.antgul_android.R.id.menu_board;
-import static com.antgul.antgul_android.R.id.menu_home;
-import static com.antgul.antgul_android.R.id.menu_my_page;
-import static com.antgul.antgul_android.R.id.menu_notion;
-import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
@@ -46,8 +36,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 바텀 네비게이션 클릭
-        binding.bottomNav.setOnNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
+        binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
@@ -62,6 +52,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                         break;
                     case R.id.menu_my_page:
                         callFragment(FRAGMENT_MY_PAGE);
+                        break;
                 }
                 return true;
             }
@@ -72,7 +63,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
 
-        // 첫 화면 fragment_home.xml을 호출합니다.
         callFragment(FRAGMENT_HOME);
     }
 
@@ -83,23 +73,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         fragmentTransaction = fragmentManager.beginTransaction();
 
         switch (index) {
-            case 0: // 홈
+            case FRAGMENT_HOME:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), homeFragment);
                 fragmentTransaction.commit();
                 break;
-            case 1: // 게시판
+            case FRAGMENT_BOARD:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), boardFragment);
                 fragmentTransaction.commit();
                 break;
-            case 2: // 알림
+            case FRAGMENT_NOTION:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), notionFragment);
                 fragmentTransaction.commit();
                 break;
-            case 3: // 마이페이지
+            case FRAGMENT_MY_PAGE:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
                 fragmentTransaction.commit();
                 break;
-
         }
     }
 }
