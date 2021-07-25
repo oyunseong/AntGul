@@ -43,6 +43,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.i(TAG, "++onDestroyView");
         binding = null;
     }
 }
