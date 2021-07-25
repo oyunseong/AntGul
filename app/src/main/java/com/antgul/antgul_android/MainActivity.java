@@ -1,11 +1,8 @@
 package com.antgul.antgul_android;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import static com.antgul.antgul_android.R.id.menu_board;
-import static com.antgul.antgul_android.R.id.menu_home;
 import static com.antgul.antgul_android.R.id.menu_my_page;
 import static com.antgul.antgul_android.R.id.menu_notion;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.*;
@@ -32,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
-    private HomeActivity homeActivity;
-    private BoardActivity boardActivity;
-    private NotionActivity notionActivity;
-    private MyPageActivity myPageActivity;
+    private HomeFragment homeFragment;
+    private BoardFragment boardFragment;
+    private NotionFragment notionFragment;
+    private MyPageFragment myPageFragment;
 
 
     @Override
@@ -67,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        homeActivity = new HomeActivity();
-        boardActivity = new BoardActivity();
-        notionActivity = new NotionActivity();
-        myPageActivity = new MyPageActivity();
+        homeFragment = new HomeFragment();
+        boardFragment = new BoardFragment();
+        notionFragment = new NotionFragment();
+        myPageFragment = new MyPageFragment();
 
         // 첫 화면 fragment_home.xml을 호출합니다.
         callFragment(FRAGMENT_HOME);
@@ -84,19 +79,19 @@ public class MainActivity extends AppCompatActivity {
 
         switch (index) {
             case 0: // 홈
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), homeActivity);
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), homeFragment);
                 fragmentTransaction.commit();
                 break;
             case 1: // 게시판
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), boardActivity);
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), boardFragment);
                 fragmentTransaction.commit();
                 break;
             case 2: // 알림
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), notionActivity);
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), notionFragment);
                 fragmentTransaction.commit();
                 break;
             case 3: // 마이페이지
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageActivity);
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
                 fragmentTransaction.commit();
                 break;
 
