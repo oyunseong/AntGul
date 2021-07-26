@@ -9,17 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MyPageFragment extends Fragment {
+import com.antgul.antgul_android.base.BaseFragment;
+import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
+import com.antgul.antgul_android.databinding.FragmentNotionBinding;
+
+public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
     MainActivity mainActivity;
 
-    public MyPageFragment(){
 
+    @Override
+    protected FragmentMyPageBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentMyPageBinding.inflate(inflater, container, false);
     }
 
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_page,container,false);
+    protected void setUpView() {
+
     }
 }

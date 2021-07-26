@@ -18,14 +18,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private final int FRAGMENT_BOARD = 1;
     private final int FRAGMENT_NOTION = 2;
     private final int FRAGMENT_MY_PAGE = 3;
-
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
+    private final int FRAGMENT_LIKE_STOCK = 4;
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;
     private NotionFragment notionFragment;
     private MyPageFragment myPageFragment;
+    private LikeStockFragment likeStockFragment;
 
     @Override
     protected ActivityMainBinding getViewBinding() {
@@ -62,6 +61,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         boardFragment = new BoardFragment();
         notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
+        likeStockFragment = new LikeStockFragment();
 
         callFragment(FRAGMENT_HOME);
     }
@@ -69,8 +69,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     // 프래그먼트 호출 메서드입니다.
     public void callFragment(int index) {
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         switch (index) {
             case FRAGMENT_HOME:
@@ -87,6 +87,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 break;
             case FRAGMENT_MY_PAGE:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
+                fragmentTransaction.commit();
+                break;
+            case FRAGMENT_LIKE_STOCK:
+                fragmentTransaction.replace(binding.fragmentFrame.getId(),likeStockFragment);
                 fragmentTransaction.commit();
                 break;
         }

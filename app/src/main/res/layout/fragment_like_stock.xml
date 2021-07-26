@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/like_stock_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="관심 종목을 선택해주세요"
+        />
+    <TextView
+        android:id="@+id/like_stock_sub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/like_stock_title"
+        android:hint="해당 종목에 대한 정보를 보여드립니다"
+        />
+
+    <EditText
+        android:id="@+id/like_stock_et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="원하는 종목 검색하기"
+        app:layout_constraintTop_toBottomOf="@+id/like_stock_sub_title"
+        />
+    <TextView
+        android:id="@+id/like_stock_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="국내주식"
+        app:layout_constraintTop_toBottomOf="@id/like_stock_et_search"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/interests_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/like_stock_message"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
