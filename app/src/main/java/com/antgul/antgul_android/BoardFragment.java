@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentBoardBinding;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     MainActivity mainActivity;
@@ -39,13 +40,6 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     @Override
     protected void setUpView() {
         //init code..
-        binding.textBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  showToast("클릭");
-                // 관심종목설정 호출
-                mainActivity.callFragment(4);
-            }
-        });
+        new TabLayoutMediator(binding.boardTabLayout, binding.boardViewpager,((tab, position) -> tab.setText("OBJECT"+(position+1))) );
     }
 }
