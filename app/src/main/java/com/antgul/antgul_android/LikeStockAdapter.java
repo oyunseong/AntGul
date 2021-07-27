@@ -71,4 +71,9 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         mData.add(stock);
         notifyDataSetChanged();
     }
+    public void filterList(ArrayList<Stock> filteredList)
+    {
+        mData = filteredList;
+        notifyDataSetChanged();
+    }
 }
