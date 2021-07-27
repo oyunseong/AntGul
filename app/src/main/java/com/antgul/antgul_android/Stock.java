@@ -5,7 +5,7 @@ public class Stock {
     private String stockNumber;
     private boolean checked;
 
-    Stock(){}
+//    Stock(){}
 
     public Stock(String stockName, String stockNumber, boolean checked) {
         this.stockName = stockName;

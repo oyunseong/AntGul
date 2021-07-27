@@ -4,12 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.databinding.LikeStockRecyclerItemBinding;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -38,9 +41,9 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     public void onBindViewHolder(@NonNull  LikeStockAdapter.ViewHolder holder, int position) {
         // 뷰홀더 선언하고 mData 전달
         Stock stock = mData.get(position);
-        binding.likeStockRecyclerItemName.setText(stock.getStockName());
-        binding.likeStockRecyclerItemNumber.setText(stock.getStockNumber());
-        binding.likeStockRecyclerItemCheckbox.setChecked(mData.get(position).isChecked());
+        holder.itemName.setText(stock.getStockName());
+        holder.itemNumber.setText(stock.getStockNumber());
+        holder.checkBox.setChecked(mData.get(position).isChecked());
 
     }
 
@@ -51,8 +54,15 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        protected TextView itemName;
+        protected TextView itemNumber;
+        protected CheckBox checkBox;
+
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
+            itemName = itemView.findViewById(R.id.like_stock_recycler_item_name);
+            itemNumber = itemView.findViewById(R.id.like_stock_recycler_item_number);
+            checkBox = itemView.findViewById(R.id.like_stock_recycler_item_checkbox);
         }
     }
 
