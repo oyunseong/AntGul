@@ -68,16 +68,6 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
                 binding.boardTab2.setVisibility(View.INVISIBLE);
                 binding.boardTab3.setVisibility(View.INVISIBLE);
                 break;
-            case 1:
-                binding.boardTab1.setVisibility(View.INVISIBLE);
-                binding.boardTab2.setVisibility(View.VISIBLE);
-                binding.boardTab3.setVisibility(View.INVISIBLE);
-                break;
-            case 2:
-                binding.boardTab1.setVisibility(View.INVISIBLE);
-                binding.boardTab2.setVisibility(View.INVISIBLE);
-                binding.boardTab3.setVisibility(View.VISIBLE);
-                break;
         }
     }
 }
