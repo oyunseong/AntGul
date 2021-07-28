@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.antgul.antgul_android.databinding.FragmentLikeStockBinding;
 import com.antgul.antgul_android.databinding.LikeStockRecyclerItemBinding;
 
 import org.w3c.dom.Text;
@@ -20,7 +21,7 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     private LikeStockRecyclerItemBinding binding;
     private ArrayList<Stock> mData = null;
 
-    public LikeStockAdapter(ArrayList<Stock> mData){
+    public LikeStockAdapter(ArrayList<Stock> mData) {
         this.mData = mData;
     }
 
@@ -31,20 +32,19 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view =inflater.inflate(R.layout.like_stock_recycler_item,parent,false);
-        LikeStockAdapter.ViewHolder holder = new LikeStockAdapter.ViewHolder(view);
+        View view = inflater.inflate(R.layout.like_stock_recycler_item, parent, false);
+        LikeStockAdapter.ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     //position에 해당하는 데이터 뷰홀더의 아이템뷰 표시
     @Override
-    public void onBindViewHolder(@NonNull  LikeStockAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LikeStockAdapter.ViewHolder holder, int position) {
         // 뷰홀더 선언하고 mData 전달
         Stock stock = mData.get(position);
         holder.itemName.setText(stock.getStockName());
         holder.itemNumber.setText(stock.getStockNumber());
         holder.checkBox.setChecked(mData.get(position).isChecked());
-
     }
 
     // 전체 아이템 개수 리턴
@@ -53,12 +53,13 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView itemName;
         protected TextView itemNumber;
         protected CheckBox checkBox;
 
-        public ViewHolder(@NonNull  View itemView) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName = itemView.findViewById(R.id.like_stock_recycler_item_name);
             itemNumber = itemView.findViewById(R.id.like_stock_recycler_item_number);
@@ -71,8 +72,8 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         mData.add(stock);
         notifyDataSetChanged();
     }
-    public void filterList(ArrayList<Stock> filteredList)
-    {
+
+    public void filterList(ArrayList<Stock> filteredList) {
         mData = filteredList;
         notifyDataSetChanged();
     }
