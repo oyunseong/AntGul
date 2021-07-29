@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "551242977137",
+    "project_id": "antgul",
+    "storage_bucket": "antgul.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551242977137:android:abaf0f5fc344643fe670d0",
+        "android_client_info": {
+          "package_name": "com.antgul.antgul_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551242977137-svk2n9lomj1eo9548cgf28vjehd4dqhr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.antgul.antgul_android",
+            "certificate_hash": "1db557b2c17aee8df7cfcd20e76ac75a4dfa7a68"
+          }
+        },
+        {
+          "client_id": "551242977137-ssr113muj07rf25pl8or93iiooloude5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBJzDonpAEFJ7BgGdN6PZ_WVAF0MhIuAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551242977137-ssr113muj07rf25pl8or93iiooloude5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

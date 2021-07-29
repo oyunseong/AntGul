@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp"
-    android:background="#AAB4EA"
+    android:background="@drawable/board_item_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
