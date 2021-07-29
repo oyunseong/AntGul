@@ -55,8 +55,7 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     private void setInit() {
         final float pageMargin = (float) getResources().getDimensionPixelOffset(R.dimen.pageMargin); // 페이지끼리 보이는 간격
         final float pageOffset = (float) getResources().getDimensionPixelOffset(R.dimen.pageOffset); // 페이지 보이는 정도
-        String[] titles = new String[]{"첫번째", "두번째", "3", "4", "5"};
-
+        String[] titles = new String[]{"전체", "관심종목","테스트1","테스트2","테스트3"}; // tab title
 
         ViewPager2 viewPager2 = binding.boardViewpager;        // 뷰페이저를 참조합니다.
         ViewPagerBoardAdapter viewPagerBoardAdapter = new ViewPagerBoardAdapter(getActivity());// 프래그먼트에서는 getActivity로 참조합니다.
@@ -71,6 +70,8 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
         });
+
+        // 스와이프 애니메이션 효과
         viewPager2.setPageTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
@@ -89,7 +90,11 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
 
             }
         });
-        // displaying tabLayout
+        /*
+        *    displaying tabLayout
+        *    attach 메서드가 ViewPage2가 어댑터를 가진후에 호출되기 때문에 어댑터에 setAdapter해준후에
+        *    TabLayoutMediator 를 선언해야합니다.
+        */
         new TabLayoutMediator(binding.boardTabLayout, viewPager2,(tab, position) -> tab.setText(titles[position])).attach();
     }
 }

@@ -16,7 +16,6 @@ import com.antgul.antgul_android.databinding.LikeStockRecyclerItemBinding;
 import java.util.ArrayList;
 
 public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.ViewHolder> {
-    private LikeStockRecyclerItemBinding binding;
     private ArrayList<Stock> mData = null;
 
     public LikeStockAdapter(ArrayList<Stock> mData) {
