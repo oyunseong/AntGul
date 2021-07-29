@@ -9,7 +9,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ViewPagerBoardAdapter extends FragmentStateAdapter {
-    private final int fragmentCount = 2;
+    private final int fragmentCount = 5;
 
 
     public ViewPagerBoardAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -34,7 +34,7 @@ public class ViewPagerBoardAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE;
+        return fragmentCount;
     }
 
     public int getRealPosition(int position) {
