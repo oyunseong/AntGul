@@ -8,13 +8,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentBoardBinding;
 import com.google.android.material.tabs.TabLayout;
 
 public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
+    private ViewGroup viewGroup;
+
     @Override
     protected FragmentBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentBoardBinding.inflate(inflater, container, false);
@@ -38,36 +41,47 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     @Override
     protected void setUpView() {
         //init code..
+        setInit();
 
-        binding.boardTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            // tab의 상태가 선택되지 않음에서 선택 상태로 변경됨.
+    }
+
+    private void setInit() {
+        ViewPager2 viewPager2 = binding.boardViewpager;
+        ViewPagerBoardAdapter viewPagerBoardAdapter = new ViewPagerBoardAdapter(getActivity());
+        viewPager2.setAdapter(viewPagerBoardAdapter);
+        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); // 방향은 가로로 설정합니다.
+        viewPager2.setOffscreenPageLimit(3); // 페이지 개수 한정
+        viewPager2.setCurrentItem(100); // 무제한 스크롤 처럼 보이기
+
+        final float pageMargin = (float) getResources().getDimensionPixelOffset(R.dimen.pageMargin);
+        final float pageOffset = (float) getResources().getDimensionPixelOffset(R.dimen.pageOffset);
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int pos = tab.getPosition();
-                changeView(pos);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
-
-            // tab의 상태가 선택 상태에서 선택되지 않음으로 변경됨
+        });
+        viewPager2.setPageTransformer(new ViewPager2.PageTransformer() {
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            // 이미 선택된 상태의 tab이 사용자에 의해 다시 선택됨
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void transformPage(@NonNull View page, float position) {
+                float offset = position * -(2 * pageOffset + pageMargin);
+                if (-1 > position) {
+                    page.setTranslationX(-offset);
+                } else if (1 >= position)
+                {
+                    float scaleFactor = Math.max(0.7f,1-Math.abs(position-0.14285715f));
+                    page.setTranslationX(offset);
+                    page.setScaleY(scaleFactor);
+                    page.setAlpha(scaleFactor);
+                }else
+                {
+                    page.setAlpha(0f);
+                    page.setTranslationX(offset);
+                }
 
             }
         });
     }
-
-    private void changeView(int index) {
-        switch (index) {
-            case 0:
-                binding.boardTab1.setVisibility(View.VISIBLE);
-                binding.boardTab2.setVisibility(View.INVISIBLE);
-                binding.boardTab3.setVisibility(View.INVISIBLE);
-                break;
-        }
-    }
 }
+
