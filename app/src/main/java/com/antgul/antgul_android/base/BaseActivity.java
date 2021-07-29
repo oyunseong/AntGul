@@ -3,6 +3,8 @@ package com.antgul.antgul_android.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -45,6 +47,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     public void startNextActivity(Class<?> className) {
         Intent intent = new Intent(this, className);
         startActivity(intent);
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

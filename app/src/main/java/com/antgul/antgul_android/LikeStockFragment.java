@@ -1,6 +1,5 @@
 package com.antgul.antgul_android;
 
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,10 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.base.BaseFragment;
+import com.antgul.antgul_android.data.Stock;
 import com.antgul.antgul_android.databinding.FragmentLikeStockBinding;
-import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
 
 import java.util.ArrayList;
 

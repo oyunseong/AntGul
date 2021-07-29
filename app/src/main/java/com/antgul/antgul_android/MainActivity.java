@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
+import com.antgul.antgul_android.ui.board.BoardFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {

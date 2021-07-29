@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.data;
 
 import android.widget.ImageView;
 import android.widget.TextView;

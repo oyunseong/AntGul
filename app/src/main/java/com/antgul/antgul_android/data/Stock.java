@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.data;
 
 public class Stock {
     private String stockName;

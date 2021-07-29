@@ -1,14 +1,12 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.board;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.antgul.antgul_android.data.Board;
 import com.antgul.antgul_android.databinding.BoardRecyclerItemBinding;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder> {
     private ArrayList<Board> mData = null;
 
-    RecyclerViewBoardAdapter(ArrayList<Board> mData){this.mData = mData;}
+    public RecyclerViewBoardAdapter(ArrayList<Board> mData){this.mData = mData;}
 
     @NonNull
     @Override
