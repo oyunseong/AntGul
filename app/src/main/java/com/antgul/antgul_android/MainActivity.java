@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -20,6 +21,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private final int FRAGMENT_NOTION = 2;
     private final int FRAGMENT_MY_PAGE = 3;
     private final int FRAGMENT_LIKE_STOCK = 4;
+
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;

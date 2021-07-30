@@ -70,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (matcherId.matches() && matcherPw.matches()) {
             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show();
             createUser(inputEmail, inputPassword);
+            finish();
             // email == true, pw == false
         } else if (matcherId.matches() && !matcherPw.matches()) {
             Toast.makeText(this, "비밀번호 형식이 다릅니다.", Toast.LENGTH_SHORT).show();

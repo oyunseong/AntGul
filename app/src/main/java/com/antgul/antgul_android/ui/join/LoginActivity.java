@@ -36,9 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        // 이미 로그인 되어있다면 현재 액티비티를 종료합니다.
         if (currentUser != null) {
-            // 이미 로그인 되어있다면 현재 액티비티를 종료합니다.
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 
@@ -58,11 +59,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // 회원가입 버튼 클릭
     private void onClickSignUpButton(){
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,13 +76,18 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        // 로그인 성공
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("onComplete", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //startNextActivity(MainActivity.class);
-                            finish();
-                        } else {
+                            if(user != null)
+                            {
+                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {    // 로그인 실패
                             // If sign in fails, display a message to the user.
                             Log.w("onComplete", "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",

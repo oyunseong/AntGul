@@ -48,6 +48,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
 
 
 
+    // 로그아웃 버튼
     private void onClickLogoutButton()
     {
         binding.myPageLogoutButton.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +60,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
-                mainActivity.finish();
-
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(MyPageFragment.this).commit();
             }
         });
     }
