@@ -3,6 +3,7 @@ package com.antgul.antgul_android.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,14 +28,26 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "++onCreate"); //이런 식으로 모든 생명 주기에, 태그 달기
-
         binding = getViewBinding();
         setContentView(binding.getRoot());
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG,"++onStart");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        Log.i(TAG,"++onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG,"++onPause");
     }
 
     public void replaceFragment(Fragment fragment){
@@ -56,6 +69,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i(TAG,"++onDestroy");
         binding = null;
     }
 }
