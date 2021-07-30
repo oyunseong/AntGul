@@ -96,13 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onStart();
         Log.i("SignUpActivity", "++onStart");
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // 이미 로그인 되어있다면 현재 액티비티를 종료합니다.
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-        }
     }
 
     private void createUser(String email, String password) {

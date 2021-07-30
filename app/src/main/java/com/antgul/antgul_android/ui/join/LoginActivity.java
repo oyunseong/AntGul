@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
+import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.ActivityLoginBinding;
@@ -34,11 +35,19 @@ public class LoginActivity extends AppCompatActivity {
         binding= ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // 이미 로그인 되어있다면 현재 액티비티를 종료합니다.
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+
         // 로그인 버튼 클릭
         onClickLogInButton();
         // 회원가입 버튼 클릭
         onClickSignUpButton();
     }
+
 
     private void onClickLogInButton(){
         binding.loginButton.setOnClickListener(new View.OnClickListener() {

@@ -2,10 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF5722"
+    android:background="#FBDED5"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <TextView
+        android:id="@+id/my_page_logout_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/edge"
+        android:text="로그아웃"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/my_page_withdrawal_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="회원탈퇴"
+        android:gravity="center"
+        android:background="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
