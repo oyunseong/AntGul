@@ -60,7 +60,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
-                mainActivity.getSupportFragmentManager().beginTransaction().remove(MyPageFragment.this).commit();
+                getActivity().finish();
             }
         });
     }

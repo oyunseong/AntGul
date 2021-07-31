@@ -58,8 +58,9 @@ public class SignUpActivity extends AppCompatActivity {
         String inputEmail = binding.etId.getText().toString();
         String inputPassword = binding.etPw.getText().toString();
 
+        // 이메일형식 체크, 비밀번호 8~20자리 + 특수문자 포함
         String regexEmail = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-        String regexPw = "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{6,20}$";
+        String regexPw = "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,20}$";
         Pattern patternEmail = Pattern.compile(regexEmail);
         Pattern patternPw = Pattern.compile(regexPw);
 

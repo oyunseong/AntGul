@@ -2,6 +2,7 @@ package com.antgul.antgul_android.ui.join;
 
 import static com.antgul.antgul_android.util.ViewUtil.getEditTextValue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
@@ -32,10 +34,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        binding= ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
         // 이미 로그인 되어있다면 현재 액티비티를 종료합니다.
         if (currentUser != null) {
@@ -50,17 +53,24 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void onClickLogInButton(){
+    private void onClickLogInButton() {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInWithEmailAndPassword(getEditTextValue(binding.etId), getEditTextValue(binding.etPw));
+
+                String id = getEditTextValue(binding.etId);
+                String pw = getEditTextValue(binding.etPw);
+                if (id.equals("") || pw.equals("")) {
+                    //아이디 비밀번호 확인해주세요
+                } else {
+                    signInWithEmailAndPassword(id, pw);
+                }
             }
         });
     }
 
     // 회원가입 버튼 클릭
-    private void onClickSignUpButton(){
+    private void onClickSignUpButton() {
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,16 +91,17 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("onComplete", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            if(user != null)
-                            {
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            if (user != null) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Email,Pw 불일치ddddddddd", Toast.LENGTH_LONG).show();
                             }
                         } else {    // 로그인 실패
                             // If sign in fails, display a message to the user.
                             Log.w("onComplete", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호",
                                     Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
