@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.data.Stock;
+import com.antgul.antgul_android.model.Stock;
 import com.antgul.antgul_android.databinding.FragmentLikeStockBinding;
 
 import java.util.ArrayList;

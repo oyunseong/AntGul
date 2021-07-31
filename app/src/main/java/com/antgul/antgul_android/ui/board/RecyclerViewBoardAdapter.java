@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.antgul.antgul_android.data.Board;
+import com.antgul.antgul_android.model.Board;
 import com.antgul.antgul_android.databinding.BoardRecyclerItemBinding;
 
 import java.util.ArrayList;

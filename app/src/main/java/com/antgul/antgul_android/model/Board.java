@@ -1,7 +1,6 @@
-package com.antgul.antgul_android.data;
+package com.antgul.antgul_android.model;
 
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Board {
     private ImageView imageView;

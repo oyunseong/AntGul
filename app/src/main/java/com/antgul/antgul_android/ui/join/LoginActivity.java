@@ -26,17 +26,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class LoginActivity extends AppCompatActivity {
-    ActivityLoginBinding binding;
+public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     private FirebaseAuth mAuth;
+
+    @Override
+    public ActivityLoginBinding getViewBinding() {
+        return ActivityLoginBinding.inflate(getLayoutInflater());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
+        mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
@@ -45,10 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-
-        // 로그인 버튼 클릭
+        Log.d(TAG, binding.toString());
         onClickLogInButton();
-        // 회원가입 버튼 클릭
         onClickSignUpButton();
     }
 
@@ -81,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signInWithEmailAndPassword(String email, String password) {
-        //show progress
+        progressDialog.showProgress();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
-                        //hideProgress()
+                        progressDialog.hideProgress();
                     }
                 });
     }

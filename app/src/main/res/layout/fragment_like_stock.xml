@@ -52,7 +52,7 @@
         android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@+id/like_stock_message"
         tools:layout_editor_absoluteX="10dp"
-        tools:listitem="@layout/like_stock_recycler_item"
+        tools:listitem="@layout/item_like_stock"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

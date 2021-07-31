@@ -24,12 +24,34 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     protected VB binding;
     protected abstract VB getViewBinding();
 
+    protected ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "++onCreate"); //이런 식으로 모든 생명 주기에, 태그 달기
         binding = getViewBinding();
+
+        Log.e(TAG, "binding is null? " + binding.toString()); //이런 식으로 모든 생명 주기에, 태그 달기
         setContentView(binding.getRoot());
+
+        progressDialog = new ProgressDialog(this);
+    }
+
+    public void replaceFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void startNextActivity(Class<?> className) {
+        Intent intent = new Intent(this, className);
+        startActivity(intent);
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -50,20 +72,16 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         Log.i(TAG,"++onPause");
     }
 
-    public void replaceFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit();
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "++onStop()");
     }
 
-    public void startNextActivity(Class<?> className) {
-        Intent intent = new Intent(this, className);
-        startActivity(intent);
-    }
-
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "++onRestart()");
     }
 
     @Override

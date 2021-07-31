@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
+import com.antgul.antgul_android.MainActivity;
+
+import org.jetbrains.annotations.NotNull;
+
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected final String TAG = this.getClass().getSimpleName();
@@ -19,6 +24,14 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected VB binding;
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
     protected abstract void setUpView();
+
+    protected MainActivity mainActivity;
+
+    @Override
+    public void onAttach(@NonNull @NotNull Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) getActivity();
+    }
 
     @Nullable
     @Override
@@ -46,4 +59,5 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         Log.i(TAG, "++onDestroyView");
         binding = null;
     }
+
 }

@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private LikeStockFragment likeStockFragment;
 
     @Override
-    protected ActivityMainBinding getViewBinding() {
+    public ActivityMainBinding getViewBinding() {
         return ActivityMainBinding.inflate(getLayoutInflater());
     }
 

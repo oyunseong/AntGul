@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.data.Board;
+import com.antgul.antgul_android.model.Board;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.ui.board.RecyclerViewBoardAdapter;
 

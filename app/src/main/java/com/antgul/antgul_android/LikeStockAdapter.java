@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.antgul.antgul_android.data.Stock;
-import com.antgul.antgul_android.databinding.LikeStockRecyclerItemBinding;
+import com.antgul.antgul_android.model.Stock;
+import com.antgul.antgul_android.databinding.ItemLikeStockBinding;
 
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LikeStockRecyclerItemBinding.inflate(LayoutInflater.from(parent.getContext()),
+        return new ViewHolder(ItemLikeStockBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent,false));
 
     }
@@ -45,11 +45,11 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final LikeStockRecyclerItemBinding likeStockRecyclerItemBinding;
+        private final ItemLikeStockBinding likeStockRecyclerItemBinding;
 
-        public ViewHolder(@NonNull LikeStockRecyclerItemBinding likeStockRecyclerItemBinding) {
-            super(likeStockRecyclerItemBinding.getRoot());
-            this.likeStockRecyclerItemBinding = likeStockRecyclerItemBinding;
+        public ViewHolder(@NonNull ItemLikeStockBinding binding) {
+            super(binding.getRoot());
+            this.likeStockRecyclerItemBinding = binding;
         }
     }
 

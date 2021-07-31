@@ -1,10 +1,8 @@
 package com.antgul.antgul_android.ui.board;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,32 +15,16 @@ import com.antgul.antgul_android.databinding.FragmentBoardBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
-    private MainActivity mainActivity;
-    private ViewGroup viewGroup;
 
     @Override
     protected FragmentBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentBoardBinding.inflate(inflater, container, false);
     }
 
-    // 프래그먼트가 액티비티에 올라는 순간 호출됩니다.
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mainActivity = (MainActivity) getActivity();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mainActivity = null;
-    }
-
     @Override
     protected void setUpView() {
         //init code..
         setInit();
-
     }
 
     // viewPager2 실행 메서드
