@@ -3,12 +3,9 @@ package com.antgul.antgul_android.ui.board;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
-
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentBoardBinding;
@@ -22,9 +19,13 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     }
 
     @Override
-    protected void setUpView() {
+    protected void initView() {
         //init code..
         setInit();
+    }
+
+    @Override
+    protected void initClickListener() {
     }
 
     // viewPager2 실행 메서드

@@ -16,10 +16,10 @@ import com.antgul.antgul_android.ui.board.RecyclerViewBoardAdapter;
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
-    private RecyclerViewBoardAdapter recyclerViewBoardAdapter;
-    ArrayList<Board> mData;
-    RecyclerView.LayoutManager layoutManager;
 
+    private RecyclerViewBoardAdapter recyclerViewBoardAdapter;
+    private ArrayList<Board> mData;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -27,11 +27,11 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     }
 
     @Override
-    protected void setUpView() {
+    protected void initView() {
         mData = new ArrayList<>();
         recyclerViewBoardAdapter = new RecyclerViewBoardAdapter(mData);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
-        binding.freeBoardRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.setAdapter(recyclerViewBoardAdapter);
 
         for (int i = 0; i < 30; i++) {
@@ -39,6 +39,12 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         }
         recyclerViewBoardAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void initClickListener() {
+
+    }
+
     public void addItem(String nickName, String time, String content)
     {
         Board board = new Board(nickName,time,content);

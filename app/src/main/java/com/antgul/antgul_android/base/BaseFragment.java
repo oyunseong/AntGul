@@ -17,13 +17,15 @@ import com.antgul.antgul_android.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
+//TODO 라이프사이클 주석 달기
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected final String TAG = this.getClass().getSimpleName();
 
     protected VB binding;
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
-    protected abstract void setUpView();
+    protected abstract void initView();
+    protected abstract void initClickListener();
 
     protected MainActivity mainActivity;
 
@@ -46,7 +48,8 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "++onViewCreated"); //이런 식으로 모든 생명 주기에, 태그 달기
-        setUpView();
+        initView();
+        initClickListener();
     }
 
     public void showToast(String message) {
@@ -60,4 +63,9 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mainActivity = null;
+    }
 }

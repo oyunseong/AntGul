@@ -27,7 +27,7 @@ public class LikeStockFragment extends BaseFragment<FragmentLikeStockBinding> {
     }
 
     @Override
-    protected void setUpView() {
+    protected void initView() {
         // 관심종목 주식이름, 번호 담을 리스트 생성
         mData = new ArrayList<>();
         // 검색기능을 위한 리스트 생성
@@ -66,6 +66,11 @@ public class LikeStockFragment extends BaseFragment<FragmentLikeStockBinding> {
                 searchFilter(searchText);
             }
         });
+
+    }
+
+    @Override
+    protected void initClickListener() {
 
     }
 
