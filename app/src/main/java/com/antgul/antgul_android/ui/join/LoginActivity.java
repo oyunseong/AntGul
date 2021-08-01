@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.ActivityLoginBinding;
@@ -36,6 +37,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();

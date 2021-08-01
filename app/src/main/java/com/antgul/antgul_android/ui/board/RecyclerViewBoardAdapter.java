@@ -1,7 +1,9 @@
 package com.antgul.antgul_android.ui.board;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,15 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.antgul.antgul_android.databinding.ItemBoardRecyclerBinding;
 import com.antgul.antgul_android.model.Board;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder> {
     private ArrayList<Board> mData = null;
+    private OnItemClickListener itemClickListener = null;
 
     public RecyclerViewBoardAdapter(ArrayList<Board> mData) {
         this.mData = mData;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int pos);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -43,19 +52,30 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
         return mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemBoardRecyclerBinding ItemBoardRecyclerBinding;
 
-        public ViewHolder(@NonNull ItemBoardRecyclerBinding ItemBoardRecyclerBinding) {
-            super(ItemBoardRecyclerBinding.getRoot());
-            this.ItemBoardRecyclerBinding = ItemBoardRecyclerBinding;
+        public ViewHolder(@NonNull ItemBoardRecyclerBinding itemBoardRecyclerBinding) {
+            super(itemBoardRecyclerBinding.getRoot());
+            this.ItemBoardRecyclerBinding = itemBoardRecyclerBinding;
 
+            itemBoardRecyclerBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        if (itemClickListener != null) {
+                            itemClickListener.onItemClick(v, pos);
+                        }
+                    }
+                }
+            });
         }
     }
+
 
     public void addItem(Board board) {
         mData.add(board);
         notifyDataSetChanged();
-        ;
     }
 }

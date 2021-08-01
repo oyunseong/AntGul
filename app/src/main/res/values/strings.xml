@@ -3,6 +3,20 @@
     <string name="login_button">개미굴 로그인</string>
     <string name="board_content">
         In the culture of simulation, experiences on the Internet figure prominently. In cyberspace, we can talk, exchange ideas, and assume personae of our own creation. In an interactive computer game inspired by Star Trek, thousands of players spend up to eighty hours a week participating in intergalactic exploration and wars. They create characters who have romantic encounters, hold jobs and collect paychecks, attend rituals and celebrations, fall in love and get married. “This is more real than my real life,” says a character who turns out to be a man playing a woman. In this game the self is constructed and the rules of social interaction are built, not received. In another text-based game, each of nearly ten thousand players creates a character or several characters, specifying their genders and other physical and psychological attributes. The characters need not be human and there are more than two genders. Players are invited to help build the computer world itself. Indeed, the Internet links millions of people in new spaces that are changing the way of our thinking, the nature of our sexuality, the form of our communities, and our very identities.
-
     </string>
+    <string name="test_comment">회사명
+종목코드
+자산총계
+부채총계
+자본총계
+유동자산
+유동부채
+자본금
+비유동자산
+비유동부채
+이익잉여금
+매출액
+당기순이익
+영업이익
+법인세차감전 순이익</string>
 </resources>

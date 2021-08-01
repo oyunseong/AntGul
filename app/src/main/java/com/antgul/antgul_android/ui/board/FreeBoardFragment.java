@@ -1,6 +1,7 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.board;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.model.Board;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
-import com.antgul.antgul_android.ui.board.RecyclerViewBoardAdapter;
 
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
-    private RecyclerViewBoardAdapter recyclerViewBoardAdapter;
+    private RecyclerViewBoardAdapter mAdapter;
     ArrayList<Board> mData;
     RecyclerView.LayoutManager layoutManager;
 
@@ -29,16 +29,27 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     @Override
     protected void setUpView() {
         mData = new ArrayList<>();
-        recyclerViewBoardAdapter = new RecyclerViewBoardAdapter(mData);
+        mAdapter = new RecyclerViewBoardAdapter(mData);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.freeBoardRecycler.setAdapter(recyclerViewBoardAdapter);
+        binding.freeBoardRecycler.setAdapter(mAdapter);
 
+        recyclerClick();
+        tempDataCreate();
+
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void recyclerClick(){
+        mAdapter.setOnItemClickListener((v, pos) -> showToast(pos+"번 클릭"));
+    }
+
+    private void tempDataCreate(){
         for (int i = 0; i < 30; i++) {
             addItem("item"+i,"2분 전","게시글 내용 입니다.");
         }
-        recyclerViewBoardAdapter.notifyDataSetChanged();
     }
+
     public void addItem(String nickName, String time, String content)
     {
         Board board = new Board(nickName,time,content);
@@ -46,7 +57,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         board.setTime(time);
         board.setContent(content);
 
-        recyclerViewBoardAdapter.addItem(board);
+        mAdapter.addItem(board);
 
     }
 }
