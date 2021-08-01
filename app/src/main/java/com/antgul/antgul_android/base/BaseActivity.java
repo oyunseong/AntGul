@@ -24,7 +24,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     protected VB binding;
     protected abstract VB getViewBinding();
 
-    protected ProgressDialog progressDialog;
+    protected abstract void initView();
+    protected abstract void initClickListener();
+
+    public ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,8 +36,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         binding = getViewBinding();
         setContentView(binding.getRoot());
-
         progressDialog = new ProgressDialog(this);
+
+        initView();
+        initClickListener();
     }
 
     public void replaceFragment(Fragment fragment){

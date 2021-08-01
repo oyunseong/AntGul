@@ -36,6 +36,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initClickListener() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

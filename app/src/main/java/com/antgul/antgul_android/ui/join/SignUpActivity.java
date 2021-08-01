@@ -27,31 +27,26 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//TODO BaseActivity 적용
 public class SignUpActivity extends AppCompatActivity {
+
     ActivitySignUpBinding binding;
     private FirebaseAuth mAuth;
-    MainActivity mainActivity;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
 
-
         initButtonClickListener();
     }
 
     private void initButtonClickListener() {
-        binding.signUpConfirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateCreateUser();
-            }
-        });
+        binding.signUpConfirmButton.setOnClickListener(v -> validateCreateUser());
     }
 
     private void validateCreateUser() {
@@ -90,15 +85,11 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     @Override
     public void onStart() {
         super.onStart();
         Log.i("SignUpActivity", "++onStart");
         // Check if user is signed in (non-null) and update UI accordingly.
-
     }
 
     private void createUser(String email, String password) {
@@ -133,4 +124,5 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "updateUI Error", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

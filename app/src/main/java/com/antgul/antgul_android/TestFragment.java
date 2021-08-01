@@ -16,7 +16,12 @@ public class TestFragment extends BaseFragment<FragmentTestBinding> {
     }
 
     @Override
-    protected void setUpView() {
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initClickListener() {
 
     }
 }

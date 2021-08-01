@@ -1,7 +1,6 @@
 package com.antgul.antgul_android.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,13 +23,13 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected VB binding;
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
-    protected abstract void setUpView();
+    protected abstract void initView();
+    protected abstract void initClickListener();
 
     protected MainActivity mainActivity;
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
-        Log.i(TAG, "++onAttach");
         super.onAttach(context);
         mainActivity = (MainActivity) getActivity();
     }
@@ -38,7 +37,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "++onCreateView");
+        Log.i(TAG, "++onCreateView"); //이런 식으로 모든 생명 주기에, 태그 달기
 
         binding = getViewBinding(inflater, container);
         return binding.getRoot();
@@ -47,8 +46,9 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(TAG, "++onViewCreated");
-        setUpView();
+        Log.i(TAG, "++onViewCreated"); //이런 식으로 모든 생명 주기에, 태그 달기
+        initView();
+        initClickListener();
     }
 
     public void showToast(String message) {
@@ -62,10 +62,9 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         binding = null;
     }
 
-    public void startNextActivity(Class<?> className) {
-        Intent intent = new Intent(getContext(), className);
-        startActivity(intent);
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mainActivity = null;
     }
-
-
 }

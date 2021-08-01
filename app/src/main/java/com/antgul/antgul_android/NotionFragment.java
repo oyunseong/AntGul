@@ -18,7 +18,7 @@ public class NotionFragment extends BaseFragment<FragmentNotionBinding> {
     }
 
     @Override
-    protected void setUpView() {
+    protected void initView() {
         Log.i(TAG, "start setUpView()");
         //뷰 초기화 작업.
         binding.notionBtn.setText("뷰 초기화");
@@ -29,6 +29,11 @@ public class NotionFragment extends BaseFragment<FragmentNotionBinding> {
                 showToast("클릭");
             }
         });
+    }
+
+    @Override
+    protected void initClickListener() {
+
     }
 
 }
