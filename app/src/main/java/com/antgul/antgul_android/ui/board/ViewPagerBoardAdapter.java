@@ -12,7 +12,7 @@ import com.antgul.antgul_android.FreeBoardFragment;
 import com.antgul.antgul_android.TestFragment;
 
 public class ViewPagerBoardAdapter extends FragmentStateAdapter {
-    private final int fragmentCount = 5;
+    private final int fragmentCount = 2;
 
 
     public ViewPagerBoardAdapter(@NonNull FragmentActivity fragmentActivity) {

@@ -23,7 +23,6 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
 
     @Override
     protected void setUpView() {
-        //init code..
         setInit();
     }
 

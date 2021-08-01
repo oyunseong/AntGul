@@ -29,10 +29,9 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "++onCreate"); //이런 식으로 모든 생명 주기에, 태그 달기
-        binding = getViewBinding();
+        Log.i(TAG, "++onCreate");
 
-        Log.e(TAG, "binding is null? " + binding.toString()); //이런 식으로 모든 생명 주기에, 태그 달기
+        binding = getViewBinding();
         setContentView(binding.getRoot());
 
         progressDialog = new ProgressDialog(this);

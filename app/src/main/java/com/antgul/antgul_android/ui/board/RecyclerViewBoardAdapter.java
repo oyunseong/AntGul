@@ -6,20 +6,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.antgul.antgul_android.databinding.ItemBoardRecyclerBinding;
 import com.antgul.antgul_android.model.Board;
-import com.antgul.antgul_android.databinding.BoardRecyclerItemBinding;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder> {
     private ArrayList<Board> mData = null;
 
-    public RecyclerViewBoardAdapter(ArrayList<Board> mData){this.mData = mData;}
+    public RecyclerViewBoardAdapter(ArrayList<Board> mData) {
+        this.mData = mData;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(BoardRecyclerItemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
+        return new ViewHolder(ItemBoardRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     //// 변수 초기화
@@ -29,9 +33,9 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
 
         Board board = mData.get(position);
 //        holder.boardRecyclerItemBinding.boardImage.getDrawable();
-        holder.boardRecyclerItemBinding.boardNickName.setText("익명"+position);
-        holder.boardRecyclerItemBinding.boardTime.setText("10분 전");
-        holder.boardRecyclerItemBinding.boardContent.setText("게시글 내용입니다.");
+        holder.ItemBoardRecyclerBinding.boardNickName.setText("익명" + position);
+        holder.ItemBoardRecyclerBinding.boardTime.setText("10분 전");
+        holder.ItemBoardRecyclerBinding.boardContent.setText("게시글 내용입니다.");
     }
 
     @Override
@@ -39,18 +43,19 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
         return mData.size();
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final BoardRecyclerItemBinding boardRecyclerItemBinding;
+        private final ItemBoardRecyclerBinding ItemBoardRecyclerBinding;
 
-        public ViewHolder(@NonNull BoardRecyclerItemBinding boardRecyclerItemBinding) {
-            super(boardRecyclerItemBinding.getRoot());
-            this.boardRecyclerItemBinding = boardRecyclerItemBinding;
+        public ViewHolder(@NonNull ItemBoardRecyclerBinding ItemBoardRecyclerBinding) {
+            super(ItemBoardRecyclerBinding.getRoot());
+            this.ItemBoardRecyclerBinding = ItemBoardRecyclerBinding;
 
         }
     }
-    public void addItem(Board board){
+
+    public void addItem(Board board) {
         mData.add(board);
-        notifyDataSetChanged();;
+        notifyDataSetChanged();
+        ;
     }
 }
