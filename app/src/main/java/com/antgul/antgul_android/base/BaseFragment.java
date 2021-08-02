@@ -22,8 +22,11 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected final String TAG = this.getClass().getSimpleName();
 
     protected VB binding;
+
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
+
     protected abstract void initView();
+
     protected abstract void initClickListener();
 
     protected MainActivity mainActivity;

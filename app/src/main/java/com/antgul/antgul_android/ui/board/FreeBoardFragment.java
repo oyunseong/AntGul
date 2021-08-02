@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.board;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentFreeBoardBinding.inflate(inflater,container,false);
+        return FragmentFreeBoardBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.freeBoardRecycler.setAdapter(recyclerViewBoardAdapter);
 
         for (int i = 0; i < 30; i++) {
-            addItem("item"+i,"2분 전","게시글 내용 입니다.");
+            addItem("item" + i, "2분 전", "게시글 내용 입니다.");
         }
         recyclerViewBoardAdapter.notifyDataSetChanged();
     }
@@ -45,9 +45,8 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     }
 
-    public void addItem(String nickName, String time, String content)
-    {
-        Board board = new Board(nickName,time,content);
+    public void addItem(String nickName, String time, String content) {
+        Board board = new Board(nickName, time, content);
         board.setNickName(nickName);
         board.setTime(time);
         board.setContent(content);

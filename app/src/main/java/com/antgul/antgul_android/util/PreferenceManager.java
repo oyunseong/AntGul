@@ -17,6 +17,7 @@ public class PreferenceManager {
     private static final float DEFAULT_VALUE_FLOAT = -1F;
 
     public static final String PREF_AUTO_LOGIN = "autoLogin";
+    public static final String PREF_SAVE_EMAIL = "saveEmail";
 
     private static SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);

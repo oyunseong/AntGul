@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
 import com.antgul.antgul_android.R;
 
 //TODO 타임아웃 기능 추가하기. 일정 시간동안, 프로그레스바가 사라지지 않는다면, 10초 후 프로그레스바 없애고, 토스트 메시지 띄우기

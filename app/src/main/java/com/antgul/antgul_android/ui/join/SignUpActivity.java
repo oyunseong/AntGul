@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.antgul.antgul_android.MainActivity;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityLoginBinding;
 import com.antgul.antgul_android.databinding.ActivitySignUpBinding;
@@ -35,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
 
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());

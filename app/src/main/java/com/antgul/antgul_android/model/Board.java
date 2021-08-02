@@ -8,7 +8,7 @@ public class Board {
     private String time;
     private String content;
 
-    public Board( String nickName, String time, String content) {
+    public Board(String nickName, String time, String content) {
         //this.imageView = imageView;
         this.nickName = nickName;
         this.time = time;

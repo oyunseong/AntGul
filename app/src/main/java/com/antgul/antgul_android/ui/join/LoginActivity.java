@@ -1,6 +1,7 @@
 package com.antgul.antgul_android.ui.join;
 
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
+import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 import static com.antgul.antgul_android.util.ViewUtil.getEditTextValue;
 
 import android.content.Intent;
@@ -39,10 +40,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     }
 
     protected void initView() {
-        boolean isAutoLogin = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
-        binding.autoLoginCheckBox.setChecked(isAutoLogin);
+        boolean isAutoLoginButton = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
+        binding.autoLoginCheckBox.setChecked(isAutoLoginButton);
 
         //TODO 로그인에 한번이라도 성공한 적이 있다면, 이메일 비밀번호 자동 입력 시켜주기.
+        String isSaveEmail = PreferenceManager.getString(getApplicationContext(),PREF_SAVE_EMAIL);
+        binding.etId.setText(isSaveEmail);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
             String id = getEditTextValue(binding.etId);
             String pw = getEditTextValue(binding.etPw);
             if (id.equals("") || pw.equals("")) {
-                //아이디 비밀번호 확인해주세요
+                showToast("email,pw를 입력해주세요.");
             } else {
                 signInWithEmailAndPassword(id, pw);
             }
@@ -65,18 +68,22 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getApplicationContext(), PREF_AUTO_LOGIN, isChecked);
         });
+
+
     }
 
     private void autoLogin() {
-        boolean isAutoLogin = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
-        if (currentUser != null && isAutoLogin) {
+        boolean isAutoLoginButton = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
+        if (currentUser != null && isAutoLoginButton) {
             startNextActivity(MainActivity.class);
             finish();
         }
     }
 
-    private void saveEmail() {
+    private void saveEmail(String email) {
         //TODO 로그인 성공 시, SharedPreferences 에 이메일, 비밀번호 저장
+        PreferenceManager.setString(getApplicationContext(),PREF_SAVE_EMAIL,email);
+        binding.etId.setText(email);
     }
 
     private void signInWithEmailAndPassword(String email, String password) {
@@ -90,7 +97,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                         Log.d("onComplete", "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            saveEmail();
+                            saveEmail(email);
                             startNextActivity(MainActivity.class);
                             finish();
                         } else {
