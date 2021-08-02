@@ -3,7 +3,6 @@ package com.antgul.antgul_android.ui.board;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,16 +34,14 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
         return new ViewHolder(ItemBoardRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
-    //// 변수 초기화
-    //
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewBoardAdapter.ViewHolder holder, int position) {
 
         Board board = mData.get(position);
 //        holder.boardRecyclerItemBinding.boardImage.getDrawable();
-        holder.ItemBoardRecyclerBinding.boardNickName.setText("익명" + position);
-        holder.ItemBoardRecyclerBinding.boardTime.setText("10분 전");
-        holder.ItemBoardRecyclerBinding.boardContent.setText("게시글 내용입니다.");
+        holder.itemBoardRecyclerBinding.boardNickName.setText("익명" + position);
+        holder.itemBoardRecyclerBinding.boardTime.setText("10분 전");
+        holder.itemBoardRecyclerBinding.boardContent.setText("게시글 내용입니다.");
     }
 
     @Override
@@ -53,26 +50,23 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemBoardRecyclerBinding ItemBoardRecyclerBinding;
+        private final ItemBoardRecyclerBinding itemBoardRecyclerBinding;
 
         public ViewHolder(@NonNull ItemBoardRecyclerBinding itemBoardRecyclerBinding) {
             super(itemBoardRecyclerBinding.getRoot());
-            this.ItemBoardRecyclerBinding = itemBoardRecyclerBinding;
+            this.itemBoardRecyclerBinding = itemBoardRecyclerBinding;
 
-            itemBoardRecyclerBinding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        if (itemClickListener != null) {
-                            itemClickListener.onItemClick(v, pos);
-                        }
+            itemBoardRecyclerBinding.getRoot().setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    if (itemClickListener != null) {
+                        itemClickListener.onItemClick(v, pos);
+                        //TODO 리사이클러뷰 아이템 클릭시 DetailBoardFragment로 이동시키기
                     }
                 }
             });
         }
     }
-
 
     public void addItem(Board board) {
         mData.add(board);

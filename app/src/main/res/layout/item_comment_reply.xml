@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#fff"
     android:padding="15dp">
 
     <ImageView
@@ -38,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_image" />
 
     <TextView
-        android:id="@+id/like_button"
+        android:id="@+id/board_like_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:background="@drawable/like_button"
@@ -53,7 +54,7 @@
         android:paddingLeft="3dp"
         android:text="0"
         app:layout_constraintTop_toBottomOf="@id/comment"
-        app:layout_constraintLeft_toRightOf="@id/like_button"
+        app:layout_constraintLeft_toRightOf="@id/board_like_button"
         />
 
     <TextView

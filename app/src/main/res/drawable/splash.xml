@@ -3,7 +3,7 @@
     <item android:drawable="@color/white" />
     <item>
         <bitmap
-            android:src="@drawable/ant_logo_main"
+            android:src="@drawable/antgul_logo_2"
             android:gravity="center"/>
     </item>
 </layer-list>

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
 import com.antgul.antgul_android.ui.board.BoardFragment;
+import com.antgul.antgul_android.ui.board.DetailBoardFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
@@ -21,14 +22,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private final int FRAGMENT_NOTION = 2;
     private final int FRAGMENT_MY_PAGE = 3;
     private final int FRAGMENT_LIKE_STOCK = 4;
-
+    public final int FRAGMENT_DETAIL_BOARD = 5;
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;
     private NotionFragment notionFragment;
     private MyPageFragment myPageFragment;
     private LikeStockFragment likeStockFragment;
-
+    private DetailBoardFragment detailBoardFragment;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -47,7 +48,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -77,6 +77,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
         likeStockFragment = new LikeStockFragment();
+        detailBoardFragment = new DetailBoardFragment();
 
         callFragment(FRAGMENT_HOME);
     }
@@ -105,7 +106,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 fragmentTransaction.commit();
                 break;
             case FRAGMENT_LIKE_STOCK:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(),likeStockFragment);
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), likeStockFragment);
+                fragmentTransaction.commit();
+                break;
+            case FRAGMENT_DETAIL_BOARD:
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), detailBoardFragment);
                 fragmentTransaction.commit();
                 break;
         }

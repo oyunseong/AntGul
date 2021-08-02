@@ -29,23 +29,33 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //TODO BaseActivity 적용
-public class SignUpActivity extends AppCompatActivity {
-
-    ActivitySignUpBinding binding;
+public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
     private FirebaseAuth mAuth;
 
     @Override
+    protected ActivitySignUpBinding getViewBinding() {
+        return ActivitySignUpBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
 
-        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         mAuth = FirebaseAuth.getInstance();
-
         initButtonClickListener();
     }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initClickListener() {
+
+    }
+
+
 
     private void initButtonClickListener() {
         binding.signUpConfirmButton.setOnClickListener(v -> validateCreateUser());

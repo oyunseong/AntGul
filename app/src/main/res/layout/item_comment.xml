@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_image" />
 
     <TextView
-        android:id="@+id/like_button"
+        android:id="@+id/board_like_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
@@ -58,7 +58,7 @@
         android:layout_marginLeft="3dp"
         android:text="0"
         app:layout_constraintTop_toBottomOf="@id/comment"
-        app:layout_constraintLeft_toRightOf="@id/like_button"
+        app:layout_constraintLeft_toRightOf="@id/board_like_button"
         />
 
     <TextView

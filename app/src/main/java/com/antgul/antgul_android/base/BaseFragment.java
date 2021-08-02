@@ -40,8 +40,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "++onCreateView"); //이런 식으로 모든 생명 주기에, 태그 달기
-
+        Log.i(TAG, "++onCreateView");
         binding = getViewBinding(inflater, container);
         return binding.getRoot();
     }
@@ -49,7 +48,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(TAG, "++onViewCreated"); //이런 식으로 모든 생명 주기에, 태그 달기
+        Log.i(TAG, "++onViewCreated");
         initView();
         initClickListener();
     }

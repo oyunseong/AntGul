@@ -30,7 +30,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+        setTheme(R.style.Theme_Antden);
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
@@ -43,7 +43,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
         binding.autoLoginCheckBox.setChecked(isAutoLoginButton);
 
-        //TODO 로그인에 한번이라도 성공한 적이 있다면, 이메일 비밀번호 자동 입력 시켜주기.
         String isSaveEmail = PreferenceManager.getString(getApplicationContext(),PREF_SAVE_EMAIL);
         binding.etId.setText(isSaveEmail);
     }
@@ -81,7 +80,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     }
 
     private void saveEmail(String email) {
-        //TODO 로그인 성공 시, SharedPreferences 에 이메일, 비밀번호 저장
         PreferenceManager.setString(getApplicationContext(),PREF_SAVE_EMAIL,email);
         binding.etId.setText(email);
     }
@@ -101,12 +99,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                             startNextActivity(MainActivity.class);
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Email,Pw 불일치ddddddddd", Toast.LENGTH_LONG).show();
+                            showToast("틀림");
                         }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("onComplete", "signInWithEmail:failure", task.getException());
-                        Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호", Toast.LENGTH_SHORT).show();
+                        showToast("네트워크 불안정");
 //                      updateUI(null);
                     }
                 });
