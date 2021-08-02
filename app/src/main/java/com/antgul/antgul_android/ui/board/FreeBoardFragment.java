@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.model.Board;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
@@ -44,9 +45,13 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initClickListener() {
-        mAdapter.setOnItemClickListener((v, pos) ->
-                showToast(pos+"번 클릭"));
-                mainActivity.callFragment(5);
+        mAdapter.setOnItemClickListener(new RecyclerViewBoardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                showToast(pos+"번 클릭");
+                mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
+            }
+        });
     }
 
     public void addItem(String nickName, String time, String content) {

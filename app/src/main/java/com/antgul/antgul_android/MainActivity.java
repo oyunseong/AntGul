@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private final int FRAGMENT_NOTION = 2;
     private final int FRAGMENT_MY_PAGE = 3;
     private final int FRAGMENT_LIKE_STOCK = 4;
-    public final int FRAGMENT_DETAIL_BOARD = 5;
+    public static final int FRAGMENT_DETAIL_BOARD = 5;
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;

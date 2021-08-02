@@ -16,20 +16,6 @@ import org.jetbrains.annotations.NotNull;
 public class DetailBoardFragment extends BaseFragment<DetailBoardBinding> {
     private int mNumber = 0;
 
-    private FragmentManager.OnBackStackChangedListener mListener = new FragmentManager.OnBackStackChangedListener() {
-        @Override
-        public void onBackStackChanged() {
-            FragmentManager fragmentManager = getChildFragmentManager();
-            int count = 0;
-            for (Fragment f : fragmentManager.getFragments()) {
-                if (f != null) {
-                    count++;
-                }
-            }
-            mNumber = count;
-        }
-    };
-
     @Override
     protected DetailBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return DetailBoardBinding.inflate(inflater, container, false);
