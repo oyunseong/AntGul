@@ -20,16 +20,15 @@ import org.jetbrains.annotations.NotNull;
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected final String TAG = this.getClass().getSimpleName();
-
     protected VB binding;
+    protected MainActivity mainActivity;
+
 
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
-
     protected abstract void initView();
-
     protected abstract void initClickListener();
 
-    protected MainActivity mainActivity;
+
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {

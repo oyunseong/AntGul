@@ -24,11 +24,16 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     @Override
     protected void initView() {
         setInit();
+
     }
 
     @Override
     protected void initClickListener() {
+        binding.writeButton.setOnClickListener(v -> {
+            mainActivity.callFragment(MainActivity.FRAGMENT_WRITE_BOARD);
+        });
     }
+
 
     private void setInit() {
         String[] titles = new String[]{"전체", "관심종목","테스트1","테스트2","테스트3"}; // tab title
@@ -48,6 +53,8 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
         });
 
         new TabLayoutMediator(binding.boardTabLayout, viewPager2,(tab, position) -> tab.setText(titles[position])).attach();
+
+        binding.writeButton.bringToFront();
     }
 }
 

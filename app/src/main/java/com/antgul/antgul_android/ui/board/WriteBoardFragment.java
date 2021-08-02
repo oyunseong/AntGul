@@ -7,15 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.databinding.FragmentDetailBoardBinding;
+import com.antgul.antgul_android.databinding.FragmentWriteBoardBinding;
 
 import org.jetbrains.annotations.NotNull;
 
-public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding> {
-
+public class WriteBoardFragment extends BaseFragment<FragmentWriteBoardBinding> {
     @Override
-    protected FragmentDetailBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentDetailBoardBinding.inflate(inflater, container, false);
+    protected FragmentWriteBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentWriteBoardBinding.inflate(inflater,container,false);
     }
 
     @Override

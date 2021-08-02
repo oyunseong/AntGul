@@ -13,6 +13,8 @@ import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
 import com.antgul.antgul_android.ui.board.BoardFragment;
 import com.antgul.antgul_android.ui.board.DetailBoardFragment;
+import com.antgul.antgul_android.ui.board.WriteBoardFragment;
+import com.antgul.antgul_android.util.BackPressHandler;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
@@ -23,6 +25,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private final int FRAGMENT_MY_PAGE = 3;
     private final int FRAGMENT_LIKE_STOCK = 4;
     public static final int FRAGMENT_DETAIL_BOARD = 5;
+    public static final int FRAGMENT_WRITE_BOARD = 6;
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;
@@ -30,6 +33,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private MyPageFragment myPageFragment;
     private LikeStockFragment likeStockFragment;
     private DetailBoardFragment detailBoardFragment;
+    private WriteBoardFragment writeBoardFragment;
+
+    private BackPressHandler backPressHandler;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -78,6 +84,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         myPageFragment = new MyPageFragment();
         likeStockFragment = new LikeStockFragment();
         detailBoardFragment = new DetailBoardFragment();
+        writeBoardFragment = new WriteBoardFragment();
+        backPressHandler= new BackPressHandler(this);
 
         callFragment(FRAGMENT_HOME);
     }
@@ -113,6 +121,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), detailBoardFragment);
                 fragmentTransaction.commit();
                 break;
+            case FRAGMENT_WRITE_BOARD:
+                fragmentTransaction.replace(binding.fragmentFrame.getId(), writeBoardFragment);
+                fragmentTransaction.commit();
+                break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료");
     }
 }
