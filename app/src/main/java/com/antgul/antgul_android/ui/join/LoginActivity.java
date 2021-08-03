@@ -97,15 +97,17 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             saveEmail(email);
+                            showToast("로그인 성공!!");
                             startNextActivity(MainActivity.class);
                             finish();
                         } else {
-                            showToast("틀림");
+                            Log.e(TAG,"user is null");
+                            showToast("user is null");
                         }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("onComplete", "signInWithEmail:failure", task.getException());
-                        showToast("네트워크 불안정");
+                        showToast("회원정보를 찾을 수 없습니다.");
 //                      updateUI(null);
                     }
                 });
