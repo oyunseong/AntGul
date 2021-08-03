@@ -31,6 +31,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
+        Log.i(TAG,"onAttach");
         mainActivity = (MainActivity) getActivity();
     }
 
@@ -64,6 +65,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        Log.i(TAG,"onDetach");
         mainActivity = null;
     }
 }

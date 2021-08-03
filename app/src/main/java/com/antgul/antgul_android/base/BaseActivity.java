@@ -40,6 +40,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     }
 
     public void replaceFragment(Fragment fragment){
+        Log.i(TAG,"replaceFragment");
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .addToBackStack(null)
@@ -47,6 +48,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     }
 
     public void startNextActivity(Class<?> className) {
+        Log.i(TAG,"startNextActivity");
         Intent intent = new Intent(this, className);
         startActivity(intent);
     }
