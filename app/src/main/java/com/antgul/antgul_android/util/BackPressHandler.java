@@ -3,10 +3,6 @@ package com.antgul.antgul_android.util;
 import android.app.Activity;
 import android.widget.Toast;
 
-/**
- * Created by imaec on 2018-10-26.
- */
-
 public class BackPressHandler {
 
     // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장

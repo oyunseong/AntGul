@@ -20,10 +20,8 @@ import com.antgul.antgul_android.R;
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
-
     protected VB binding;
     protected abstract VB getViewBinding();
-
     protected abstract void initView();
     protected abstract void initClickListener();
 
