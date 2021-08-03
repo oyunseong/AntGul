@@ -39,6 +39,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         autoLogin();
     }
 
+    @Override
     protected void initView() {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
         binding.autoLoginCheckBox.setChecked(isAutoLoginButton);

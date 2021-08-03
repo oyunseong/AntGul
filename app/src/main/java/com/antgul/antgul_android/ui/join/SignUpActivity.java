@@ -55,12 +55,11 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
 
     }
 
-
-
     private void initButtonClickListener() {
         binding.signUpConfirmButton.setOnClickListener(v -> validateCreateUser());
     }
 
+    //TODO 유효성 검증 제대로 해주기
     private void validateCreateUser() {
         String inputEmail = binding.etId.getText().toString();
         String inputPassword = binding.etPw.getText().toString();
@@ -97,13 +96,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("SignUpActivity", "++onStart");
-        // Check if user is signed in (non-null) and update UI accordingly.
-    }
-
+    //TODO 프로그레스바 추가
     private void createUser(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

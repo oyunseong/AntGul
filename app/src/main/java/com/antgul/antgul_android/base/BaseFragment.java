@@ -17,18 +17,16 @@ import com.antgul.antgul_android.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
+//TODO 생명주기 로그달고, 각 콜백이 언제 왜! 호출되는지 확인하기.
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;
     protected MainActivity mainActivity;
 
-
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
     protected abstract void initView();
     protected abstract void initClickListener();
-
-
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {

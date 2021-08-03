@@ -70,6 +70,7 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
 
     public void addItem(Board board) {
         mData.add(board);
+        //TODO notifyItemInserted(); 로 변경
         notifyDataSetChanged();
     }
 }

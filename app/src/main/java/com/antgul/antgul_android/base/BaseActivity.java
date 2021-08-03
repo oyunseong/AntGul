@@ -24,7 +24,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     protected abstract VB getViewBinding();
     protected abstract void initView();
     protected abstract void initClickListener();
-
     public ProgressDialog progressDialog;
 
     @Override

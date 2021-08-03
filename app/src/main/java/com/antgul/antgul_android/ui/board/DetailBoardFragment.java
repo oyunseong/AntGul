@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.ui.board;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -19,8 +20,14 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
     }
 
     @Override
-    protected void initView() {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //TODO BoardFragment 에서 보낸 데이터 수신.
+    }
 
+    @Override
+    protected void initView() {
+        //수신한 데이터로 뷰를 초기화.
     }
 
     @Override
