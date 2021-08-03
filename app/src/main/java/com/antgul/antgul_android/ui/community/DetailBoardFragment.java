@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.board;
+package com.antgul.antgul_android.ui.community;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

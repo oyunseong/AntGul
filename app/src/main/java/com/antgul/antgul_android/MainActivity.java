@@ -5,35 +5,30 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
-import com.antgul.antgul_android.ui.board.BoardFragment;
-import com.antgul.antgul_android.ui.board.DetailBoardFragment;
-import com.antgul.antgul_android.ui.board.WriteBoardFragment;
+import com.antgul.antgul_android.ui.community.BoardFragment;
+import com.antgul.antgul_android.ui.home.HomeFragment;
+import com.antgul.antgul_android.ui.mypage.MyPageFragment;
 import com.antgul.antgul_android.util.BackPressHandler;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private final int FRAGMENT_HOME = 0;
-    private final int FRAGMENT_BOARD = 1;
-    private final int FRAGMENT_NOTION = 2;
+    private final int FRAGMENT_VALUEATION = 1;
+    private final int FRAGMENT_COMMUNITY = 2;
     private final int FRAGMENT_MY_PAGE = 3;
-    private final int FRAGMENT_LIKE_STOCK = 4;
-    public static final int FRAGMENT_DETAIL_BOARD = 5;
-    public static final int FRAGMENT_WRITE_BOARD = 6;
+    
 
     private HomeFragment homeFragment;
     private BoardFragment boardFragment;
     private NotionFragment notionFragment;
     private MyPageFragment myPageFragment;
-    private LikeStockFragment likeStockFragment;
-    private DetailBoardFragment detailBoardFragment;
-    private WriteBoardFragment writeBoardFragment;
+ 
 
     private BackPressHandler backPressHandler;
 
@@ -65,10 +60,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                         callFragment(FRAGMENT_HOME);
                         break;
                     case R.id.menu_board:
-                        callFragment(FRAGMENT_BOARD);
+                        callFragment(FRAGMENT_VALUEATION);
                         break;
                     case R.id.menu_notion:
-                        callFragment(FRAGMENT_NOTION);
+                        callFragment(FRAGMENT_COMMUNITY);
                         break;
                     case R.id.menu_my_page:
                         callFragment(FRAGMENT_MY_PAGE);
@@ -82,9 +77,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         boardFragment = new BoardFragment();
         notionFragment = new NotionFragment();
         myPageFragment = new MyPageFragment();
-        likeStockFragment = new LikeStockFragment();
-        detailBoardFragment = new DetailBoardFragment();
-        writeBoardFragment = new WriteBoardFragment();
+        
         backPressHandler= new BackPressHandler(this);
 
         callFragment(FRAGMENT_HOME);
@@ -101,11 +94,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), homeFragment);
                 fragmentTransaction.commit();
                 break;
-            case FRAGMENT_BOARD:
+            case FRAGMENT_VALUEATION:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), boardFragment);
                 fragmentTransaction.commit();
                 break;
-            case FRAGMENT_NOTION:
+            case FRAGMENT_COMMUNITY:
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), notionFragment);
                 fragmentTransaction.commit();
                 break;
@@ -113,18 +106,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 fragmentTransaction.replace(binding.fragmentFrame.getId(), myPageFragment);
                 fragmentTransaction.commit();
                 break;
-            case FRAGMENT_LIKE_STOCK:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), likeStockFragment);
-                fragmentTransaction.commit();
-                break;
-            case FRAGMENT_DETAIL_BOARD:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), detailBoardFragment);
-                fragmentTransaction.commit();
-                break;
-            case FRAGMENT_WRITE_BOARD:
-                fragmentTransaction.replace(binding.fragmentFrame.getId(), writeBoardFragment);
-                fragmentTransaction.commit();
-                break;
+            
         }
     }
 

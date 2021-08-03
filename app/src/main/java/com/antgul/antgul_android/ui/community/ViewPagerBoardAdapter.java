@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.board;
+package com.antgul.antgul_android.ui.community;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

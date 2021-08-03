@@ -7,12 +7,12 @@
         />
     <item
         android:id="@+id/menu_board"
-        android:title="게시판"
+        android:title="상대가치"
         android:icon="@drawable/ic_baseline_list_24"
         />
     <item
         android:id="@+id/menu_notion"
-        android:title="알림"
+        android:title="커뮤니티"
         android:icon="@drawable/ic_baseline_notifications_none_24"
         />
     <item

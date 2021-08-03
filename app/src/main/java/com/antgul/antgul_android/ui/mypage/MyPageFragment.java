@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.mypage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
 import com.antgul.antgul_android.databinding.FragmentNotionBinding;
