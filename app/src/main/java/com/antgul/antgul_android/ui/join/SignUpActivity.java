@@ -120,10 +120,10 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            //회원가입 성공 결과 토스트 메시지
+            //회원가입 성공 결과 토스트 메시지.
             Toast.makeText(SignUpActivity.this, "updateUI", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //TODO 로그인 화면에 이메일 넣어주기. Intent 로 통신 가능. 검색어 : 액티비티간 데이터 전달(통신)
 
         } else {
             Toast.makeText(this, "updateUI Error", Toast.LENGTH_SHORT).show();
