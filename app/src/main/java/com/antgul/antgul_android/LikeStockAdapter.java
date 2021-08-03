@@ -19,7 +19,6 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         this.mData = mData;
     }
 
-    // onCreateViewHolder : 아이템 뷰를 위한 뷰 홀더 객체를 생성하여 리턴합니다.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,17 +27,14 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
 
     }
 
-    //position에 해당하는 데이터 뷰홀더의 아이템뷰 표시
     @Override
     public void onBindViewHolder(@NonNull LikeStockAdapter.ViewHolder holder, int position) {
-        // 뷰홀더 선언하고 mData 전달
         Stock stock = mData.get(position);
         holder.likeStockRecyclerItemBinding.likeStockRecyclerItemName.setText(stock.getStockName());
         holder.likeStockRecyclerItemBinding.likeStockRecyclerItemNumber.setText(stock.getStockNumber());
         holder.likeStockRecyclerItemBinding.likeStockRecyclerItemCheckbox.setChecked(mData.get(position).isChecked());
     }
 
-    // 전체 아이템 개수 리턴
     @Override
     public int getItemCount() {
         return mData.size();
@@ -53,7 +49,6 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
         }
     }
 
-    // ArrayList에 item을 추가하는 함수입니다.
     public void addItem(Stock stock) {
         mData.add(stock);
         notifyDataSetChanged();

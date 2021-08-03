@@ -20,9 +20,7 @@ public class NotionFragment extends BaseFragment<FragmentNotionBinding> {
     @Override
     protected void initView() {
         Log.i(TAG, "start setUpView()");
-        //뷰 초기화 작업.
         binding.notionBtn.setText("뷰 초기화");
-
         binding.notionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

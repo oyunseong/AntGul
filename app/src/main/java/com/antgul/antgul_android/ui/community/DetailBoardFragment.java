@@ -27,7 +27,6 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
 
     @Override
     protected void initView() {
-        //수신한 데이터로 뷰를 초기화.
     }
 
     @Override

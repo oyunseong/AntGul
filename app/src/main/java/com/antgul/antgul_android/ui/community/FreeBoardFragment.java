@@ -48,7 +48,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
             public void onItemClick(View v, int pos) {
                 showToast(pos+"번 클릭");
                 //TODO 포지션값 넘겨주기 + replaceFragment() 로 교체. 프레그먼트 데이터 전달 및 받기 검색. 객체를 넘길거면 추가 구현 필요. Parcelable.
-                mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
+                //mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
             }
         });
     }

@@ -41,9 +41,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
     @Override
     protected void initView() {
         mAuth = FirebaseAuth.getInstance();
-        // 로그아웃 버튼 클릭 시 호출됩니다.
         onClickLogoutButton();
-
         onClickWithdrawalButton();
     }
 
@@ -52,7 +50,6 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
 
     }
 
-    // 로그아웃 버튼
     private void onClickLogoutButton()
     {
         binding.myPageLogoutButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +65,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
             }
         });
     }
-    // 회원탈퇴 버튼
+
     private void onClickWithdrawalButton(){
         binding.myPageWithdrawalButton.setOnClickListener(new View.OnClickListener() {
             @Override

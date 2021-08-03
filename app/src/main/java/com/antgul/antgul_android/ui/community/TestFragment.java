@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.community;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

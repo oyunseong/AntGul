@@ -27,19 +27,19 @@ public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
     @Override
     protected void initClickListener() {
         binding.writeButton.setOnClickListener(v -> {
-            mainActivity.callFragment(MainActivity.FRAGMENT_WRITE_BOARD);
+           // mainActivity.callFragment(MainActivity.FRAGMENT_WRITE_BOARD);
         });
     }
 
     private void initViewPagerAndTab() {
         String[] titles = new String[]{"전체", "관심종목","테스트1","테스트2","테스트3"}; // tab title
 
-        ViewPager2 viewPager2 = binding.boardViewpager;                                             // 뷰페이저를 참조합니다.
-        ViewPagerBoardAdapter viewPagerBoardAdapter = new ViewPagerBoardAdapter(mainActivity);      // 프래그먼트에서는 getActivity로 참조합니다.
-        viewPager2.setAdapter(viewPagerBoardAdapter);                                               // 어댑터를 파라미터로 받고 viewpager2에 전달합니다.
-        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);                               // 방향은 가로로 설정합니다.
-        viewPager2.setOffscreenPageLimit(6);                                                        // 페이지 개수 한정
-        viewPager2.setCurrentItem(100);                                                             // 무제한 스크롤 처럼 보이기
+        ViewPager2 viewPager2 = binding.boardViewpager;
+        ViewPagerBoardAdapter viewPagerBoardAdapter = new ViewPagerBoardAdapter(mainActivity);
+        viewPager2.setAdapter(viewPagerBoardAdapter);
+        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        viewPager2.setOffscreenPageLimit(6);
+        viewPager2.setCurrentItem(100);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
