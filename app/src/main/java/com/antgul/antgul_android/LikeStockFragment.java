@@ -71,7 +71,6 @@ public class LikeStockFragment extends BaseFragment<FragmentLikeStockBinding> {
         stock.setStockName(stockName);
         stock.setStockNumber(stockNumber);
         stock.setChecked(checked);
-
         likeStockAdapter.addItem(stock);
     }
 

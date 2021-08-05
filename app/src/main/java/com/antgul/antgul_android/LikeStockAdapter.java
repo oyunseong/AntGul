@@ -24,7 +24,6 @@ public class LikeStockAdapter extends RecyclerView.Adapter<LikeStockAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(ItemLikeStockBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent,false));
-
     }
 
     @Override

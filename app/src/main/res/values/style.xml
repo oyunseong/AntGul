@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Text.MainFont" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">5.7sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily"></item>
+        <item name="android:letterSpacing">2.7sp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name=""
+
+    </style>
 
 </resources>

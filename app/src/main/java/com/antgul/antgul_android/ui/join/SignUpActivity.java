@@ -1,6 +1,4 @@
 package com.antgul.antgul_android.ui.join;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,13 +26,11 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     protected void initView() {
-
     }
 
     @Override
