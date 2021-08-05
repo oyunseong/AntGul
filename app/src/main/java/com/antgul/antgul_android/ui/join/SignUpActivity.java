@@ -1,8 +1,11 @@
 package com.antgul.antgul_android.ui.join;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
+
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivitySignUpBinding;
@@ -35,15 +38,15 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
 
     @Override
     protected void initClickListener() {
-        binding.signUpConfirmButton.setOnClickListener(v -> validateCreateUser());
+        binding.signUpButton.setOnClickListener(v -> validateCreateUser());
     }
 
-    //TODO 유효성 검증 제대로 해주기
     private void validateCreateUser() {
         String inputEmail = binding.etId.getText().toString();
         String inputPassword = binding.etPw.getText().toString();
         String inputPasswordConfirm = binding.etConfirmPw.getText().toString();
         String inputNick = binding.etNickName.getText().toString();
+        boolean checkBox = binding.termsOfServiceCheckBox.isChecked();
 
         String regexEmail = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         String regexPw = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}$";                    // 숫자/영문/특수문자를 최소 1개를 포함하고 공백은 허용되지 않음 8~16글자
@@ -57,7 +60,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
         Matcher matcherPw = patternPw.matcher(inputPassword);
 
 
-        if (matcherEmail.matches() && matcherPw.matches() && matcherNick.matches() && inputPassword.equals(inputPasswordConfirm)) {
+        if (matcherEmail.matches() && matcherPw.matches() && matcherNick.matches() && inputPassword.equals(inputPasswordConfirm) && checkBox) {
             sendUserDataToDB(inputEmail, inputPassword, inputNick);
         } else if (inputEmail.equals("")) {
             showToast("이메일을 입력해주세요");
@@ -75,6 +78,8 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
             showToast("비밀번호 확인을 입력해주세요");
         } else if (!inputPassword.equals(inputPasswordConfirm)) {
             showToast("비밀번호가 일치하지 않습니다.");
+        } else if (!checkBox) {
+            showToast("이용약관에 동의해주세요.");
         }
     }
 
