@@ -5,18 +5,23 @@
     android:background="#DBF8F5"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <include
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/appbar"
+        />
 
     <TextView
-        android:id="@+id/testbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="김수찬"
-        android:textSize="40sp"
-        android:background="@drawable/edge"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff2"
+        android:text="테스트"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

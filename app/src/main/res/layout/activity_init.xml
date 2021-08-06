@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/init_main_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ant_logo_3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintBottom_toTopOf="@id/init_constraintLayout"
+        />
+    <TextView
+        android:id="@+id/init_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="개미굴"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        android:textSize="50sp"
+
+        app:layout_constraintTop_toBottomOf="@id/init_main_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/init_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="같이가는 가치투자"
+        android:textColor="@color/main_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/init_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/init_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:backgroundTint="@color/main_color"
+        android:background="@drawable/shape_bottom_round_modal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/init_login_button"
+            android:layout_width="272dp"
+            android:layout_height="43dp"
+            android:text="로그인"
+            android:textStyle="bold"
+            android:textSize="13.3sp"
+            android:textColor="@color/main_color"
+            android:background="@drawable/shape_button_round"
+            android:gravity="center"
+            android:backgroundTint="@color/white"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginVertical="13dp"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintBottom_toTopOf="@id/init_signup_button"
+            app:layout_constraintTop_toTopOf="@id/init_constraintLayout"
+            app:layout_constraintTop_toBottomOf="@id/init_signup_button"
+            app:layout_constraintLeft_toLeftOf="@id/init_constraintLayout"
+            app:layout_constraintRight_toRightOf="@id/init_constraintLayout"
+            />
+        <TextView
+            android:id="@+id/init_signup_button"
+            android:layout_width="272dp"
+            android:layout_height="43dp"
+            android:gravity="center"
+            android:text="회원가입"
+            android:textSize="13.3sp"
+            android:textStyle="bold"
+            android:textColor="@color/main_color"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/shape_button_round"
+            app:layout_constraintTop_toBottomOf="@id/init_login_button"
+            app:layout_constraintLeft_toLeftOf="@id/init_constraintLayout"
+            app:layout_constraintRight_toRightOf="@id/init_constraintLayout"
+            app:layout_constraintBottom_toBottomOf="@id/init_constraintLayout"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
