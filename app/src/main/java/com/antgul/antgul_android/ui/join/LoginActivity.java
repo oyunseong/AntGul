@@ -30,13 +30,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_Antden);
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        autoLogin();
+//        autoLogin();
     }
 
     @Override
@@ -50,68 +49,21 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void initClickListener() {
-        binding.loginButton.setOnClickListener(v -> {
-            String id = getEditTextValue(binding.etId);
-            String pw = getEditTextValue(binding.etPw);
-            if (id.equals("") || pw.equals("")) {
-                showToast("email,pw를 입력해주세요.");
-            } else {
-                signInWithEmailAndPassword(id, pw);
-            }
-        });
+
 
         binding.signUpButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-            startActivity(intent);
-        });
-
-        binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            PreferenceManager.setBoolean(getApplicationContext(), PREF_AUTO_LOGIN, isChecked);
+            //Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            //startActivity(intent);
         });
 
 
+
+
     }
 
-    private void autoLogin() {
-        boolean isAutoLoginButton = PreferenceManager.getBoolean(getApplicationContext(), PREF_AUTO_LOGIN);
-        if (currentUser != null && isAutoLoginButton) {
-            startNextActivity(MainActivity.class);
-            finish();
-        }
-    }
 
-    private void saveEmail(String email) {
-        PreferenceManager.setString(getApplicationContext(),PREF_SAVE_EMAIL,email);
-        binding.etId.setText(email);
-    }
 
-    private void signInWithEmailAndPassword(String email, String password) {
-        progressDialog.showProgress();
 
-        mAuth.signInWithEmailAndPassword(email, password) //request to firebase server
-                .addOnCompleteListener(this, task -> {
-                    progressDialog.hideProgress();
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("onComplete", "signInWithEmail:success");
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            saveEmail(email);
-                            showToast("로그인 성공!!");
-                            startNextActivity(MainActivity.class);
-                            finish();
-                        } else {
-                            Log.e(TAG,"user is null");
-                            showToast("user is null");
-                        }
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("onComplete", "signInWithEmail:failure", task.getException());
-                        showToast("회원정보를 찾을 수 없습니다.");
-//                      updateUI(null);
-                    }
-                });
-    }
 
 }
 

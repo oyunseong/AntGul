@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.MainActivity;
+import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSplashBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
@@ -21,6 +22,8 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    MainFragment mainFragment;
+    StartFragment startFragment;
 
     @Override
     protected FragmentSplashBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -29,7 +32,9 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     @Override
     protected void initView() {
-//        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mainFragment = new MainFragment();
+        startFragment = new StartFragment();
         autoLogin();
     }
 
@@ -41,7 +46,9 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     private void autoLogin() {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         if (currentUser != null && isAutoLoginButton) {
-
+            mainActivity.callFragment(mainActivity.getFrameLayoutId(), startFragment);
+        } else {
+            mainActivity.callFragment(mainActivity.getFrameLayoutId(),startFragment);
         }
     }
 }

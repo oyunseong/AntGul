@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
  * 모든 액티비티는 해당 클래스를 상속받도록 수정하기.
  */
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
-
-
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;
     protected abstract VB getViewBinding();
@@ -33,11 +31,9 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "++onCreate");
-
         binding = getViewBinding();
         setContentView(binding.getRoot());
         progressDialog = new ProgressDialog(this);
-
         initView();
         initClickListener();
     }
