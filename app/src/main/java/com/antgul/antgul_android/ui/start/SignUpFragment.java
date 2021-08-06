@@ -1,46 +1,52 @@
-package com.antgul.antgul_android.ui.join;
+package com.antgul.antgul_android.ui.start;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.MainActivity;
-import com.antgul.antgul_android.base.BaseActivity;
-import com.antgul.antgul_android.databinding.ActivitySignUpBinding;
+import com.antgul.antgul_android.base.BaseFragment;
+import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//TODO BaseActivity 적용
-public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
+public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
-    protected ActivitySignUpBinding getViewBinding() {
-        return ActivitySignUpBinding.inflate(getLayoutInflater());
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
+    protected FragmentSignUpBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentSignUpBinding.inflate(inflater,container,false);
     }
 
     @Override
     protected void initView() {
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
     protected void initClickListener() {
-        binding.signUpButton.setOnClickListener(v -> validateCreateUser());
+        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateCreateUser();
+            }
+        });
     }
-
     private void validateCreateUser() {
         String inputEmail = binding.etId.getText().toString();
         String inputPassword = binding.etPw.getText().toString();
@@ -86,7 +92,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
     private void sendUserDataToDB(String email, String password, String nickName) {
         progressDialog.showProgress();
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
+                .addOnCompleteListener((Executor) this, task -> {
                     progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         //TODO 파이어 스토어에 nickName 데이터 추가.
@@ -110,8 +116,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding> {
         //TODO 로그인 화면에 이메일 넣어주기. Intent 로 통신 가능. 검색어 : 액티비티간 데이터 전달(통신)
         if (user != null) {
             showToast("개미굴에 오신것을 환영합니다.");
-            finish();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            // TODO 메인 프래그먼트로 이동
         }
     }
 }

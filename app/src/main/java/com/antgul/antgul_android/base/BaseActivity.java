@@ -13,11 +13,14 @@ import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * 모든 액티비티는 해당 클래스를 상속받도록 수정하기.
  */
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
+
 
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;

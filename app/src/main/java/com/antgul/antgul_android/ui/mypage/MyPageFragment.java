@@ -3,23 +3,18 @@ package com.antgul.antgul_android.ui.mypage;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
-import com.antgul.antgul_android.databinding.FragmentNotionBinding;
 import com.antgul.antgul_android.ui.join.LoginActivity;
-import com.antgul.antgul_android.ui.join.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
