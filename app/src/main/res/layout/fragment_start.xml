@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/init_main_image"
+        android:id="@+id/start_main_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/ant_logo_3"
@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toTopOf="@id/init_constraintLayout"
         />
     <TextView
-        android:id="@+id/init_title"
+        android:id="@+id/start_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="개미굴"
@@ -26,19 +26,19 @@
         android:textStyle="bold"
         android:textSize="50sp"
 
-        app:layout_constraintTop_toBottomOf="@id/init_main_image"
+        app:layout_constraintTop_toBottomOf="@id/start_main_image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
     <TextView
-        android:id="@+id/init_sub_title"
+        android:id="@+id/start_sub_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="같이가는 가치투자"
         android:textColor="@color/main_color"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/init_title"
+        app:layout_constraintTop_toBottomOf="@id/start_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/init_login_button"
+            android:id="@+id/start_login_button"
             android:layout_width="272dp"
             android:layout_height="43dp"
             android:text="로그인"
@@ -64,14 +64,14 @@
             app:layout_constraintVertical_chainStyle="packed"
             android:layout_marginVertical="13dp"
             app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintBottom_toTopOf="@id/init_signup_button"
+            app:layout_constraintBottom_toTopOf="@id/start_signup_button"
             app:layout_constraintTop_toTopOf="@id/init_constraintLayout"
-            app:layout_constraintTop_toBottomOf="@id/init_signup_button"
+            app:layout_constraintTop_toBottomOf="@id/start_signup_button"
             app:layout_constraintLeft_toLeftOf="@id/init_constraintLayout"
             app:layout_constraintRight_toRightOf="@id/init_constraintLayout"
             />
         <TextView
-            android:id="@+id/init_signup_button"
+            android:id="@+id/start_signup_button"
             android:layout_width="272dp"
             android:layout_height="43dp"
             android:gravity="center"
@@ -81,7 +81,7 @@
             android:textColor="@color/main_color"
             android:backgroundTint="@color/white"
             android:background="@drawable/shape_button_round"
-            app:layout_constraintTop_toBottomOf="@id/init_login_button"
+            app:layout_constraintTop_toBottomOf="@id/start_login_button"
             app:layout_constraintLeft_toLeftOf="@id/init_constraintLayout"
             app:layout_constraintRight_toRightOf="@id/init_constraintLayout"
             app:layout_constraintBottom_toBottomOf="@id/init_constraintLayout"
