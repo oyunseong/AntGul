@@ -2,6 +2,7 @@ package com.antgul.antgul_android.ui.start;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,6 @@ import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
-    private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-
     @Override
     protected FragmentLoginBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentLoginBinding.inflate(inflater, container, false);
@@ -32,8 +30,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 
     @Override
     protected void initView() {
-
-
     }
 
     @Override
@@ -43,6 +39,12 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getActivity(), PREF_AUTO_LOGIN, isChecked);
+        });
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog.showProgress();
+            }
         });
     }
 

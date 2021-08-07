@@ -24,9 +24,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
-    private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-
     @Override
     protected FragmentSignUpBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentSignUpBinding.inflate(inflater,container,false);
@@ -34,8 +31,6 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
 
     @Override
     protected void initView() {
-        mAuth = FirebaseAuth.getInstance();
-
     }
 
     @Override
@@ -93,7 +88,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         progressDialog.showProgress();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Executor) this, task -> {
-                    progressDialog.hideProgress();
+//                    progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         //TODO 파이어 스토어에 nickName 데이터 추가.
                         Log.d("createUser", "createUserWithEmail:success");

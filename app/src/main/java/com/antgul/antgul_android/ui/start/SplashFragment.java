@@ -1,27 +1,23 @@
 package com.antgul.antgul_android.ui.start;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSplashBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 
 public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
-
-    private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
     MainFragment mainFragment;
     StartFragment startFragment;
 
@@ -32,23 +28,34 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     @Override
     protected void initView() {
-        mAuth = FirebaseAuth.getInstance();
         mainFragment = new MainFragment();
         startFragment = new StartFragment();
-        autoLogin();
+
+        /**
+         * 1초 간 지연 후, run() 콜백 실행됨.
+         * 일정 시간동안 타이머를 돌리고, 시간이 되면, run()이 호출됨.
+         */
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                autoLogin();
+            }
+        }, 1000L);
+
     }
 
     @Override
     protected void initClickListener() {
+
     }
 
 
     private void autoLogin() {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         if (currentUser != null && isAutoLoginButton) {
-            mainActivity.callFragment(mainActivity.getFrameLayoutId(), startFragment);
+            mainActivity.callFragment(mainFragment);
         } else {
-            mainActivity.callFragment(mainActivity.getFrameLayoutId(),startFragment);
+            mainActivity.callFragment(startFragment);
         }
     }
 }

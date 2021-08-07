@@ -4,16 +4,19 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.antgul.antgul_android.R;
 
-//TODO 타임아웃 기능 추가하기. 일정 시간동안, 프로그레스바가 사라지지 않는다면, 10초 후 프로그레스바 없애고, 토스트 메시지 띄우기
-//관련 개념: 쓰레드, 핸들러 등등
 public class ProgressDialog extends Dialog {
+
+    private final Handler handler;
 
     public ProgressDialog(@NonNull Context context) {
         super(context);
@@ -22,16 +25,29 @@ public class ProgressDialog extends Dialog {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         setCanceledOnTouchOutside(false);
         setCancelable(false);
+        // TODO Looper.getMainLooper 검색
+        handler = new Handler(Looper.getMainLooper());
     }
 
     public void showProgress() {
         if (!isShowing()) {
             show();
+            startTimer();
         }
     }
 
     public void hideProgress() {
+        handler.removeCallbacksAndMessages(null);
         dismiss();
+    }
+
+    private void startTimer() {
+        if (handler != null) {
+            handler.postDelayed(() -> {
+                Toast.makeText(getContext(), "네트워크 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
+                hideProgress();
+            }, 10000L);
+        }
     }
 
 }

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.AnimRes;
+import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -45,23 +47,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         backPressHandler= new BackPressHandler(this);
         splashFragment = new SplashFragment();
 
-        callFragment(binding.fragmentFrame.getId(),splashFragment);
+        callFragment(splashFragment);
     }
 
-    public int getFrameLayoutId(){
-        return binding.fragmentFrame.getId();
-    }
 
-    public void callFragment(int id, Fragment fragment) {
+    // TODO builder pattern 체크. java default parameter
+    public void callFragment(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(id,fragment);
+        transaction.setCustomAnimations(R.anim.slide_in_tpo, R.anim.slide_out_top);
+        transaction.replace(binding.fragmentFrame.getId(),fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
-
-    @Override
-    public void onBackPressed() {
-        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료");
-    }
+//    @Override
+//    public void onBackPressed() {
+//        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료");
+//    }
 }

@@ -43,18 +43,18 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
                     case R.id.menu_home:
-                        mainActivity.callFragment(menuitem.getItemId(),homeFragment);
+                        mainActivity.callFragment(homeFragment);
                         break;
                         // 임시
                     case R.id.menu_valueation:
-                        mainActivity.callFragment(menuitem.getItemId(), notionFragment);
+                        mainActivity.callFragment(notionFragment);
                         break;
                         //TODO 네이밍 변경필요
                     case R.id.menu_community:
-                        mainActivity.callFragment(menuitem.getItemId(),boardFragment);
+                        mainActivity.callFragment(boardFragment);
                         break;
                     case R.id.menu_my_page:
-                        mainActivity.callFragment(menuitem.getItemId(),myPageFragment);
+                        mainActivity.callFragment(myPageFragment);
                         break;
                 }
                 return true;

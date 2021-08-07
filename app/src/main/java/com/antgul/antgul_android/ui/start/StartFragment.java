@@ -35,14 +35,14 @@ public class StartFragment extends BaseFragment<FragmentStartBinding> {
             @Override
             public void onClick(View v) {
                 // TODO LoginFragment 로 이동
-                mainActivity.callFragment(mainActivity.getFrameLayoutId(), loginFragment);
+                mainActivity.callFragment(loginFragment);
             }
         });
         binding.startSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO SignUpFragment 로 이동
-                mainActivity.callFragment(mainActivity.getFrameLayoutId(), signUpFragment);
+                mainActivity.callFragment(signUpFragment);
             }
         });
 

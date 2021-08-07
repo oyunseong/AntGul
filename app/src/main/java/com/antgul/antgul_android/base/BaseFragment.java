@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,15 +25,19 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected VB binding;
     protected MainActivity mainActivity;
     public ProgressDialog progressDialog;
+    protected FirebaseAuth mAuth;
+    protected FirebaseUser currentUser;
 
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
+
     protected abstract void initView();
+
     protected abstract void initClickListener();
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        Log.i(TAG,"onAttach");
+        Log.i(TAG, "onAttach");
         mainActivity = (MainActivity) getActivity();
     }
 
@@ -40,6 +46,10 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "++onCreateView");
         binding = getViewBinding(inflater, container);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        progressDialog = new ProgressDialog(requireContext());
+
         return binding.getRoot();
     }
 
@@ -65,7 +75,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.i(TAG,"onDetach");
+        Log.i(TAG, "onDetach");
         mainActivity = null;
     }
 }
