@@ -53,9 +53,9 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     private void autoLogin() {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         if (currentUser != null && isAutoLoginButton) {
-            mainActivity.callFragment(mainFragment);
+            mainActivity.callFragmentWithBackStack(mainFragment);
         } else {
-            mainActivity.callFragment(startFragment);
+            mainActivity.callFragmentWithBackStack(startFragment);
         }
     }
 }

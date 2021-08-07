@@ -5,12 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentStartBinding;
-import com.antgul.antgul_android.ui.start.LoginFragment;
-import com.antgul.antgul_android.ui.start.SignUpFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,14 +32,14 @@ public class StartFragment extends BaseFragment<FragmentStartBinding> {
             @Override
             public void onClick(View v) {
                 // TODO LoginFragment 로 이동
-                mainActivity.callFragment(loginFragment);
+                mainActivity.callFragmentWithBackStack(loginFragment);
             }
         });
         binding.startSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO SignUpFragment 로 이동
-                mainActivity.callFragment(signUpFragment);
+                mainActivity.callFragmentWithBackStack(signUpFragment);
             }
         });
 

@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMainBinding;
 import com.antgul.antgul_android.ui.community.BoardFragment;
-import com.antgul.antgul_android.ui.community.TestFragment;
 import com.antgul.antgul_android.ui.home.HomeFragment;
 import com.antgul.antgul_android.ui.mypage.MyPageFragment;
 import com.google.android.material.navigation.NavigationBarView;
@@ -43,18 +42,18 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
                     case R.id.menu_home:
-                        mainActivity.callFragment(homeFragment);
+                        mainActivity.callFragmentWithBackStack(homeFragment);
                         break;
                         // 임시
                     case R.id.menu_valueation:
-                        mainActivity.callFragment(notionFragment);
+                        mainActivity.callFragmentWithBackStack(notionFragment);
                         break;
                         //TODO 네이밍 변경필요
                     case R.id.menu_community:
-                        mainActivity.callFragment(boardFragment);
+                        mainActivity.callFragmentWithBackStack(boardFragment);
                         break;
                     case R.id.menu_my_page:
-                        mainActivity.callFragment(myPageFragment);
+                        mainActivity.callFragmentWithBackStack(myPageFragment);
                         break;
                 }
                 return true;

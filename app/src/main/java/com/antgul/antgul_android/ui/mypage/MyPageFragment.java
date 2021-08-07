@@ -53,9 +53,9 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
                 showToast("로그아웃 버튼 클릭");
                 mAuth.signOut();
 
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+//                Intent intent = new Intent(getContext(), LoginActivity.class);
+//                startActivity(intent);
+//                getActivity().finish();
             }
         });
     }
