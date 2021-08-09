@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMainBinding;
-import com.antgul.antgul_android.ui.community.CommunityFragment;
+import com.antgul.antgul_android.ui.community.container.CommunityFragment;
 import com.antgul.antgul_android.ui.home.HomeFragment;
 import com.antgul.antgul_android.ui.mypage.MyPageFragment;
 import com.antgul.antgul_android.ui.valueation.ValueationFragment;

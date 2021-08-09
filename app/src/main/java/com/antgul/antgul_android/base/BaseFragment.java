@@ -16,6 +16,7 @@ import androidx.viewbinding.ViewBinding;
 import com.antgul.antgul_android.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +28,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     public ProgressDialog progressDialog;
     protected FirebaseAuth mAuth;
     protected FirebaseUser currentUser;
+    protected FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
 

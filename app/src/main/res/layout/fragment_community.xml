@@ -68,6 +68,7 @@
             app:layout_constraintTop_toBottomOf="@id/et_search"
             tools:listitem="@layout/item_stock_info"
             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

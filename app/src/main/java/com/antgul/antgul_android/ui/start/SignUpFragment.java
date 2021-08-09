@@ -10,9 +10,13 @@ import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
+import com.antgul.antgul_android.model.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -82,16 +86,16 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         }
     }
 
-    private void sendUserDataToDB(String email, String password, String nickName) {
+    private void sendUserDataToDB(String email, String password, String nickname) {
         progressDialog.showProgress();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Executor) this, task -> {
-                    progressDialog.hideProgress();
                     if (task.isSuccessful()) {
-                        //TODO 파이어 스토어에 nickName 데이터 추가.
                         Log.d("createUser", "createUserWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        createUser(user);
+                        if (user != null) {
+                            postUserInfo(user, nickname);
+                        }
                     } else {
                         Log.e("createUser", "createUserWithEmail:failure " + task.getException());
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -105,11 +109,31 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                 });
     }
 
-    private void createUser(FirebaseUser user) {
-        //TODO 로그인 화면에 이메일 넣어주기. Intent 로 통신 가능. 검색어 : 액티비티간 데이터 전달(통신)
-        if (user != null) {
-            showToast("개미굴에 오신것을 환영합니다.");
-            // TODO 메인 프래그먼트로 이동
-        }
+    private void postUserInfo(FirebaseUser firebaseUser, String nickname) {
+        // 폴더(Collection) - 파일...(Document) - 내용(key-value...)
+        // boards - docID 자동생성 - 게시물 커스텀 객체
+        User user = new User();
+        user.setUid(firebaseUser.getUid());
+        user.setEmail(firebaseUser.getEmail());
+        user.setNickname(nickname);
+
+        DocumentReference usersReference = db.collection("users").document();
+        usersReference
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        // TODO 메인 프래그먼트로 이동
+                        progressDialog.hideProgress();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                        progressDialog.hideProgress();
+                    }
+                });
     }
 }

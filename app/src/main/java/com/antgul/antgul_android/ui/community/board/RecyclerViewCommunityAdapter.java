@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.community;
+package com.antgul.antgul_android.ui.community.board;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +16,9 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
     private ArrayList<Community> mData = null;
     private OnItemClickListener itemClickListener = null;
 
-    public RecyclerViewCommunityAdapter(ArrayList<Community> mData) {
-        this.mData = mData;
-    }
+//    public RecyclerViewCommunityAdapter(ArrayList<Post> mData) {
+//        this.mData = mData;
+//    }
 
     public interface OnItemClickListener {
         void onItemClick(View v, int pos);

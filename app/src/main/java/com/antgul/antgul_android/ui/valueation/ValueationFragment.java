@@ -10,7 +10,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentValueationBinding;
-import com.antgul.antgul_android.ui.community.ViewPagerBoardAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ValueationFragment extends BaseFragment<FragmentValueationBinding> {
