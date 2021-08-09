@@ -1,5 +1,6 @@
 package com.antgul.antgul_android;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -34,32 +35,31 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     protected void initView() {
         homeFragment = new HomeFragment();
-        communityFragment = new CommunityFragment();
         valueationFragment = new ValueationFragment();
+        communityFragment = new CommunityFragment();
         myPageFragment = new MyPageFragment();
+
+        callFragmentWithBackStack(homeFragment);
     }
 
     @Override
     protected void initClickListener() {
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
                     case R.id.menu_home:
                         callFragmentWithBackStack(homeFragment);
-//                        mainActivity.callFragmentWithBackStack(homeFragment);
                         break;
                     case R.id.menu_valueation:
                         callFragmentWithBackStack(valueationFragment);
-//                        mainActivity.callFragmentWithBackStack(notionFragment);
                         break;
                     case R.id.menu_community:
                         callFragmentWithBackStack(communityFragment);
-//                        mainActivity.callFragmentWithBackStack(boardFragment);
                         break;
                     case R.id.menu_my_page:
                         callFragmentWithBackStack(myPageFragment);
-//                        mainActivity.callFragmentWithBackStack(myPageFragment);
                         break;
                 }
                 return true;
