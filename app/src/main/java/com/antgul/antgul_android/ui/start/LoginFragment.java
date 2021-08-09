@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +48,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 
     private void signInWithEmailAndPassword(String email, String password) {
         progressDialog.showProgress();
-
         mAuth.signInWithEmailAndPassword(email, password) //request to firebase server
                 .addOnCompleteListener((Executor) this, task -> {
                     progressDialog.hideProgress();
@@ -62,8 +59,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                             saveEmail(email);
                             showToast("로그인 성공!!");
                             // TODO mainFragment로 이동
-//                            startNextActivity(MainActivity.class);
-//                            finish();
+//                                mainActivity.callFragmentWithoutBackStack();
                         } else {
                             Log.e(TAG, "user is null");
                             showToast("user is null");

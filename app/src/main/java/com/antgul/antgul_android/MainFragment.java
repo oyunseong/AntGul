@@ -6,20 +6,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMainBinding;
-import com.antgul.antgul_android.ui.community.BoardFragment;
+import com.antgul.antgul_android.ui.community.CommunityFragment;
 import com.antgul.antgul_android.ui.home.HomeFragment;
 import com.antgul.antgul_android.ui.mypage.MyPageFragment;
+import com.antgul.antgul_android.ui.valueation.ValueationFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainFragment extends BaseFragment<FragmentMainBinding> {
     private HomeFragment homeFragment;
-    private BoardFragment boardFragment;
-    private NotionFragment notionFragment;
+    private CommunityFragment communityFragment;
+    private ValueationFragment valueationFragment;
     private MyPageFragment myPageFragment;
 
     @Override
@@ -30,8 +34,8 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     protected void initView() {
         homeFragment = new HomeFragment();
-        boardFragment = new BoardFragment();
-        notionFragment = new NotionFragment();
+        communityFragment = new CommunityFragment();
+        valueationFragment = new ValueationFragment();
         myPageFragment = new MyPageFragment();
     }
 
@@ -42,23 +46,34 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
                     case R.id.menu_home:
-                        mainActivity.callFragmentWithBackStack(homeFragment);
+                        callFragmentWithBackStack(homeFragment);
+//                        mainActivity.callFragmentWithBackStack(homeFragment);
                         break;
-                        // 임시
                     case R.id.menu_valueation:
-                        mainActivity.callFragmentWithBackStack(notionFragment);
+                        callFragmentWithBackStack(valueationFragment);
+//                        mainActivity.callFragmentWithBackStack(notionFragment);
                         break;
-                        //TODO 네이밍 변경필요
                     case R.id.menu_community:
-                        mainActivity.callFragmentWithBackStack(boardFragment);
+                        callFragmentWithBackStack(communityFragment);
+//                        mainActivity.callFragmentWithBackStack(boardFragment);
                         break;
                     case R.id.menu_my_page:
-                        mainActivity.callFragmentWithBackStack(myPageFragment);
+                        callFragmentWithBackStack(myPageFragment);
+//                        mainActivity.callFragmentWithBackStack(myPageFragment);
                         break;
                 }
                 return true;
             }
         });
+    }
+    public void callFragmentWithBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
+//        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
+        transaction.replace(binding.fragmentMainFrame.getId(),fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

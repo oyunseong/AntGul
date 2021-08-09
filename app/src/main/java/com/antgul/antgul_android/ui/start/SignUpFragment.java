@@ -88,7 +88,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         progressDialog.showProgress();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Executor) this, task -> {
-//                    progressDialog.hideProgress();
+                    progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         //TODO 파이어 스토어에 nickName 데이터 추가.
                         Log.d("createUser", "createUserWithEmail:success");

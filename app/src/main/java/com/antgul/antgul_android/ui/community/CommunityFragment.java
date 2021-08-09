@@ -12,7 +12,7 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentBoardBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class BoardFragment extends BaseFragment<FragmentBoardBinding> {
+public class CommunityFragment extends BaseFragment<FragmentBoardBinding> {
 
     @Override
     protected FragmentBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {

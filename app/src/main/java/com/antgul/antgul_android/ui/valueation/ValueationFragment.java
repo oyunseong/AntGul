@@ -1,4 +1,4 @@
-package com.antgul.antgul_android;
+package com.antgul.antgul_android.ui.valueation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentNotionBinding;
 
-public class NotionFragment extends BaseFragment<FragmentNotionBinding> {
+public class ValueationFragment extends BaseFragment<FragmentNotionBinding> {
 
     @Override
     protected FragmentNotionBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
