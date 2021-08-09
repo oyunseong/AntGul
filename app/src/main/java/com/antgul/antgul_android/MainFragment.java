@@ -67,7 +67,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
         });
     }
     public void callFragmentWithBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
 //        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);

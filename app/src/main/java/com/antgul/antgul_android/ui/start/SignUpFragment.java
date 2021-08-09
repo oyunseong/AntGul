@@ -1,6 +1,5 @@
 package com.antgul.antgul_android.ui.start;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,7 +23,7 @@ import java.util.regex.Pattern;
 public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
     @Override
     protected FragmentSignUpBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentSignUpBinding.inflate(inflater,container,false);
+        return FragmentSignUpBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -42,6 +39,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
             }
         });
     }
+
     private void validateCreateUser() {
         String inputEmail = binding.etId.getText().toString();
         String inputPassword = binding.etPw.getText().toString();
