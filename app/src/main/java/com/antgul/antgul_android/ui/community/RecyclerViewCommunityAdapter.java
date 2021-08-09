@@ -8,15 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.databinding.ItemBoardRecyclerBinding;
-import com.antgul.antgul_android.model.Board;
+import com.antgul.antgul_android.model.Community;
 
 import java.util.ArrayList;
 
-public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder> {
-    private ArrayList<Board> mData = null;
+public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerViewCommunityAdapter.ViewHolder> {
+    private ArrayList<Community> mData = null;
     private OnItemClickListener itemClickListener = null;
 
-    public RecyclerViewBoardAdapter(ArrayList<Board> mData) {
+    public RecyclerViewCommunityAdapter(ArrayList<Community> mData) {
         this.mData = mData;
     }
 
@@ -35,9 +35,9 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewBoardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewCommunityAdapter.ViewHolder holder, int position) {
 
-        Board board = mData.get(position);
+        Community community = mData.get(position);
 //        holder.boardRecyclerItemBinding.boardImage.getDrawable();
         holder.itemBoardRecyclerBinding.boardNickName.setText("익명" + position);
         holder.itemBoardRecyclerBinding.boardTime.setText("10분 전");
@@ -68,8 +68,8 @@ public class RecyclerViewBoardAdapter extends RecyclerView.Adapter<RecyclerViewB
         }
     }
 
-    public void addItem(Board board) {
-        mData.add(board);
+    public void addItem(Community community) {
+        mData.add(community);
         notifyItemInserted(getItemCount());
     }
 }

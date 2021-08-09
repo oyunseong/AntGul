@@ -9,17 +9,16 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.model.Board;
+import com.antgul.antgul_android.model.Community;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
-    private RecyclerViewBoardAdapter mAdapter;
-    private ArrayList<Board> boardList;
+    private RecyclerViewCommunityAdapter mAdapter;
+    private ArrayList<Community> communityList;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -29,8 +28,8 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initView() {
-        boardList = new ArrayList<>();
-        mAdapter = new RecyclerViewBoardAdapter(boardList);
+        communityList = new ArrayList<>();
+        mAdapter = new RecyclerViewCommunityAdapter(communityList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.setAdapter(mAdapter);
@@ -43,7 +42,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initClickListener() {
-        mAdapter.setOnItemClickListener(new RecyclerViewBoardAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecyclerViewCommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 showToast(pos+"번 클릭");
@@ -54,11 +53,11 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     }
 
     public void addItem(String nickName, String time, String content) {
-        Board board = new Board(nickName, time, content);
-        board.setNickName(nickName);
-        board.setTime(time);
-        board.setContent(content);
-        mAdapter.addItem(board);
+        Community community = new Community(nickName, time, content);
+        community.setTitle(nickName);
+        community.setTime(time);
+        community.setContent(content);
+        mAdapter.addItem(community);
     }
 
 }

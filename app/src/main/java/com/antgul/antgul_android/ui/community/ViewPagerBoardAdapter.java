@@ -19,13 +19,13 @@ public class ViewPagerBoardAdapter extends FragmentStateAdapter {
         int index = getRealPosition(position);
         switch (index) {
             case 0: {
-                return new TestFragment();
+                return new StockInformationFragment();
             }
             case 1: {
                 return new FreeBoardFragment();
             }
             default:
-                return new TestFragment();
+                return new StockInformationFragment();
         }
     }
 
