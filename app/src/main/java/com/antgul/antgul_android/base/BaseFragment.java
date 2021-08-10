@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
+import com.antgul.antgul_android.MainFragment;
+import com.antgul.antgul_android.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +27,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;
     protected MainActivity mainActivity;
+    protected MainFragment mainFragment;
     public ProgressDialog progressDialog;
     protected FirebaseAuth mAuth;
     protected FirebaseUser currentUser;
@@ -79,5 +82,12 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         super.onDetach();
         Log.i(TAG, "onDetach");
         mainActivity = null;
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        Log.i(TAG, "replaceFragment");
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame, fragment)
+                .commit();
     }
 }

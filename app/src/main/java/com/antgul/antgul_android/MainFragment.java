@@ -66,6 +66,9 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
             }
         });
     }
+    public int getMainFragmentId(){
+        return binding.fragmentMainFrame.getId();
+    }
     public void callFragmentWithBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

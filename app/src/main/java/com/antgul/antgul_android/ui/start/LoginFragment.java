@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
@@ -15,12 +16,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.Executor;
-
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
+
     @Override
     protected FragmentLoginBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentLoginBinding.inflate(inflater, container, false);
@@ -28,6 +28,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 
     @Override
     protected void initView() {
+
     }
 
     @Override
@@ -38,10 +39,19 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getActivity(), PREF_AUTO_LOGIN, isChecked);
         });
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressDialog.showProgress();
+
+        onClickLoginButton();
+    }
+
+
+    private void onClickLoginButton() {
+        binding.loginButton.setOnClickListener(view -> {
+            String email = binding.etEmail.getText().toString();
+            String password = binding.etPw.getText().toString();
+            if (email.isEmpty() || password.isEmpty()) {
+                showToast("아이디 또는 비밀번호를 입력해주세요");
+            } else {
+                signInWithEmailAndPassword(email, password);
             }
         });
     }
@@ -49,7 +59,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
     private void signInWithEmailAndPassword(String email, String password) {
         progressDialog.showProgress();
         mAuth.signInWithEmailAndPassword(email, password) //request to firebase server
-                .addOnCompleteListener((Executor) this, task -> {
+                .addOnCompleteListener(mainActivity, task -> {
                     progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
@@ -58,8 +68,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         if (user != null) {
                             saveEmail(email);
                             showToast("로그인 성공!!");
-                            // TODO mainFragment로 이동
-//                                mainActivity.callFragmentWithoutBackStack();
+                            replaceFragment(new MainFragment());
                         } else {
                             Log.e(TAG, "user is null");
                             showToast("user is null");
