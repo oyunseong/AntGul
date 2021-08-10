@@ -8,17 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.databinding.ItemBoardRecyclerBinding;
+import com.antgul.antgul_android.databinding.ItemStockInfoRecyclerBinding;
+import com.antgul.antgul_android.model.Comment;
 import com.antgul.antgul_android.model.Community;
+import com.antgul.antgul_android.model.Post;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerViewCommunityAdapter.ViewHolder> {
-    private ArrayList<Community> mData = null;
+    private ArrayList<Post> mData = null;
     private OnItemClickListener itemClickListener = null;
 
-//    public RecyclerViewCommunityAdapter(ArrayList<Post> mData) {
-//        this.mData = mData;
-//    }
+    public RecyclerViewCommunityAdapter(ArrayList<Post> mData) {
+        this.mData = mData;
+    }
 
     public interface OnItemClickListener {
         void onItemClick(View v, int pos);
@@ -31,17 +35,26 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(ItemBoardRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ItemStockInfoRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewCommunityAdapter.ViewHolder holder, int position) {
+        Post post = mData.get(position);
 
-        Community community = mData.get(position);
+//        public String postId;
+//        public String title;
+//        public String content;
+//        public List<String> imageList;
+//        public String writerId; //User - uid
+//        public List<Comment> commentList;
+//        public int category;
+//        public String createAt;
+//        public List<String> hashTags;
+
 //        holder.boardRecyclerItemBinding.boardImage.getDrawable();
-        holder.itemBoardRecyclerBinding.boardNickName.setText("익명" + position);
-        holder.itemBoardRecyclerBinding.boardTime.setText("10분 전");
-        holder.itemBoardRecyclerBinding.boardContent.setText("게시글 내용입니다.");
+        holder.itemStockInfoRecyclerBinding.title.setText("게시글 제목");
+        holder.itemStockInfoRecyclerBinding.stockName.setText("stockName");
     }
 
     @Override
@@ -50,13 +63,14 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemBoardRecyclerBinding itemBoardRecyclerBinding;
+        private final ItemStockInfoRecyclerBinding itemStockInfoRecyclerBinding;
 
-        public ViewHolder(@NonNull ItemBoardRecyclerBinding itemBoardRecyclerBinding) {
-            super(itemBoardRecyclerBinding.getRoot());
-            this.itemBoardRecyclerBinding = itemBoardRecyclerBinding;
 
-            itemBoardRecyclerBinding.getRoot().setOnClickListener(v -> {
+        public ViewHolder(@NonNull ItemStockInfoRecyclerBinding itemStockInfoRecyclerBinding) {
+            super(itemStockInfoRecyclerBinding.getRoot());
+            this.itemStockInfoRecyclerBinding = itemStockInfoRecyclerBinding;
+
+            itemStockInfoRecyclerBinding.getRoot().setOnClickListener(v -> {
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                     if (itemClickListener != null) {
@@ -68,8 +82,8 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
         }
     }
 
-    public void addItem(Community community) {
-        mData.add(community);
+    public void addItem(Post Post) {
+        mData.add(Post);
         notifyItemInserted(getItemCount());
     }
 }

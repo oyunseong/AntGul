@@ -14,6 +14,7 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.model.Community;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.Query;
@@ -38,14 +39,15 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     @Override
     protected void initView() {
         postList = new ArrayList<>();
-//        mAdapter = new RecyclerViewCommunityAdapter(postList);
+        mAdapter = new RecyclerViewCommunityAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
+        binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
         binding.freeBoardRecycler.setAdapter(mAdapter);
 
         getPosts();
         for (int i = 0; i < 30; i++)    {
-            addItem("item" + i, "2분 전", "게시글 내용 입니다.");
+//            addItem("item" + i, "2분 전", "게시글 내용 입니다.");
         }
         mAdapter.notifyDataSetChanged();
     }
@@ -62,15 +64,22 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         });
     }
 
-    public void addItem(String nickName, String time, String content) {
-        Community community = new Community(nickName, time, content);
-        community.setTitle(nickName);
-        community.setTime(time);
-        community.setContent(content);
-        mAdapter.addItem(community);
+    public void addItem(String title,String nickname, String time, String content,String writerId) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setWriterId(writerId);
+//        post.setCreateAt();
+//        post.setHashTags();
+//        post.setCommentList();
+//        post.setPostId(db.document(id));
+//        post.setCategory();
+
+        mAdapter.addItem(post);
     }
 
     private void getPosts() {
+        Log.i(TAG,"getPost");
         progressDialog.showProgress();
         db.collection("freeBoard")
                 .whereEqualTo("category", 1)
