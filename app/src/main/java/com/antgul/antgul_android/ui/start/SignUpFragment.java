@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.antgul.antgul_android.model.User;
+import com.antgul.antgul_android.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseNetworkException;
@@ -20,11 +22,11 @@ import com.google.firebase.firestore.DocumentReference;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
+
     @Override
     protected FragmentSignUpBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentSignUpBinding.inflate(inflater, container, false);
@@ -36,12 +38,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
 
     @Override
     protected void initClickListener() {
-        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateCreateUser();
-            }
-        });
+        binding.signUpButton.setOnClickListener(v -> validateCreateUser());
     }
 
     private void validateCreateUser() {
@@ -63,7 +60,11 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         Matcher matcherPw = patternPw.matcher(inputPassword);
 
 
-        if (matcherEmail.matches() && matcherPw.matches() && matcherNick.matches() && inputPassword.equals(inputPasswordConfirm) && checkBox) {
+        if (matcherEmail.matches()
+                && matcherPw.matches()
+                && matcherNick.matches()
+                && inputPassword.equals(inputPasswordConfirm)
+                && checkBox) {
             sendUserDataToDB(inputEmail, inputPassword, inputNick);
         } else if (inputEmail.equals("")) {
             showToast("이메일을 입력해주세요");
@@ -89,11 +90,12 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
     private void sendUserDataToDB(String email, String password, String nickname) {
         progressDialog.showProgress();
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, task -> {
+                .addOnCompleteListener(mainActivity, task -> {
                     if (task.isSuccessful()) {
                         Log.d("createUser", "createUserWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
+                            showToast("클릭");
                             postUserInfo(user, nickname);
                         }
                     } else {
@@ -124,7 +126,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
-                        // TODO 메인 프래그먼트로 이동
+                        mainActivity.replaceFragment(new MainFragment());
                         progressDialog.hideProgress();
                     }
                 })
