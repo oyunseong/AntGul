@@ -77,7 +77,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         // If sign in fails, display a message to the user.
                         Log.w("onComplete", "signInWithEmail:failure", task.getException());
                         showToast("회원정보를 찾을 수 없습니다.");
-//                      updateUI(null);
                     }
                 });
     }

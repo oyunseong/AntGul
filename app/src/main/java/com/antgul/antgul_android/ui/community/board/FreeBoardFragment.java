@@ -46,9 +46,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.freeBoardRecycler.setAdapter(mAdapter);
 
         getPosts();
-        for (int i = 0; i < 30; i++)    {
-//            addItem("item" + i, "2분 전", "게시글 내용 입니다.");
-        }
         mAdapter.notifyDataSetChanged();
     }
 
@@ -64,26 +61,12 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         });
     }
 
-    public void addItem(String title,String nickname, String time, String content,String writerId) {
-        Post post = new Post();
-        post.setTitle(title);
-        post.setContent(content);
-        post.setWriterId(writerId);
-//        post.setCreateAt();
-//        post.setHashTags();
-//        post.setCommentList();
-//        post.setPostId(db.document(id));
-//        post.setCategory();
-
-        mAdapter.addItem(post);
-    }
-
     private void getPosts() {
         Log.i(TAG,"getPost");
         progressDialog.showProgress();
-        db.collection("freeBoard")
-                .whereEqualTo("category", 1)
-                .orderBy("createAt", Query.Direction.DESCENDING)
+        db.collection("boards")
+//                .whereEqualTo("category", 1)
+//                .orderBy("createAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

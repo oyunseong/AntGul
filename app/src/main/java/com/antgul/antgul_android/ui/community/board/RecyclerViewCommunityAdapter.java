@@ -41,20 +41,8 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewCommunityAdapter.ViewHolder holder, int position) {
         Post post = mData.get(position);
-
-//        public String postId;
-//        public String title;
-//        public String content;
-//        public List<String> imageList;
-//        public String writerId; //User - uid
-//        public List<Comment> commentList;
-//        public int category;
-//        public String createAt;
-//        public List<String> hashTags;
-
-//        holder.boardRecyclerItemBinding.boardImage.getDrawable();
-        holder.itemStockInfoRecyclerBinding.title.setText("게시글 제목");
-        holder.itemStockInfoRecyclerBinding.stockName.setText("stockName");
+        holder.itemStockInfoRecyclerBinding.title.setText(post.getPostId());
+        holder.itemStockInfoRecyclerBinding.stockName.setText(post.getWriterId());
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.antgul.antgul_android.model.User;
 import com.antgul.antgul_android.ui.home.HomeFragment;
+import com.antgul.antgul_android.util.TimeStamp;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseNetworkException;
@@ -96,7 +97,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             showToast("클릭");
-                            postUserInfo(user, nickname);
+                            postUserInfo(user, nickname,password);
                         }
                     } else {
                         Log.e("createUser", "createUserWithEmail:failure " + task.getException());
@@ -111,13 +112,18 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                 });
     }
 
-    private void postUserInfo(FirebaseUser firebaseUser, String nickname) {
+    private void postUserInfo(FirebaseUser firebaseUser, String nickname, String password) {
+        TimeStamp timeStamp = new TimeStamp();
+        String time = timeStamp.getTime();
         // 폴더(Collection) - 파일...(Document) - 내용(key-value...)
         // boards - docID 자동생성 - 게시물 커스텀 객체
+        // TODO 이미지, 상태메시지
         User user = new User();
         user.setUid(firebaseUser.getUid());
         user.setEmail(firebaseUser.getEmail());
+        user.setPassword(password);
         user.setNickname(nickname);
+        user.setCreateAt(time);
 
         DocumentReference usersReference = db.collection("users").document();
         usersReference
