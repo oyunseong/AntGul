@@ -14,7 +14,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/antgul_logo_1"
+        android:background="@drawable/ant_logo_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/ic_baseline_notifications_none_24"
+        android:background="@drawable/ic_bell"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
