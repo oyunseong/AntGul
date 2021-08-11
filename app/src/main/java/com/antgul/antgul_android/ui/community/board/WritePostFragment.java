@@ -49,7 +49,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
 
     private void writePost() {
         String title = binding.title.getText().toString();
-        setPost( title);
+        setPost(title);
     }
 
     private void setPost(String title) {

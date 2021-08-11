@@ -16,6 +16,7 @@ import com.antgul.antgul_android.ui.home.HomeFragment;
 
 public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     StockInformationFragment stockInformationFragment;
+    FreeBoardFragment freeBoardFragment;
 
     @Override
     protected FragmentCommunityBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -24,8 +25,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
 
     @Override
     protected void initView() {
-
-        mainActivity.callFragmentWithoutBackStack(binding.frame.getId(), new StockInformationFragment());
+        stockInformationFragment = new StockInformationFragment();
+        freeBoardFragment = new FreeBoardFragment();
+        mainActivity.callFragmentWithoutBackStack(binding.frame.getId(), stockInformationFragment);
         binding.stockInfoButton.setSelected(true);
     }
 
@@ -47,7 +49,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
 
     private void onClickFreeBoardButton() {
         binding.freeboardButton.setOnClickListener(view -> {
-            mainActivity.callFragmentWithBackStack(binding.frame.getId(), new FreeBoardFragment());
+            mainActivity.callFragmentWithBackStack(binding.frame.getId(), freeBoardFragment);
             binding.freeboardButton.setSelected(true);
             binding.stockInfoButton.setSelected(false);
         });

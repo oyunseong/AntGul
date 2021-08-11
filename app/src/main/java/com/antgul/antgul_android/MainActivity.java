@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         return binding.fragmentFrame.getId();
     }
 
-
     // TODO builder pattern 체크. java default parameter
     public void callFragmentWithBackStack(int id, Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -26,6 +26,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     ValueationFragment valueationFragment;
     CommunityFragment communityFragment;
     MyPageFragment myPageFragment;
+
     @Override
     protected FragmentMainBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentMainBinding.inflate(inflater, container, false);
@@ -34,10 +35,10 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     protected void initView() {
         homeFragment = new HomeFragment();
-        valueationFragment =new ValueationFragment();
+        valueationFragment = new ValueationFragment();
         communityFragment = new CommunityFragment();
         myPageFragment = new MyPageFragment();
-        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), new HomeFragment());
+        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), homeFragment);
     }
 
     @Override
