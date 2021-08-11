@@ -1,6 +1,5 @@
-package com.antgul.antgul_android.ui.community.board;
+package com.antgul.antgul_android.ui.community.stock;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
+import com.antgul.antgul_android.databinding.FragmentStockInfoBinding;
+import com.antgul.antgul_android.databinding.FragmentTestBinding;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.ui.community.board.RecyclerViewFreeBoardAdapter;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,16 +23,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
-
+public class StockInformationFragment extends BaseFragment<FragmentStockInfoBinding> {
     private RecyclerViewFreeBoardAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
-    private int mCategory;
 
     @Override
-    protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentFreeBoardBinding.inflate(inflater, container, false);
+    protected FragmentStockInfoBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentStockInfoBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -39,16 +38,19 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         postList = new ArrayList<>();
         mAdapter = new RecyclerViewFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
-        binding.freeBoardRecycler.setLayoutManager(layoutManager);
-        binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
-        binding.freeBoardRecycler.setAdapter(mAdapter);
-
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.addItemDecoration(new RecyclerDecorationHeight(3));
+        binding.recycler.setAdapter(mAdapter);
         getPosts();
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void initClickListener() {
+        onClickItem();
+    }
+
+    private void onClickItem(){
         mAdapter.setOnItemClickListener(new RecyclerViewFreeBoardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
@@ -57,18 +59,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 //mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
             }
         });
-        onClickWriteButton();
     }
-
-    private void onClickWriteButton() {
-        binding.writeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new WritePostFragment());
-            }
-        });
-    }
-
     private void getPosts() {
         Log.i(TAG, "getPost");
         progressDialog.showProgress();
@@ -93,5 +84,4 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                     }
                 });
     }
-
 }

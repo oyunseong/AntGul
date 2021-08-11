@@ -12,9 +12,7 @@ import com.antgul.antgul_android.ui.start.SplashFragment;
 import com.antgul.antgul_android.util.BackPressHandler;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
-
     private BackPressHandler backPressHandler;
-    private SplashFragment splashFragment;
 
     @Override
     public ActivityMainBinding getViewBinding() {
@@ -34,31 +32,32 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         backPressHandler= new BackPressHandler(this);
-        splashFragment = new SplashFragment();
+        callFragmentWithoutBackStack(binding.fragmentFrame.getId(), new SplashFragment());
+    }
 
-        callFragmentWithoutBackStack(splashFragment);
+    public int getFrameId(){
+        return binding.fragmentFrame.getId();
     }
 
 
     // TODO builder pattern 체크. java default parameter
-    public void callFragmentWithBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
+    public void callFragmentWithBackStack(int id, Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
 //        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
-        transaction.replace(binding.fragmentFrame.getId(),fragment);
+        transaction.replace(id,fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
-    public void callFragmentWithoutBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
+    public void callFragmentWithoutBackStack(int id, Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(binding.fragmentFrame.getId(),fragment);
-//        transaction.setCustomAnimations(R.anim.anim_exit_test, R.anim.anim_enter_test);
+        transaction.replace(id,fragment);
         transaction.commit();
     }
+
 
 //    @Override
 //    public void onBackPressed() {

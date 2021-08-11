@@ -3,19 +3,19 @@ package com.antgul.antgul_android.ui.community.container;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentCommunityBinding;
-import com.antgul.antgul_android.ui.community.StockInformationFragment;
 import com.antgul.antgul_android.ui.community.board.FreeBoardFragment;
-import com.antgul.antgul_android.ui.valueation.ViewPagerValueationAdapter;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.antgul.antgul_android.ui.community.stock.StockInformationFragment;
+import com.antgul.antgul_android.ui.home.HomeFragment;
 
 public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
+    StockInformationFragment stockInformationFragment;
 
     @Override
     protected FragmentCommunityBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -24,33 +24,39 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
 
     @Override
     protected void initView() {
-        initViewPagerAndTab();
+
+        mainActivity.callFragmentWithoutBackStack(binding.frame.getId(), new StockInformationFragment());
+        binding.stockInfoButton.setSelected(true);
     }
 
     @Override
     protected void initClickListener() {
-
-
+        onClickStockInfoButton();
+        onClickFreeBoardButton();
     }
-    private void initViewPagerAndTab() {
-        String[] titles = new String[]{"종목정보", "자유게시판","글쓰기"}; // tab title
 
-        ViewPager2 viewPager2 = binding.viewpager2;
-        ViewPagerCommunityAdapter mAdapter = new ViewPagerCommunityAdapter(mainActivity);
-        viewPager2.setAdapter(mAdapter);
-        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        viewPager2.setOffscreenPageLimit(6);
-        viewPager2.setCurrentItem(100);
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
+    private void onClickStockInfoButton() {
+        //TODO addToBackStack 발생시 select 변화없음 수정필요
+        binding.stockInfoButton.setOnClickListener(view -> {
+            mainActivity.callFragmentWithoutBackStack(binding.frame.getId(), new StockInformationFragment());
+            binding.stockInfoButton.setSelected(true);
+            binding.freeboardButton.setSelected(false);
         });
 
-        new TabLayoutMediator(binding.tabLayout, viewPager2, (tab, position) -> tab.setText(titles[position])).attach();
     }
+
+    private void onClickFreeBoardButton() {
+        binding.freeboardButton.setOnClickListener(view -> {
+            mainActivity.callFragmentWithBackStack(binding.frame.getId(), new FreeBoardFragment());
+            binding.freeboardButton.setSelected(true);
+            binding.stockInfoButton.setSelected(false);
+        });
+    }
+
+    public int getFrameId() {
+        return binding.frame.getId();
+    }
+
 }
 
 

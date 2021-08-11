@@ -22,11 +22,10 @@ import com.google.android.material.navigation.NavigationBarView;
 import org.jetbrains.annotations.NotNull;
 
 public class MainFragment extends BaseFragment<FragmentMainBinding> {
-    private HomeFragment homeFragment;
-    private CommunityFragment communityFragment;
-    private ValueationFragment valueationFragment;
-    private MyPageFragment myPageFragment;
-
+    HomeFragment homeFragment;
+    ValueationFragment valueationFragment;
+    CommunityFragment communityFragment;
+    MyPageFragment myPageFragment;
     @Override
     protected FragmentMainBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentMainBinding.inflate(inflater, container, false);
@@ -35,11 +34,10 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     protected void initView() {
         homeFragment = new HomeFragment();
-        valueationFragment = new ValueationFragment();
+        valueationFragment =new ValueationFragment();
         communityFragment = new CommunityFragment();
         myPageFragment = new MyPageFragment();
-
-        callFragmentWithBackStack(homeFragment);
+        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), new HomeFragment());
     }
 
     @Override
@@ -50,33 +48,21 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuitem) {
                 switch (menuitem.getItemId()) {
                     case R.id.menu_home:
-                        callFragmentWithBackStack(homeFragment);
+                        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), homeFragment);
                         break;
                     case R.id.menu_valueation:
-                        callFragmentWithBackStack(valueationFragment);
+                        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), valueationFragment);
                         break;
                     case R.id.menu_community:
-                        callFragmentWithBackStack(communityFragment);
+                        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), communityFragment);
                         break;
                     case R.id.menu_my_page:
-                        callFragmentWithBackStack(myPageFragment);
+                        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), myPageFragment);
                         break;
                 }
                 return true;
             }
         });
-    }
-    public int getMainFragmentId(){
-        return binding.fragmentMainFrame.getId();
-    }
-    public void callFragmentWithBackStack(Fragment fragment){        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
-        FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
-//        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
-        transaction.replace(binding.fragmentMainFrame.getId(),fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
 }

@@ -7,20 +7,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.antgul.antgul_android.databinding.ItemBoardRecyclerBinding;
 import com.antgul.antgul_android.databinding.ItemStockInfoRecyclerBinding;
-import com.antgul.antgul_android.model.Comment;
-import com.antgul.antgul_android.model.Community;
 import com.antgul.antgul_android.model.Post;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerViewCommunityAdapter.ViewHolder> {
+public class RecyclerViewFreeBoardAdapter extends RecyclerView.Adapter<RecyclerViewFreeBoardAdapter.ViewHolder> {
     private ArrayList<Post> mData = null;
     private OnItemClickListener itemClickListener = null;
 
-    public RecyclerViewCommunityAdapter(ArrayList<Post> mData) {
+    public RecyclerViewFreeBoardAdapter(ArrayList<Post> mData) {
         this.mData = mData;
     }
 
@@ -39,7 +35,7 @@ public class RecyclerViewCommunityAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewCommunityAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewFreeBoardAdapter.ViewHolder holder, int position) {
         Post post = mData.get(position);
         holder.itemStockInfoRecyclerBinding.title.setText(post.getPostId());
         holder.itemStockInfoRecyclerBinding.stockName.setText(post.getWriterId());

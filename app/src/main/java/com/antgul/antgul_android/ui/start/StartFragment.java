@@ -12,8 +12,6 @@ import com.antgul.antgul_android.databinding.FragmentStartBinding;
 import org.jetbrains.annotations.NotNull;
 
 public class StartFragment extends BaseFragment<FragmentStartBinding> {
-    private LoginFragment loginFragment;
-    private SignUpFragment signUpFragment;
 
     @Override
     protected FragmentStartBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, ViewGroup container) {
@@ -22,8 +20,7 @@ public class StartFragment extends BaseFragment<FragmentStartBinding> {
 
     @Override
     protected void initView() {
-        loginFragment = new LoginFragment();
-        signUpFragment = new SignUpFragment();
+
     }
 
     @Override
@@ -32,14 +29,14 @@ public class StartFragment extends BaseFragment<FragmentStartBinding> {
             @Override
             public void onClick(View v) {
                 // TODO LoginFragment 로 이동
-                mainActivity.callFragmentWithBackStack(loginFragment);
+                mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new LoginFragment());
             }
         });
         binding.startSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO SignUpFragment 로 이동
-                mainActivity.callFragmentWithBackStack(signUpFragment);
+                mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new SignUpFragment());
             }
         });
 
