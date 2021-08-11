@@ -42,7 +42,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        Log.i(TAG, "onAttach");
+        Log.i(TAG, "++onAttach");
         mainActivity = (MainActivity) getActivity();
     }
 
@@ -80,13 +80,20 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.i(TAG, "onDetach");
+        Log.i(TAG, "++onDetach");
         mainActivity = null;
     }
 
     public void replaceFragment(Fragment fragment) {
-        Log.i(TAG, "replaceFragment");
-        getActivity().getSupportFragmentManager().beginTransaction()
+        Log.i(TAG, "++replaceFragment");
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+    public void callFragment(Fragment fragment) {
+        Log.i(TAG, "++callFragment");
+        requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_frame, fragment)
                 .commit();
     }

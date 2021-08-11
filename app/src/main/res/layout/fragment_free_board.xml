@@ -13,6 +13,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_stock_info_recycler"
         />
+    <TextView
+        android:id="@+id/write_button"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="글쓰기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/edge"
+        android:layout_margin="10dp"
+        />
 
 
 

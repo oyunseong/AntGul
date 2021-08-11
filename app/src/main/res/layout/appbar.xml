@@ -21,10 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginRight="10dp"
+        android:id="@+id/bell_button"
+        android:layout_width="17dp"
+        android:layout_height="20dp"
         android:background="@drawable/ic_bell"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

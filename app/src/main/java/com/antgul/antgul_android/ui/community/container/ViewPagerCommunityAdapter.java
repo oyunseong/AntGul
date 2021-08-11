@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.antgul.antgul_android.ui.community.board.WriteBoardFragment;
+import com.antgul.antgul_android.ui.community.board.WritePostFragment;
 import com.antgul.antgul_android.ui.community.board.FreeBoardFragment;
 import com.antgul.antgul_android.ui.community.StockInformationFragment;
 
@@ -29,7 +29,7 @@ public class ViewPagerCommunityAdapter extends FragmentStateAdapter {
                 return new FreeBoardFragment();
             }
             case 2:{
-                return new WriteBoardFragment();
+                return new WritePostFragment();
             }
             default:
                 return new StockInformationFragment();

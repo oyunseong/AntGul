@@ -11,13 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.model.Community;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -57,6 +55,16 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 showToast(pos+"번 클릭");
                 //TODO 포지션값 넘겨주기 + replaceFragment() 로 교체. 프레그먼트 데이터 전달 및 받기 검색. 객체를 넘길거면 추가 구현 필요. Parcelable.
                 //mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
+            }
+        });
+        onClickWriteButton();
+    }
+
+    private void onClickWriteButton(){
+        binding.writeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new WritePostFragment());
             }
         });
     }

@@ -8,11 +8,10 @@
 
     <include
         android:id="@+id/valueation_include"
+        layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/appbar"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/valueation_tab_layout"

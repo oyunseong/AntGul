@@ -24,7 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-public class WriteBoardFragment extends BaseFragment<FragmentWriteBoardBinding> {
+public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
     @Override
     protected FragmentWriteBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentWriteBoardBinding.inflate(inflater, container, false);
