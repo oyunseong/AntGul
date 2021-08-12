@@ -1,6 +1,5 @@
 package com.antgul.antgul_android.ui.community.board;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +22,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
-    WritePostFragment writePostFragment;
-
-    private RecyclerViewFreeBoardAdapter mAdapter;
+    private WritePostFragment writePostFragment;
+    private RecyclerFreeBoardAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
     private int mCategory;
@@ -39,7 +37,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     protected void initView() {
         writePostFragment = new WritePostFragment();
         postList = new ArrayList<>();
-        mAdapter = new RecyclerViewFreeBoardAdapter(postList);
+        mAdapter = new RecyclerFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
@@ -51,7 +49,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initClickListener() {
-        mAdapter.setOnItemClickListener(new RecyclerViewFreeBoardAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecyclerFreeBoardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 showToast(pos + "번 클릭");

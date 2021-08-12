@@ -12,11 +12,11 @@ import com.antgul.antgul_android.model.Post;
 
 import java.util.ArrayList;
 
-public class RecyclerViewFreeBoardAdapter extends RecyclerView.Adapter<RecyclerViewFreeBoardAdapter.ViewHolder> {
+public class RecyclerFreeBoardAdapter extends RecyclerView.Adapter<RecyclerFreeBoardAdapter.ViewHolder> {
     private ArrayList<Post> mData = null;
     private OnItemClickListener itemClickListener = null;
 
-    public RecyclerViewFreeBoardAdapter(ArrayList<Post> mData) {
+    public RecyclerFreeBoardAdapter(ArrayList<Post> mData) {
         this.mData = mData;
     }
 
@@ -35,7 +35,7 @@ public class RecyclerViewFreeBoardAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewFreeBoardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerFreeBoardAdapter.ViewHolder holder, int position) {
         Post post = mData.get(position);
         holder.itemStockInfoRecyclerBinding.title.setText(post.getPostId());
         holder.itemStockInfoRecyclerBinding.stockName.setText(post.getWriterId());

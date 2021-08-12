@@ -12,7 +12,6 @@ import com.antgul.antgul_android.ui.valueation.ranking.PerFragment;
 import com.antgul.antgul_android.ui.valueation.ranking.PsrFragment;
 import com.antgul.antgul_android.ui.valueation.ranking.TotalFragment;
 
-
 public class ViewPagerValueationAdapter extends FragmentStateAdapter {
     private final int fragmentCount = 4;
     protected final String TAG = this.getClass().getSimpleName();

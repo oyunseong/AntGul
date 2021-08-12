@@ -67,7 +67,7 @@ public class LikeStockFragment extends BaseFragment<FragmentLikeStockBinding> {
     }
 
     public void addItem(String stockName, String stockNumber, boolean checked) {
-        Stock stock = new Stock("d", "d", false);
+        Stock stock = new Stock();
         stock.setStockName(stockName);
         stock.setStockNumber(stockNumber);
         stock.setChecked(checked);

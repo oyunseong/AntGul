@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentStockInfoBinding;
-import com.antgul.antgul_android.databinding.FragmentTestBinding;
 import com.antgul.antgul_android.model.Post;
-import com.antgul.antgul_android.ui.community.board.RecyclerViewFreeBoardAdapter;
+import com.antgul.antgul_android.ui.community.board.RecyclerFreeBoardAdapter;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class StockInformationFragment extends BaseFragment<FragmentStockInfoBinding> {
-    private RecyclerViewFreeBoardAdapter mAdapter;
+    private RecyclerFreeBoardAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -36,7 +35,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
     @Override
     protected void initView() {
         postList = new ArrayList<>();
-        mAdapter = new RecyclerViewFreeBoardAdapter(postList);
+        mAdapter = new RecyclerFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new RecyclerDecorationHeight(3));
@@ -51,7 +50,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
     }
 
     private void onClickItem(){
-        mAdapter.setOnItemClickListener(new RecyclerViewFreeBoardAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecyclerFreeBoardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 showToast(pos + "번 클릭");
