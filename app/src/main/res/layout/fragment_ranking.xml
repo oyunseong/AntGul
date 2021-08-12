@@ -25,6 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/fragment_background"
+        app:tabTextColor="@color/not_selected_color"
+        app:tabIndicatorColor="@color/main_color"
+        app:tabSelectedTextColor="@color/main_color"
+        app:tabMode="scrollable"
+        app:tabGravity="center"
         app:layout_constraintTop_toBottomOf="@id/sector_select" />
 
     <androidx.viewpager2.widget.ViewPager2
