@@ -1,13 +1,21 @@
 package com.antgul.antgul_android.ui.valueation;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.antgul.antgul_android.ui.valueation.ranking.PbrFragment;
+import com.antgul.antgul_android.ui.valueation.ranking.PerFragment;
+import com.antgul.antgul_android.ui.valueation.ranking.PsrFragment;
+import com.antgul.antgul_android.ui.valueation.ranking.TotalFragment;
+
 
 public class ViewPagerValueationAdapter extends FragmentStateAdapter {
-    private final int fragmentCount = 3;
+    private final int fragmentCount = 4;
+    protected final String TAG = this.getClass().getSimpleName();
 
     public ViewPagerValueationAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -16,19 +24,23 @@ public class ViewPagerValueationAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Log.i(TAG, "++createFragment");
         int index = getRealPosition(position);
         switch (index) {
             case 0: {
-                return new RankingFragment();
+                return new TotalFragment();
             }
             case 1: {
-                return new CalculatorFragment();
+                return new PerFragment();
             }
             case 2: {
-                return new InterestStockFragment();
+                return new PbrFragment();
+            }
+            case 3:{
+                return new PsrFragment();
             }
             default:
-                return new RankingFragment();
+                return new TotalFragment();
         }
     }
 
