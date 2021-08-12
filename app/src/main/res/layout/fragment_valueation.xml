@@ -13,11 +13,78 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/ranking_button"
+        android:layout_width="98.7dp"
+        android:layout_height="31.7dp"
+        android:background="@drawable/main_button_state"
+        android:gravity="center"
+        android:letterSpacing="-0.04"
+        android:text="랭킹"
+        android:textColor="@drawable/text_color_state"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/calculator_button"
+        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+
+    <TextView
+        android:id="@+id/calculator_button"
+        android:layout_width="98.7dp"
+        android:layout_height="31.7dp"
+        android:background="@drawable/main_button_state"
+        android:gravity="center"
+        android:letterSpacing="-0.04"
+        android:text="게산기"
+        android:textColor="@drawable/text_color_state"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintLeft_toRightOf="@id/ranking_button"
+        app:layout_constraintRight_toLeftOf="@id/like_stock_button"
+        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+
+    <TextView
+        android:id="@+id/like_stock_button"
+        android:layout_width="98.7dp"
+        android:layout_height="31.7dp"
+        android:background="@drawable/main_button_state"
+        android:gravity="center"
+        android:letterSpacing="-0.04"
+        android:text="관심종목"
+        android:textColor="@drawable/text_color_state"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/calculator_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+
+    <TextView
+        android:id="@+id/sector_select"
+        android:layout_width="316dp"
+        android:layout_height="28dp"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="@color/main_color"
+        android:letterSpacing="-0.04"
+        android:gravity="center"
+        android:layout_marginTop="8.7dp"
+        tools:text="업종선택"
+        android:background="@drawable/main_button_state_unclick"
+        app:layout_constraintTop_toBottomOf="@id/ranking_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/valueation_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/valueation_include">
+        android:background="@color/fragment_background"
+        app:layout_constraintTop_toBottomOf="@id/sector_select">
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -25,6 +92,7 @@
         android:id="@+id/valueation_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/fragment_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/valueation_tab_layout" />
 
