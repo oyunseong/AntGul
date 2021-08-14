@@ -22,7 +22,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
-    private WritePostFragment writePostFragment;
     private RecyclerFreeBoardAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
@@ -35,7 +34,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initView() {
-        writePostFragment = new WritePostFragment();
         postList = new ArrayList<>();
         mAdapter = new RecyclerFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
@@ -64,7 +62,8 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),writePostFragment);
+                Log.i(TAG,"++getFrameId : "+mainActivity.getFrameId());
+                mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new WritePostFragment());
             }
         });
     }

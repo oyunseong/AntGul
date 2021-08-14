@@ -1,6 +1,7 @@
 package com.antgul.antgul_android;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     public int getFrameId(){
+        Log.i(TAG,"++getFrameId");
         return binding.fragmentFrame.getId();
     }
 
@@ -56,7 +58,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         transaction.replace(id,fragment);
         transaction.commit();
     }
-
 
 //    @Override
 //    public void onBackPressed() {

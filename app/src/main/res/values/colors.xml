@@ -11,4 +11,5 @@
     <color name="hint_color">#387e1717</color>
     <color name="fragment_background">#f9f9f9</color>
     <color name="not_selected_color">#CACACA</color>
+    <color name="main_color_15p">#267e1717</color>
 </resources>

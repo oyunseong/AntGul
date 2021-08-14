@@ -44,8 +44,17 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
                 showToast("버튼 클릭");
             }
         });
-
     }
+
+    private void onClickCancelButton(){
+        binding.cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
 
     private void writePost() {
         String title = binding.title.getText().toString();
