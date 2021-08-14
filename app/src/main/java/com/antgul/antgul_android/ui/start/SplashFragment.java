@@ -19,7 +19,6 @@ import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 
 public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     MainFragment mainFragment;
-    StartFragment startFragment;
 
     @Override
     protected FragmentSplashBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -29,7 +28,6 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     @Override
     protected void initView() {
         mainFragment = new MainFragment();
-        startFragment = new StartFragment();
 
         /**
          * 1초 간 지연 후, run() 콜백 실행됨.
@@ -40,7 +38,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
             public void run() {
                 autoLogin();
             }
-        }, 1000L);
+        }, 800L);
 
     }
 
@@ -49,15 +47,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     }
 
-
     private void autoLogin() {
-        boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),mainFragment);
-//        mainActivity.callFragmentWithoutBackStack(startFragment);
-//        if (currentUser != null && isAutoLoginButton) {
-//            mainActivity.callFragmentWithBackStack(mainFragment);
-//        } else {
-//            mainActivity.callFragmentWithBackStack(startFragment);
-//        }
     }
 }

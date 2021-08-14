@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.start;
+package com.antgul.antgul_android.ui.start.signup;
 
 import android.util.Log;
 import android.view.LayoutInflater;

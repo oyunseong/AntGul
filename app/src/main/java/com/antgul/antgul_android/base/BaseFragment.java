@@ -16,6 +16,7 @@ import androidx.viewbinding.ViewBinding;
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.R;
+import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -96,5 +97,14 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_frame, fragment)
                 .commit();
+    }
+    /**
+     * fragment : BackStack 에 담을 fragment
+     * */
+    public void userCheck(){
+        if(currentUser != null){
+            showToast("로그인이 필요한 기능입니다.");
+            mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(), new LoginFragment());
+        }
     }
 }

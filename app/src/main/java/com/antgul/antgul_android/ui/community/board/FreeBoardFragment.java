@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.ui.start.login.LoginFragment;
+import com.antgul.antgul_android.ui.start.signup.SignUpFragment;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,8 +64,11 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG,"++getFrameId : "+mainActivity.getFrameId());
-                mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new WritePostFragment());
+                if (currentUser != null) {
+                    mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new WritePostFragment());
+                } else {
+                    userCheck();
+                }
             }
         });
     }

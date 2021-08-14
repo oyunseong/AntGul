@@ -1,5 +1,7 @@
-package com.antgul.antgul_android.ui.start;
+package com.antgul.antgul_android.ui.start.login;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,12 +9,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
 import com.google.firebase.auth.FirebaseUser;
+import com.kakao.auth.AuthType;
+import com.kakao.auth.KakaoSDK;
+import com.kakao.auth.Session;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,6 +26,7 @@ import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
+
 
     @Override
     protected FragmentLoginBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -30,6 +37,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
     protected void initView() {
 
     }
+
 
     @Override
     protected void initClickListener() {
@@ -90,6 +98,5 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 
     private void saveEmail(String email) {
         PreferenceManager.setString(getActivity(), PREF_SAVE_EMAIL, email);
-        //binding.etId.setText(email);
     }
 }
