@@ -80,6 +80,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void callFragmentAdd(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.vertical_enter,R.anim.none);
         transaction.addToBackStack(null);
         transaction.add(binding.fragmentFrame.getId(),fragment).commit();
     }
