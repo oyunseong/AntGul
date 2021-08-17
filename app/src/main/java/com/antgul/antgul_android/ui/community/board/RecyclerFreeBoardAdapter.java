@@ -36,11 +36,9 @@ public class RecyclerFreeBoardAdapter extends RecyclerView.Adapter<RecyclerFreeB
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerFreeBoardAdapter.ViewHolder holder, int position) {
-        Post post = new Post
-                .Builder()
-                .build();
-//        Post post = mData.get(position);
-//        holder.itemStockInfoRecyclerBinding.title.setText(post);
+
+        Post post = mData.get(position);
+        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
 //        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
 //        holder.itemStockInfoRecyclerBinding.brokerage.setText(post.getWriterId());
     }

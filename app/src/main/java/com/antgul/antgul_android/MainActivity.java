@@ -6,6 +6,7 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -67,24 +68,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         transaction.replace(id, fragment).commit();
     }
 
-    public void callFragmentWithBackStackTest(Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
-//        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
-        transaction.replace(binding.fragmentFrame.getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    public void replaceDetailFragment(Fragment fragment){
+        Log.i(TAG,"replaceFragment");
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_detail_frame, fragment)
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
+                .addToBackStack(null)
+                .commit();
+        binding.fragmentDetailFrame.setVisibility(View.VISIBLE);
+        binding.fragmentFrame.setVisibility(View.GONE);
     }
 
-    public void callFragmentAdd(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.vertical_enter,R.anim.none);
-        transaction.addToBackStack(null);
-        transaction.add(binding.fragmentFrame.getId(),fragment).commit();
+    public void visibleMainFrame() {
+        binding.fragmentDetailFrame.setVisibility(View.GONE);
+        binding.fragmentFrame.setVisibility(View.VISIBLE);
     }
-
 
     private void getHashKey () {
         try {

@@ -71,7 +71,9 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.callFragmentAdd(new WritePostFragment());
+//                mainActivity.callFragmentAdd(new WritePostFragment());
+                mainActivity.replaceDetailFragment(new WritePostFragment());
+
             }
         });
     }

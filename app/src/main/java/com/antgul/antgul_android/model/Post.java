@@ -3,90 +3,98 @@ package com.antgul.antgul_android.model;
 import java.util.List;
 
 public class Post {
-    private final String postId;
-    private final String writerId; //User - uid
-    private final String title;
-    private final String content;
-    private final List<String> imageList;
-    private final List<Comment> commentList;
-    private final List<String> hashTags;
-    private final int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
-    private final String createAt;
+    private  String postId;
+    private  String writerId; //User - uid
+    private  String title;
+    private  String content;
+    private  List<String> imageList;
+    private  List<Comment> commentList;
+    private  List<String> hashTags;
+    private  int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
+    private  String createAt;
+    public Post(){}
 
-    private Post(Builder builder) {
-        postId = builder.postId;
-        writerId = builder.writerId;
-        title = builder.title;
-        content = builder.content;
-        imageList = builder.imageList;
-        commentList = builder.commentList;
-        hashTags = builder.hashTags;
-        category = builder.category;
-        createAt= builder.createAt;
+    public Post(String postId, String writerId, String title, String content, List<String> imageList, List<Comment> commentList, List<String> hashTags, int category, String createAt) {
+        this.postId = postId;
+        this.writerId = writerId;
+        this.title = title;
+        this.content = content;
+        this.imageList = imageList;
+        this.commentList = commentList;
+        this.hashTags = hashTags;
+        this.category = category;
+        this.createAt = createAt;
     }
 
-    public static class Builder {
-        private String postId;
-        private String writerId;
-        private String title;
-        private String content;
-        private List<String> imageList;
-        private List<Comment> commentList;
-        private List<String> hashTags;
-        private int category = 1;
-        private String createAt = "0000:00:00";
+    public String getPostId() {
+        return postId;
+    }
 
-        public Builder() {
-//            this.title = title;
-//            this.content = content;
-            // TODO 해쉬태그 추가
-        }
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
 
-        public Builder postId(String val) {
-            postId = val;
-            return this;
-        }
+    public String getWriterId() {
+        return writerId;
+    }
 
-        public Builder writeId(String val) {
-            writerId = val;
-            return this;
-        }
+    public void setWriterId(String writerId) {
+        this.writerId = writerId;
+    }
 
-        public Builder title(String val) {
-            title = val;
-            return this;
-        }
+    public String getTitle() {
+        return title;
+    }
 
-        public Builder content(String val) {
-            content = val;
-            return this;
-        }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        public Builder imageList(List<String> val) {
-            imageList = val;
-            return this;
-        }
+    public String getContent() {
+        return content;
+    }
 
-        public Builder commentList(List<Comment> val) {
-            commentList = val;
-            return this;
-        }
-        public Builder hashTags(List<String> val) {
-            hashTags = val;
-            return this;
-        }
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-        public Builder category(int val) {
-            category = val;
-            return this;
-        }
+    public List<String> getImageList() {
+        return imageList;
+    }
 
-        public Builder createAt(String val) {
-            createAt = val;
-            return this;
-        }
-        public Post build(){
-            return new Post(this);
-        }
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<String> getHashTags() {
+        return hashTags;
+    }
+
+    public void setHashTags(List<String> hashTags) {
+        this.hashTags = hashTags;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    public String getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 }

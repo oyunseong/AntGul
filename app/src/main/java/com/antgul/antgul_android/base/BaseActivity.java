@@ -37,14 +37,15 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         initView();
         initClickListener();
     }
-
     public void replaceFragment(Fragment fragment){
         Log.i(TAG,"replaceFragment");
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
                 .replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
     }
+
 
     public void startNextActivity(Class<?> className) {
         Log.i(TAG,"startNextActivity");

@@ -11,17 +11,11 @@ import androidx.annotation.Nullable;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentWriteBoardBinding;
 import com.antgul.antgul_android.model.Post;
-import com.antgul.antgul_android.model.User;
 import com.antgul.antgul_android.util.TimeStamp;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,14 +50,20 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         });
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mainActivity.visibleMainFrame();
+    }
 
     private void writePost() {
         FirebaseUser user = mAuth.getCurrentUser();
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
-        if (user != null) {
+//        if (user != null) {
             setPost(user, title, content);
-        }
+//        }
+
     }
 
     private void setPost(FirebaseUser firebaseUser, String title, String content) {
@@ -71,15 +71,12 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         // boards - docID 자동생성 - 게시물 커스텀 객체
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
-
-        Post post = new Post
-                .Builder()
-                .title(title)
-                .content(content)
-                .category(1)
-                .writeId(firebaseUser.getUid())
-                .createAt(time)
-                .build();
+        Post post = new Post();
+//        post.setWriterId(firebaseUser.getUid());
+        post.setTitle(title);
+        post.setContent(content);
+        post.setCategory(1);
+        post.setCreateAt(time);
 
         DocumentReference usersReference = db.collection("boards").document();
         usersReference
@@ -87,7 +84,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        Log.i(TAG, "DocumentSnapshot successfully updated!");
                         progressDialog.hideProgress();
                     }
                 })

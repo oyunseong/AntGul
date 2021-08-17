@@ -50,12 +50,11 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
             binding.stockInfoButton.setSelected(true);
             binding.freeboardButton.setSelected(false);
         });
-
     }
 
     private void onClickFreeBoardButton() {
         binding.freeboardButton.setOnClickListener(view -> {
-            mainActivity.callFragmentWithBackStack(binding.communityFrame.getId(), freeBoardFragment);;
+            mainActivity.callFragmentWithoutBackStack(binding.communityFrame.getId(), freeBoardFragment);;
             binding.freeboardButton.setSelected(true);
             binding.stockInfoButton.setSelected(false);
         });

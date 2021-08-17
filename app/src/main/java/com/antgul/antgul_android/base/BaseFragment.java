@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
-import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +27,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;
     protected MainActivity mainActivity;
-    protected MainFragment mainFragment;
     public ProgressDialog progressDialog;
     protected FirebaseAuth mAuth;
     protected FirebaseUser currentUser;
@@ -55,7 +53,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         progressDialog = new ProgressDialog(requireContext());
-
         return binding.getRoot();
     }
 
@@ -92,19 +89,35 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
-    public void callFragment(Fragment fragment) {
-        Log.i(TAG, "++callFragment");
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_frame, fragment)
-                .commit();
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "++onStart");
     }
-    /**
-     * fragment : BackStack 에 담을 fragment
-     * */
-    public void userCheck(){
-        if(currentUser != null){
-            showToast("로그인이 필요한 기능입니다.");
-            mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(), new LoginFragment());
-        }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "++onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "++onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "++onStop()");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "++onDestroy");
+        binding = null;
     }
 }
