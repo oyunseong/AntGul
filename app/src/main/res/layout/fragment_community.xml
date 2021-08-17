@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="@id/stock_info_button" />
 
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/community_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -26,7 +26,7 @@
         android:id="@+id/search_button"
         android:layout_width="39.7dp"
         android:layout_height="28dp"
-        android:background="@drawable/main_button_state_unclick"
+        android:background="@drawable/community_search_button"
         app:layout_constraintLeft_toRightOf="@id/et_search"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/et_search" />

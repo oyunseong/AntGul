@@ -8,24 +8,23 @@ public class User {
     public String email;
     public String password;
     public String nickname;
-    public String statusMessage; //추가
     public List<String> postList;
     public List<String> likeStockList;
-    public String token;
     public String createAt; //timestamp 참고
+//    public String token;
+
 
     public User() {
 
     }
 
-    public User(String uid, String email, String password, String nickname, List<String> postList, List<String> likeStockList, String token, String createAt) {
+    public User(String uid, String email, String password, String nickname, List<String> postList, List<String> likeStockList, String createAt) {
         this.uid = uid;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.postList = postList;
         this.likeStockList = likeStockList;
-        this.token = token;
         this.createAt = createAt;
     }
 
@@ -75,14 +74,6 @@ public class User {
 
     public void setLikeStockList(List<String> likeStockList) {
         this.likeStockList = likeStockList;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getCreateAt() {

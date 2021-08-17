@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void callFragmentWithBackStack(int id, Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
+//         enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
 //        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
         transaction.replace(id, fragment);
         transaction.addToBackStack(null);
@@ -64,9 +64,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void callFragmentWithoutBackStack(int id, Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(id, fragment);
+        transaction.replace(id, fragment).commit();
+    }
+
+    public void callFragmentWithBackStackTest(Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
+//        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
+        transaction.replace(binding.fragmentFrame.getId(), fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    public void callFragmentAdd(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.add(binding.fragmentFrame.getId(),fragment).commit();
+    }
+
 
     private void getHashKey () {
         try {
@@ -88,4 +105,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 //    public void onBackPressed() {
 //        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료");
 //    }
+
+
+    /* @Override
+    public void onBackPressed() {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment parentFragment = fragmentManager.findFragmentByTag(TAG_PARENT);
+        if (parentFragment != null && parentFragment.getChildFragmentManager().getBackStackEntryCount() > 0) {
+            parentFragment.getChildFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }*/
 }

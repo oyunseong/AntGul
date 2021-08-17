@@ -7,17 +7,22 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.ui.community.CommunityFragment;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.antgul.antgul_android.ui.start.signup.SignUpFragment;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -25,6 +30,7 @@ import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     private RecyclerFreeBoardAdapter mAdapter;
+    private CommunityFragment communityFragment;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
     private int mCategory;
@@ -36,6 +42,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initView() {
+        communityFragment = new CommunityFragment();
         postList = new ArrayList<>();
         mAdapter = new RecyclerFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
@@ -64,11 +71,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentUser != null) {
-                    mainActivity.callFragmentWithBackStack(mainActivity.getFrameId(),new WritePostFragment());
-                } else {
-                    userCheck();
-                }
+                mainActivity.callFragmentAdd(new WritePostFragment());
             }
         });
     }
@@ -77,7 +80,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         Log.i(TAG, "getPost");
         progressDialog.showProgress();
         db.collection("boards")
-//                .whereEqualTo("category", 1)
+                .whereEqualTo("category", 1)
 //                .orderBy("createAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -97,5 +100,4 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                     }
                 });
     }
-
 }

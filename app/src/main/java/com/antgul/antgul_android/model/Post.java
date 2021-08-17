@@ -4,29 +4,28 @@ import java.util.List;
 
 public class Post {
     public String postId;
+    public String writerId; //User - uid
     public String title;
     public String content;
     public List<String> imageList;
-    public String writerId; //User - uid
     public List<Comment> commentList;
-    public int category;
-    public String createAt;
     public List<String> hashTags;
+    public int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
+    public String createAt;
 
     public Post(){}
 
-    public Post(String postId, String title, String content, List<String> imageList, String writerId, List<Comment> commentList, int category, String createAt, List<String> hashTags) {
+    public Post(String postId, String writerId, String title, String content, List<String> imageList, List<Comment> commentList, List<String> hashTags, int category, String createAt) {
         this.postId = postId;
+        this.writerId = writerId;
         this.title = title;
         this.content = content;
         this.imageList = imageList;
-        this.writerId = writerId;
         this.commentList = commentList;
+        this.hashTags = hashTags;
         this.category = category;
         this.createAt = createAt;
-        this.hashTags = hashTags;
     }
-
 
     public String getPostId() {
         return postId;

@@ -14,13 +14,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp">
-
 
             <TextView
                 android:id="@+id/cancel_button"
@@ -48,10 +46,11 @@
             <EditText
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/main_color_15p"
                 android:hint="제목"
+                android:maxLines="1"
                 android:letterSpacing="-0.04"
                 android:textColorHint="@color/main_color_15p"
                 android:textSize="13sp"
@@ -72,10 +71,10 @@
                 android:textColorHint="@color/main_color_15p"
                 android:textSize="10sp"
                 android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/title"
-                app:layout_constraintBottom_toBottomOf="@id/write_card"
-
-                />
+                android:gravity="top"
+                app:layout_constraintVertical_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

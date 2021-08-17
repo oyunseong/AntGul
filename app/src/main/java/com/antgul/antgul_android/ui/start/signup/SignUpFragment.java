@@ -117,7 +117,6 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         String time = timeStamp.getTime();
         // 폴더(Collection) - 파일...(Document) - 내용(key-value...)
         // boards - docID 자동생성 - 게시물 커스텀 객체
-        // TODO 이미지, 상태메시지
         User user = new User();
         user.setUid(firebaseUser.getUid());
         user.setEmail(firebaseUser.getEmail());
