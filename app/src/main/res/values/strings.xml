@@ -4,6 +4,6 @@
     <string name="board_content"></string>
     <string name="test_comment">회사명</string>
     <string name="kakao_app_key">d777638ad8e4d3afbccc3ee3ec032f63</string>
-    <integer name="screen_in_time">200</integer>
-    <integer name="screen_out_time">200</integer>
+    <integer name="screen_in_time">100</integer>
+    <integer name="screen_out_time">100</integer>
 </resources>

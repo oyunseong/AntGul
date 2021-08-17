@@ -3,99 +3,90 @@ package com.antgul.antgul_android.model;
 import java.util.List;
 
 public class Post {
-    public String postId;
-    public String writerId; //User - uid
-    public String title;
-    public String content;
-    public List<String> imageList;
-    public List<Comment> commentList;
-    public List<String> hashTags;
-    public int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
-    public String createAt;
+    private final String postId;
+    private final String writerId; //User - uid
+    private final String title;
+    private final String content;
+    private final List<String> imageList;
+    private final List<Comment> commentList;
+    private final List<String> hashTags;
+    private final int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
+    private final String createAt;
 
-    public Post(){}
-
-    public Post(String postId, String writerId, String title, String content, List<String> imageList, List<Comment> commentList, List<String> hashTags, int category, String createAt) {
-        this.postId = postId;
-        this.writerId = writerId;
-        this.title = title;
-        this.content = content;
-        this.imageList = imageList;
-        this.commentList = commentList;
-        this.hashTags = hashTags;
-        this.category = category;
-        this.createAt = createAt;
+    private Post(Builder builder) {
+        postId = builder.postId;
+        writerId = builder.writerId;
+        title = builder.title;
+        content = builder.content;
+        imageList = builder.imageList;
+        commentList = builder.commentList;
+        hashTags = builder.hashTags;
+        category = builder.category;
+        createAt= builder.createAt;
     }
 
-    public String getPostId() {
-        return postId;
-    }
+    public static class Builder {
+        private String postId;
+        private String writerId;
+        private String title;
+        private String content;
+        private List<String> imageList;
+        private List<Comment> commentList;
+        private List<String> hashTags;
+        private int category = 1;
+        private String createAt = "0000:00:00";
 
-    public void setPostId(String postId) {
-        this.postId = postId;
-    }
+        public Builder() {
+//            this.title = title;
+//            this.content = content;
+            // TODO 해쉬태그 추가
+        }
 
-    public String getTitle() {
-        return title;
-    }
+        public Builder postId(String val) {
+            postId = val;
+            return this;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public Builder writeId(String val) {
+            writerId = val;
+            return this;
+        }
 
-    public String getContent() {
-        return content;
-    }
+        public Builder title(String val) {
+            title = val;
+            return this;
+        }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+        public Builder content(String val) {
+            content = val;
+            return this;
+        }
 
-    public List<String> getImageList() {
-        return imageList;
-    }
+        public Builder imageList(List<String> val) {
+            imageList = val;
+            return this;
+        }
 
-    public void setImageList(List<String> imageList) {
-        this.imageList = imageList;
-    }
+        public Builder commentList(List<Comment> val) {
+            commentList = val;
+            return this;
+        }
+        public Builder hashTags(List<String> val) {
+            hashTags = val;
+            return this;
+        }
 
-    public String getWriterId() {
-        return writerId;
-    }
+        public Builder category(int val) {
+            category = val;
+            return this;
+        }
 
-    public void setWriterId(String writerId) {
-        this.writerId = writerId;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(int category) {
-        this.category = category;
-    }
-
-    public String getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(String createAt) {
-        this.createAt = createAt;
-    }
-
-    public List<String> getHashTags() {
-        return hashTags;
-    }
-
-    public void setHashTags(List<String> hashTags) {
-        this.hashTags = hashTags;
+        public Builder createAt(String val) {
+            createAt = val;
+            return this;
+        }
+        public Post build(){
+            return new Post(this);
+        }
     }
 }

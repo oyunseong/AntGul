@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseActivity;
 import com.antgul.antgul_android.databinding.ActivityMainBinding;
+import com.antgul.antgul_android.model.User;
 import com.antgul.antgul_android.ui.start.SplashFragment;
 import com.antgul.antgul_android.util.BackPressHandler;
 
@@ -54,8 +55,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void callFragmentWithBackStack(int id, Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-//         enter = 들어올 프래그먼트 , exit= 떠있는 프래그먼트
-//        transaction.setCustomAnimations(R.anim.anim_enter_test, R.anim.anim_exit_test,R.anim.anim_enter_test, R.anim.anim_exit_test);
         transaction.replace(id, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -64,6 +63,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void callFragmentWithoutBackStack(int id, Fragment fragment) {        //}, @AnimatorRes @AnimRes int enter, @AnimatorRes @AnimRes int exit) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
         transaction.replace(id, fragment).commit();
     }
 

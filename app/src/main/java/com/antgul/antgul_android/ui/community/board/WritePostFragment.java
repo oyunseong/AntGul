@@ -72,16 +72,14 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
 
-        Post post = new Post();
-        post.setTitle(title);
-        post.setContent(content);
-        post.setCategory(1);
-        post.setWriterId(firebaseUser.getUid());
-//        post.setHashTags();
-//        post.setImageList();
-        post.setCreateAt(time);
-
-//        post.setWriterId(firebaseUser.getUid());
+        Post post = new Post
+                .Builder()
+                .title(title)
+                .content(content)
+                .category(1)
+                .writeId(firebaseUser.getUid())
+                .createAt(time)
+                .build();
 
         DocumentReference usersReference = db.collection("boards").document();
         usersReference
