@@ -9,16 +9,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.antgul.antgul_android.MainFragment;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
 import com.antgul.antgul_android.util.PreferenceManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.kakao.auth.AuthType;
-import com.kakao.auth.KakaoSDK;
-import com.kakao.auth.Session;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +34,9 @@ import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
-
+    private GoogleSignInClient googleSignClient;
+    private GoogleApiClient googleApiClient;
+    private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected FragmentLoginBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -34,23 +44,41 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleSignClient = GoogleSignIn.getClient(requireActivity(), gso);
+    }
+
+    @Override
     protected void initView() {
 
     }
-
 
     @Override
     protected void initClickListener() {
         boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         binding.autoLoginCheckBox.setChecked(isAutoLoginButton);
-
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getActivity(), PREF_AUTO_LOGIN, isChecked);
         });
 
         onClickLoginButton();
+        onClickSignInGoogleButton();
     }
 
+    private void onClickSignInGoogleButton() {
+        binding.googleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInIntent = googleSignClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+    }
 
     private void onClickLoginButton() {
         binding.loginButton.setOnClickListener(view -> {
@@ -71,7 +99,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                     progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d("onComplete", "signInWithEmail:success");
+                        Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             saveEmail(email);
@@ -83,20 +111,59 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         }
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w("onComplete", "signInWithEmail:failure", task.getException());
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
                         showToast("회원정보를 찾을 수 없습니다.");
                     }
                 });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "++onActivityResult");
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        progressDialog.showProgress();
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(requireActivity(), task -> {
+                    progressDialog.hideProgress();
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithGoogleEmail:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            showToast("구글 로그인 성공");
+                            replaceFragment(new MainFragment());
+                        }else{
+                            Log.e(TAG, "user is null");
+                            showToast("user is null");
+                        }
+                    } else {
+                        Log.w(TAG, "signInWithGoogleEmail:failure" + task.getException());
+                        showToast("구글 회원정보를 찾을 수 없습니다.");
+                    }
+                });
+    }
+
     private void autoLogin() {
-        boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
-        if (currentUser != null && isAutoLoginButton) {
-            // TODO  MainFragment로 이동
+//        boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
+        if (currentUser != null) {
+            mainActivity.replaceFragment(new MainFragment());
         }
     }
 
     private void saveEmail(String email) {
         PreferenceManager.setString(getActivity(), PREF_SAVE_EMAIL, email);
     }
+
 }

@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
     protected final String TAG = this.getClass().getSimpleName();
     protected VB binding;
+    protected FirebaseAuth mAuth;
     protected abstract VB getViewBinding();
     protected abstract void initView();
     protected abstract void initClickListener();
@@ -32,6 +33,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         super.onCreate(savedInstanceState);
         Log.i(TAG, "++onCreate");
         binding = getViewBinding();
+        mAuth = FirebaseAuth.getInstance();
         setContentView(binding.getRoot());
         progressDialog = new ProgressDialog(this);
         initView();
@@ -45,7 +47,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .addToBackStack(null)
                 .commit();
     }
-
 
     public void startNextActivity(Class<?> className) {
         Log.i(TAG,"startNextActivity");

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSplashBinding;
+import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.antgul.antgul_android.util.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +49,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     }
 
     private void autoLogin() {
-        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),mainFragment);
-//        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),new StartFragment());
+//        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),mainFragment);
+        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),new LoginFragment());
     }
 }

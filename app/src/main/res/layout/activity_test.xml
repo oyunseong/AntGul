@@ -6,13 +6,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/stockCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="테스트"
+        tools:text="종목코드"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/stockName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="회사명"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/stockCode"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />

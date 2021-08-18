@@ -16,6 +16,7 @@ import androidx.viewbinding.ViewBinding;
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;

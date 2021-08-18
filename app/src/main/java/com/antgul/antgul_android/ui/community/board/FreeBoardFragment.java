@@ -73,7 +73,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
             public void onClick(View view) {
 //                mainActivity.callFragmentAdd(new WritePostFragment());
                 mainActivity.replaceDetailFragment(new WritePostFragment());
-
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.ui.valueation.ranking;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class TotalFragment extends BaseFragment<FragmentIndicatorBinding> {
 
     @Override
     protected FragmentIndicatorBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container) {
-        return FragmentIndicatorBinding.inflate(inflater,container,false);
+        return FragmentIndicatorBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -36,8 +37,7 @@ public class TotalFragment extends BaseFragment<FragmentIndicatorBinding> {
         binding.indicatorRecycler.setLayoutManager(new LinearLayoutManager(getLayoutInflater().getContext()));
         binding.indicatorRecycler.setAdapter(mAdapter);
 
-        for(int i=0; i<30; i++)
-        {
+        for (int i = 0; i < 30; i++) {
             addItem("삼성전자");
         }
 
@@ -48,6 +48,7 @@ public class TotalFragment extends BaseFragment<FragmentIndicatorBinding> {
     protected void initClickListener() {
 
     }
+
     public void addItem(String stockName) {
         Stock stock = new Stock();
         stock.setStockName(stockName);
@@ -78,4 +79,11 @@ public class TotalFragment extends BaseFragment<FragmentIndicatorBinding> {
                     }
                 });
     }
+
+    String getStockCode() {
+        StringBuffer buffer = new StringBuffer();
+
+        return "";
+    }
+
 }
