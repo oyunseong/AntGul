@@ -1,29 +1,24 @@
 package com.antgul.antgul_android.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Post {
-    private  String postId;
-    private  String writerId; //User - uid
-    private  String title;
-    private  String content;
-    private  List<String> imageList;
-    private  List<Comment> commentList;
-    private  List<String> hashTags;
-    private  int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
-    private  String createAt;
-    public Post(){}
+    private String postId;
+    private String writerId; //User - uid
+    private String title;
+    private String content;
+    private List<String> imageList;
+    private List<Comment> commentList;
+    private List<String> hashTags;
+    private int likeCount = 0;
+    public Map<String, Boolean> likeUser = new HashMap<>();
+    private int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
+    private String createAt;
+    private String documentId;
 
-    public Post(String postId, String writerId, String title, String content, List<String> imageList, List<Comment> commentList, List<String> hashTags, int category, String createAt) {
-        this.postId = postId;
-        this.writerId = writerId;
-        this.title = title;
-        this.content = content;
-        this.imageList = imageList;
-        this.commentList = commentList;
-        this.hashTags = hashTags;
-        this.category = category;
-        this.createAt = createAt;
+    public Post() {
     }
 
     public String getPostId() {
@@ -96,5 +91,29 @@ public class Post {
 
     public void setCreateAt(String createAt) {
         this.createAt = createAt;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public Map<String, Boolean> getLikeUser() {
+        return likeUser;
+    }
+
+    public void setLikeUser(Map<String, Boolean> likeUser) {
+        this.likeUser = likeUser;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 }

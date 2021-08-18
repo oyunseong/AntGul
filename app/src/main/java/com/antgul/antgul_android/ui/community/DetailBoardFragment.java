@@ -23,14 +23,21 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO BoardFragment 에서 보낸 데이터 수신.
+
     }
 
     @Override
     protected void initView() {
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            String str = bundle.getString("strKey");
+            binding.boardNickName.setText(str);
+        }
     }
 
     @Override
     protected void initClickListener() {
 
     }
+
 }

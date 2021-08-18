@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -72,7 +73,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
         Post post = new Post();
-//        post.setWriterId(firebaseUser.getUid());
+        post.setWriterId(firebaseUser.getUid());
         post.setTitle(title);
         post.setContent(content);
         post.setCategory(1);
@@ -84,6 +85,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+
                         Log.i(TAG, "DocumentSnapshot successfully updated!");
                         progressDialog.hideProgress();
                     }

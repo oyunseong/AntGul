@@ -3,6 +3,7 @@ package com.antgul.antgul_android.ui.community.board;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,15 +62,9 @@ public class RecyclerFreeBoardAdapter extends RecyclerView.Adapter<RecyclerFreeB
                 if (pos != RecyclerView.NO_POSITION) {
                     if (itemClickListener != null) {
                         itemClickListener.onItemClick(v, pos);
-                        //TODO 리사이클러뷰 아이템 클릭시 DetailBoardFragment로 이동시키기
                     }
                 }
             });
         }
-    }
-
-    public void addItem(Post Post) {
-        mData.add(Post);
-        notifyItemInserted(getItemCount());
     }
 }

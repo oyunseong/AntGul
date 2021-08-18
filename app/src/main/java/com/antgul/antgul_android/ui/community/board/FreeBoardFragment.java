@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.ui.community.board;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,24 +8,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.ui.community.CommunityFragment;
-import com.antgul.antgul_android.ui.start.login.LoginFragment;
-import com.antgul.antgul_android.ui.start.signup.SignUpFragment;
+import com.antgul.antgul_android.ui.community.DetailBoardFragment;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 
 import java.util.ArrayList;
 
@@ -33,6 +34,8 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     private CommunityFragment communityFragment;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
+    private DetailBoardFragment detailBoardFragment;
+    private static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int mCategory;
 
     @Override
@@ -41,15 +44,21 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     }
 
     @Override
-    protected void initView() {
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        detailBoardFragment = new DetailBoardFragment();
         communityFragment = new CommunityFragment();
+
+    }
+
+    @Override
+    protected void initView() {
         postList = new ArrayList<>();
         mAdapter = new RecyclerFreeBoardAdapter(postList);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
         binding.freeBoardRecycler.setAdapter(mAdapter);
-
         getPosts();
         mAdapter.notifyDataSetChanged();
     }
@@ -59,9 +68,12 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         mAdapter.setOnItemClickListener(new RecyclerFreeBoardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                showToast(pos + "번 클릭");
+//                showToast(pos + "번 클릭");
                 //TODO 포지션값 넘겨주기 + replaceFragment() 로 교체. 프레그먼트 데이터 전달 및 받기 검색. 객체를 넘길거면 추가 구현 필요. Parcelable.
-                //mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
+                getDetailPosts(postList.get(pos).getDocumentId());
+                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+
+//                transaction.replace(R.id.fragment_frame,detailBoardFragment).commit();
             }
         });
         onClickWriteButton();
@@ -77,6 +89,26 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         });
     }
 
+    private void getDetailPosts(String docId) {
+        Log.i(TAG, "getDetailPost");
+        progressDialog.showProgress();
+
+        DocumentReference productRef = db.collection("boards").document(docId);
+        productRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                    }
+                } else {
+
+                }
+            }
+        });
+    }
+
+
     private void getPosts() {
         Log.i(TAG, "getPost");
         progressDialog.showProgress();
@@ -91,6 +123,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Post post = document.toObject(Post.class);
+                                post.setDocumentId(document.getId());
                                 postList.add(post);
                             }
                             mAdapter.notifyDataSetChanged();
@@ -100,5 +133,13 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                         progressDialog.hideProgress();
                     }
                 });
+    }
+
+    private void callDetailFragment() {
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+//        bundle.putString();
+        detailBoardFragment.setArguments(bundle);
+        transaction.replace(R.id.fragment_frame, detailBoardFragment).commit();
     }
 }

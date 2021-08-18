@@ -142,6 +142,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         Log.d(TAG, "signInWithGoogleEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
+                            // TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
                             showToast("구글 로그인 성공");
                             replaceFragment(new MainFragment());
                         }else{
