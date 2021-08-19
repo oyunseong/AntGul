@@ -114,11 +114,4 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 });
     }
 
-    private void callDetailFragment() {
-        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-        Bundle bundle = new Bundle();
-//        bundle.putString();
-        detailBoardFragment.setArguments(bundle);
-        transaction.replace(R.id.fragment_frame, detailBoardFragment).commit();
-    }
 }
