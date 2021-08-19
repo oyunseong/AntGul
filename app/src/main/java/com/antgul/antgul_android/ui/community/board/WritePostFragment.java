@@ -1,5 +1,7 @@
 package com.antgul.antgul_android.ui.community.board;
 
+import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,34 +60,34 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
     }
 
     private void writePost() {
-        FirebaseUser user = mAuth.getCurrentUser();
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
-//        if (user != null) {
-            setPost(user, title, content);
-//        }
-
+        //비회원인 경우, 글쓰기 불가능
+        if (currentUser != null) {
+            setPost(title, content);
+        } else {
+            //로그인 화면으로 유도.
+        }
     }
 
-    private void setPost(FirebaseUser firebaseUser, String title, String content) {
+    private void setPost(String title, String content) {
         // 폴더(Collection) - 파일...(Document) - 내용(key-value...)
         // boards - docID 자동생성 - 게시물 커스텀 객체
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
         Post post = new Post();
-        post.setWriterId(firebaseUser.getUid());
+        post.setWriterId(currentUser.getUid());
         post.setTitle(title);
         post.setContent(content);
         post.setCategory(1);
         post.setCreateAt(time);
 
-        DocumentReference usersReference = db.collection("boards").document();
+        DocumentReference usersReference = db.collection(POSTS_COLLECTION).document(currentUser.getUid());
         usersReference
                 .set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
                         Log.i(TAG, "DocumentSnapshot successfully updated!");
                         progressDialog.hideProgress();
                     }

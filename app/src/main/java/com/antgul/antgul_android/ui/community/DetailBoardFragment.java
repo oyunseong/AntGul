@@ -1,5 +1,8 @@
 package com.antgul.antgul_android.ui.community;
 
+import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
+import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,18 +14,13 @@ import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentDetailBoardBinding;
-import com.antgul.antgul_android.model.Comment;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding> {
     private String documentId;
@@ -39,16 +37,12 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
         return FragmentDetailBoardBinding.inflate(inflater, container, false);
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             documentId = getArguments().getString("docId");
-            getDetailPost();
         }
-
-        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -57,37 +51,63 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDetailPost();
+    }
+
+    @Override
     protected void initClickListener() {
         binding.boardLikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.boardNickName.setText(documentId);
-                binding.boardContent.setText(content);
+
             }
         });
     }
 
     public void getDetailPost() {
         Log.i(TAG, "getPost");
-//        progressDialog.showProgress();
-        db.collection("boards")
+        progressDialog.showProgress();
+        db.collection(POSTS_COLLECTION)
                 .document(documentId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
+                        if (document != null && document.exists()) {
                             Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             Post post = document.toObject(Post.class);
-                            content = post.getContent();
-                            createAt = post.getCreateAt();
-                            title = post.getTitle();
-                            showToast(content);
+                            if (post != null) getWriter(post);
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
-//                        progressDialog.hideProgress();
+                    }
+                });
+    }
+
+    public void getWriter(Post post) {
+        db.collection(USERS_COLLECTION)
+                .document(post.getWriterId())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null && document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            User user = document.toObject(User.class);
+                            if (user != null) {
+                                binding.boardNickName.setText(user.nickname);
+                                binding.boardContent.setText(post.getContent());
+                                binding.boardTime.setText(post.getCreateAt());
+                                // TODO UI 업데이트 후 항목 추가
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                        progressDialog.hideProgress();
                     }
                 });
     }
