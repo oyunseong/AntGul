@@ -27,6 +27,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
@@ -35,8 +37,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
     private DetailBoardFragment detailBoardFragment;
-    private static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private int mCategory;
 
     @Override
     protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -44,11 +44,10 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     }
 
     @Override
-    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         detailBoardFragment = new DetailBoardFragment();
         communityFragment = new CommunityFragment();
-
     }
 
     @Override
@@ -68,12 +67,14 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         mAdapter.setOnItemClickListener(new RecyclerFreeBoardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-//                showToast(pos + "번 클릭");
-                //TODO 포지션값 넘겨주기 + replaceFragment() 로 교체. 프레그먼트 데이터 전달 및 받기 검색. 객체를 넘길거면 추가 구현 필요. Parcelable.
-                getDetailPosts(postList.get(pos).getDocumentId());
+                // TODO DetailBoardFragment 이동 후 뒤로가기 버튼을 눌렀을 때 백스택에 제대로 안쌓이는 현상
+                Bundle bundle = new Bundle();
+                bundle.putString("docId",postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-
-//                transaction.replace(R.id.fragment_frame,detailBoardFragment).commit();
+                DetailBoardFragment detailBoardFragment = new DetailBoardFragment();
+                detailBoardFragment.setArguments(bundle);
+                transaction.replace(R.id.fragment_main_frame,detailBoardFragment);
+                transaction.addToBackStack(null).commit();
             }
         });
         onClickWriteButton();
@@ -89,26 +90,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         });
     }
 
-    private void getDetailPosts(String docId) {
-        Log.i(TAG, "getDetailPost");
-        progressDialog.showProgress();
-
-        DocumentReference productRef = db.collection("boards").document(docId);
-        productRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-
-                    }
-                } else {
-
-                }
-            }
-        });
-    }
-
-
     private void getPosts() {
         Log.i(TAG, "getPost");
         progressDialog.showProgress();
@@ -116,22 +97,20 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 .whereEqualTo("category", 1)
 //                .orderBy("createAt", Query.Direction.DESCENDING)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Post post = document.toObject(Post.class);
-                                post.setDocumentId(document.getId());
-                                postList.add(post);
-                            }
-                            mAdapter.notifyDataSetChanged();
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
+                .addOnCompleteListener(task -> {
+                    Log.i(TAG,"++onComplete");
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            Post post = document.toObject(Post.class);
+                            post.setDocumentId(document.getId());
+                            postList.add(post);
                         }
-                        progressDialog.hideProgress();
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
                     }
+                    progressDialog.hideProgress();
                 });
     }
 

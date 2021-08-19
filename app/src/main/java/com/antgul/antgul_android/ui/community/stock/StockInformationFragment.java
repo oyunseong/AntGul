@@ -76,7 +76,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                Post post =document.toObject(Post.class);
+                                Post post = document.toObject(Post.class);
 
                                 postList.add(post);
                             }
