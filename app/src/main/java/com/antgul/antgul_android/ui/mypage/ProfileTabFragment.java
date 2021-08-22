@@ -19,7 +19,7 @@ import com.google.android.gms.tasks.Task;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
+public class ProfileTabFragment extends BaseFragment<FragmentMyPageBinding> {
     @Override
     protected FragmentMyPageBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentMyPageBinding.inflate(inflater, container, false);
@@ -63,7 +63,7 @@ public class MyPageFragment extends BaseFragment<FragmentMyPageBinding> {
                 showToast("로그아웃 버튼 클릭");
                 if (currentUser != null) {
                     mAuth.signOut();
-                    mainActivity.replaceFragment(R.id.main_activity_frame, new LoginFragment());
+                    mainActivity.replaceFragment(new LoginFragment());
                 } else {
                     showToast("로그인되어있지 않습니다.");
                 }

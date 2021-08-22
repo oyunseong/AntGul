@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentCommunityBinding;
 import com.antgul.antgul_android.ui.community.post.FreeBoardFragment;
-import com.antgul.antgul_android.ui.community.post.StockInformationFragment;
+import com.antgul.antgul_android.ui.community.post.StockInfoFragment;
 
-public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
-    StockInformationFragment stockInformationFragment;
+public class CommunityTabFragment extends BaseFragment<FragmentCommunityBinding> {
+    StockInfoFragment stockInfoFragment;
     FreeBoardFragment freeBoardFragment;
 
     @Override
@@ -22,9 +22,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
 
     @Override
     protected void initView() {
-        stockInformationFragment = new StockInformationFragment();
+        stockInfoFragment = new StockInfoFragment();
         freeBoardFragment = new FreeBoardFragment();
-        mainActivity.replaceFragment(binding.communityFrame.getId(),stockInformationFragment);
+        mainActivity.addFragment(binding.communityTabContainer.getId(), stockInfoFragment);
         binding.stockInfoButton.setSelected(true);
     }
 
@@ -37,7 +37,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     private void onClickStockInfoButton() {
         //TODO addToBackStack 발생시 select 변화없음 수정필요
         binding.stockInfoButton.setOnClickListener(view -> {
-            mainActivity.replaceFragment(binding.communityFrame.getId(), new StockInformationFragment());
+            mainActivity.replaceFragment(binding.communityTabContainer.getId(), new StockInfoFragment());
             binding.stockInfoButton.setSelected(true);
             binding.freeboardButton.setSelected(false);
         });
@@ -45,7 +45,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
 
     private void onClickFreeBoardButton() {
         binding.freeboardButton.setOnClickListener(view -> {
-            mainActivity.replaceFragment(binding.communityFrame.getId(), freeBoardFragment);;
+            mainActivity.replaceFragment(binding.communityTabContainer.getId(), freeBoardFragment);;
             binding.freeboardButton.setSelected(true);
             binding.stockInfoButton.setSelected(false);
         });

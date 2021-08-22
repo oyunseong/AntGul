@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -87,11 +88,11 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         mainActivity = null;
     }
 
-    public void replaceFragment(Fragment fragment) {
+    public void replaceFragmentWithBottomNav(Fragment fragment) {
         Log.i(TAG, "++replaceFragment");
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.main_activity_frame, fragment)
+                .replace(R.id.main_fragment_container, fragment)
                 .commit();
     }
 

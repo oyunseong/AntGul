@@ -3,18 +3,16 @@ package com.antgul.antgul_android.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
-import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * 모든 액티비티는 해당 클래스를 상속받도록 수정하기.
@@ -39,11 +37,42 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         initView();
         initClickListener();
     }
-    public void replaceFragment(int container, Fragment fragment){
-        Log.i(TAG,"replaceFragment");
+
+    public void replaceFragment(Fragment fragment){
+        Log.i(TAG,TAG + "++ replace -> " + fragment.getClass().getSimpleName());
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
-                .replace(container, fragment)
+                .replace(R.id.activity_main_container, fragment)
+                .commit();
+    }
+
+    public void replaceFragmentAddToBackStack(Fragment fragment){
+        Log.i(TAG,TAG + " replace -> " + fragment.getTag());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
+                .replace(R.id.activity_main_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    /**
+     * replace : remove() + add()
+     */
+    public void replaceFragment(@IdRes int fragmentContainerId, Fragment fragment){
+        Log.i(TAG,"++" + TAG + " replace -> " + fragment.getClass().getSimpleName());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
+                .replace(fragmentContainerId, fragment)
+                .commit();
+    }
+
+    //mainActivity 내에 있는 컨테이너
+    public void addFragment(@IdRes int fragmentContainerId, Fragment fragment){
+        Log.i(TAG,"++" + TAG + " add -> " + fragment.getClass().getSimpleName());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_out,R.anim.fade_in)
+                .add(fragmentContainerId, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 

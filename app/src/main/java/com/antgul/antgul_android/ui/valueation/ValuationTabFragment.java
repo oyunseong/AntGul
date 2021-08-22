@@ -14,7 +14,7 @@ import com.antgul.antgul_android.databinding.FragmentValueationBinding;
 import com.antgul.antgul_android.ui.valueation.ranking.RankingFragment;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class ValueationFragment extends BaseFragment<FragmentValueationBinding> {
+public class ValuationTabFragment extends BaseFragment<FragmentValueationBinding> {
     private RankingFragment rankingFragment;
 
     @Override
@@ -26,7 +26,7 @@ public class ValueationFragment extends BaseFragment<FragmentValueationBinding> 
     protected void initView() {
         Log.i(TAG, "start setUpView()");
         rankingFragment = new RankingFragment();
-        mainActivity.replaceFragment(R.id.valueation_frame,rankingFragment);
+//        mainActivity.replaceFragment(R.id.valueation_frame,rankingFragment);
     }
 
     @Override

@@ -56,7 +56,6 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mainActivity.visibleMainFrame();
     }
 
     private void writePost() {
@@ -66,7 +65,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         if (currentUser != null) {
             setPost(title, content);
         } else {
-            mainActivity.replaceFragment(R.id.main_activity_frame,new LoginFragment());
+            mainActivity.addFragment(R.id.activity_main_container,new LoginFragment());
         }
     }
 

@@ -72,7 +72,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                 FragmentManager fragmentManager =requireActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out);
-                transaction.replace(R.id.main_activity_frame, new SignUpFragment());
+                transaction.replace(R.id.activity_main_container, new SignUpFragment());
                 transaction.addToBackStack("LoginFragment");
                 transaction.commit();
             }
@@ -116,7 +116,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         if (user != null) {
                             saveEmail(email);
                             showToast("로그인 성공!");
-                            replaceFragment(new MainFragment());
+                            replaceFragmentWithBottomNav(new MainFragment());
                         } else {
                             Log.e(TAG, "user is null");
                             showToast("user is null");
@@ -161,7 +161,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
 //
 //                                    })
                             showToast("구글 로그인 성공");
-                            replaceFragment(new MainFragment());
+                            replaceFragmentWithBottomNav(new MainFragment());
                         }else{
                             Log.e(TAG, "user is null");
                             showToast("user is null");

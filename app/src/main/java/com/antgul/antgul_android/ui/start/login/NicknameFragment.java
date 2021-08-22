@@ -13,7 +13,6 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentNicknameBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -76,7 +75,7 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
                         showToast("반갑습니다. " + nickname + "님");
-                        replaceFragment(new MainFragment());
+                        replaceFragmentWithBottomNav(new MainFragment());
                         progressDialog.hideProgress();
                     }
                 })

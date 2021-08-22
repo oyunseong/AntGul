@@ -14,19 +14,21 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMainBinding;
-import com.antgul.antgul_android.ui.community.CommunityFragment;
-import com.antgul.antgul_android.ui.home.HomeFragment;
-import com.antgul.antgul_android.ui.mypage.MyPageFragment;
-import com.antgul.antgul_android.ui.valueation.ValueationFragment;
+import com.antgul.antgul_android.ui.community.CommunityTabFragment;
+import com.antgul.antgul_android.ui.home.HomeTabFragment;
+import com.antgul.antgul_android.ui.mypage.ProfileTabFragment;
+import com.antgul.antgul_android.ui.valueation.ValuationTabFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainFragment extends BaseFragment<FragmentMainBinding> {
-    HomeFragment homeFragment;
-    ValueationFragment valueationFragment;
-    CommunityFragment communityFragment;
-    MyPageFragment myPageFragment;
+    HomeTabFragment homeTabFragment;
+    ValuationTabFragment valuationTabFragment;
+    CommunityTabFragment communityTabFragment;
+    ProfileTabFragment profileTabFragment;
+
+    FragmentManager fragmentManager;
 
     @Override
     protected FragmentMainBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -36,16 +38,17 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homeFragment = new HomeFragment();
-        valueationFragment = new ValueationFragment();
-        communityFragment = new CommunityFragment();
-        myPageFragment = new MyPageFragment();
+        fragmentManager = getChildFragmentManager();
+
+        homeTabFragment = new HomeTabFragment();
+        valuationTabFragment = new ValuationTabFragment();
+        communityTabFragment = new CommunityTabFragment();
+        profileTabFragment = new ProfileTabFragment();
     }
 
     @Override
     protected void initView() {
-        mainActivity.visibleMainFrame();
-        mainActivity.replaceFragment(binding.fragmentMainFrame.getId(), homeFragment);
+        mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), homeTabFragment);
     }
 
     @Override
@@ -77,16 +80,16 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
             if (id == R.id.menu_home) {
-                fragment = new HomeFragment();
-            } else if (id == R.id.menu_valueation) {
-                fragment = new ValueationFragment();
+                fragment = new HomeTabFragment();
+            } else if (id == R.id.menu_valuation) {
+                fragment = new ValuationTabFragment();
             } else if (id == R.id.menu_community) {
-                fragment = new CommunityFragment();
-            } else if (id == R.id.menu_my_page) {
-                fragment = new MyPageFragment();
+                fragment = new CommunityTabFragment();
+            } else if (id == R.id.menu_profile) {
+                fragment = new ProfileTabFragment();
             }
             if (fragment != null) {
-                transaction.add(binding.fragmentMainFrame.getId(), fragment, tag);
+                transaction.add(binding.mainFragmentContainer.getId(), fragment, tag);
             }
         } else {
             transaction.show(fragment);

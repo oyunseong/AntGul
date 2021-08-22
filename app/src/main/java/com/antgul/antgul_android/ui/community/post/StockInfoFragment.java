@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
-public class StockInformationFragment extends BaseFragment<FragmentStockInfoBinding> {
+public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
     private RecyclerCommunityAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
@@ -62,7 +62,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 DetailBoardFragment detailBoardFragment = new DetailBoardFragment();
                 detailBoardFragment.setArguments(bundle);
-                transaction.replace(R.id.fragment_main_frame, detailBoardFragment);
+                transaction.replace(R.id.main_fragment_container, detailBoardFragment);
                 transaction.addToBackStack(null).commit();
             }
         });
@@ -70,7 +70,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
 
     private void getPosts() {
         Log.i(TAG, "getPost");
-        progressDialog.showProgress();
+//        progressDialog.showProgress();
         db.collection(POSTS_COLLECTION)
                 .whereEqualTo("category", 0)
                 .get()

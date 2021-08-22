@@ -1,13 +1,16 @@
 package com.antgul.antgul_android.ui.start.signup;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.MainFragment;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.antgul.antgul_android.model.User;
@@ -28,6 +31,8 @@ import static com.antgul.antgul_android.base.ApplicationClass.REGEX_NICK;
 import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;
 
 public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
+
+    private OnBackPressedCallback onBackPressedCallback;
 
     @Override
     protected FragmentSignUpBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -130,7 +135,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
                         showToast("반갑습니다. " + nickname + "님");
-                        replaceFragment(new MainFragment());
+                        replaceFragmentWithBottomNav(new MainFragment());
                         progressDialog.hideProgress();
                     }
                 })
@@ -143,4 +148,6 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                     }
                 });
     }
+
+
 }

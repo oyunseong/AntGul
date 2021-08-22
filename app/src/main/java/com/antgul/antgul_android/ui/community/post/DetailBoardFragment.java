@@ -58,12 +58,12 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
 
     @Override
     protected void initClickListener() {
-        binding.boardLikeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        binding.boardLikeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     public void getDetailPost() {
@@ -99,9 +99,9 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
                             Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             User user = document.toObject(User.class);
                             if (user != null) {
-                                binding.boardNickName.setText(user.nickname);
-                                binding.boardContent.setText(post.getContent());
-                                binding.boardTime.setText(post.getCreateAt());
+//                                binding.boardNickName.setText(user.nickname);
+//                                binding.boardContent.setText(post.getContent());
+//                                binding.boardTime.setText(post.getCreateAt());
                                 // TODO UI 업데이트 후 항목 추가
                             }
                         } else {

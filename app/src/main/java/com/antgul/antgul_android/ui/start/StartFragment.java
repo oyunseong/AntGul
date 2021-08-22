@@ -1,7 +1,6 @@
 package com.antgul.antgul_android.ui.start;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -28,20 +27,7 @@ public class StartFragment extends BaseFragment<FragmentStartBinding> {
 
     @Override
     protected void initClickListener() {
-        binding.startLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO LoginFragment 로 이동
-                mainActivity.replaceFragment(R.id.main_activity_frame,new LoginFragment());
-            }
-        });
-        binding.startSignupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO SignUpFragment 로 이동
-                mainActivity.replaceFragment(R.id.main_activity_frame,new SignUpFragment());
-            }
-        });
-
+        binding.startLoginButton.setOnClickListener(v -> mainActivity.replaceFragment(R.id.activity_main_container, new LoginFragment()));
+        binding.startSignupButton.setOnClickListener(v -> mainActivity.replaceFragment(R.id.activity_main_container, new SignUpFragment()));
     }
 }

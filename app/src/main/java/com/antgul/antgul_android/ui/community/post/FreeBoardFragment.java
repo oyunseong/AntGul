@@ -17,7 +17,6 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.model.PostCase;
-import com.antgul.antgul_android.ui.community.CommunityFragment;
 import com.antgul.antgul_android.ui.community.recyclerView.RecyclerCommunityAdapter;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -31,19 +30,10 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
     private RecyclerCommunityAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
-    private DetailBoardFragment detailBoardFragment;
-    private CommunityFragment communityFragment;
 
     @Override
     protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentFreeBoardBinding.inflate(inflater, container, false);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        detailBoardFragment = new DetailBoardFragment();
-        communityFragment = new CommunityFragment();
     }
 
     @Override
@@ -70,14 +60,14 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 DetailBoardFragment detailBoardFragment = new DetailBoardFragment();
                 detailBoardFragment.setArguments(bundle);
-                transaction.replace(R.id.fragment_main_frame, detailBoardFragment);
+                transaction.replace(R.id.main_fragment_container, detailBoardFragment);
                 transaction.addToBackStack(null).commit();
             }
         });
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.replaceDetailFragment(new WritePostFragment());
+                mainActivity.addFragment(R.id.activity_main_container, new WritePostFragment());
             }
         });
     }
@@ -90,7 +80,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 //                .orderBy("createAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
-                    Log.i(TAG, "++onComplete");
+                    Log.i(TAG, "onComplete");
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());

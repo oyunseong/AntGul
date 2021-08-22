@@ -38,9 +38,11 @@ public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItem
     @Override
     public CommunityItemView onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         if(post_type == PostCase.STOCK_INFO){
-            return new ViewHolderStock(ItemStockInfoRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+            return new ViewHolderStock(ItemStockInfoRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false),
+                    itemClickListener);
         }else if(post_type == PostCase.FREE_BOARD){
-            return new ViewHolderPost(ItemStockInfoRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+            return new ViewHolderPost(ItemStockInfoRecyclerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false),
+                    itemClickListener);
         }
         return null;
     }
@@ -49,18 +51,17 @@ public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItem
     public void onBindViewHolder(@NonNull @NotNull CommunityItemView holder, int position) {
         if(holder instanceof ViewHolderStock){
             ViewHolderStock viewHolderStock = (ViewHolderStock)holder;
-            viewHolderStock.onBind(postList.get(position),itemClickListener);
+            viewHolderStock.onBind(postList.get(position));
 
 
-
-            //        Post post = mData.get(position);
+//            Post post = mData.get(position);
 //        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
-
-
+//        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
+//        holder.itemStockInfoRecyclerBinding.brokerage.setText(post.getWriterId());
 
         }else if(holder instanceof ViewHolderPost){
             ViewHolderPost viewHolderPost = (ViewHolderPost)holder;
-            viewHolderPost.onBind(postList.get(position),itemClickListener);
+            viewHolderPost.onBind(postList.get(position));
         }
     }
 

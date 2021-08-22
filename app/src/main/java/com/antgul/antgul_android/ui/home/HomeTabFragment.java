@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.antgul.antgul_android.R;
 
-public class HomeFragment extends Fragment {
+public class HomeTabFragment extends Fragment {
 
-    public HomeFragment(){
+    public HomeTabFragment(){
 
     }
 

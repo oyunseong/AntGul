@@ -1,7 +1,6 @@
 package com.antgul.antgul_android.ui.community.recyclerView;
 
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,16 +9,16 @@ import com.antgul.antgul_android.databinding.ItemStockInfoRecyclerBinding;
 import com.antgul.antgul_android.model.Post;
 
 public class ViewHolderPost extends CommunityItemView {
-    private ItemStockInfoRecyclerBinding itemStockInfoRecyclerBinding;
+    private ItemStockInfoRecyclerBinding binding;
     private RecyclerCommunityAdapter.OnItemClickListener itemClickListener = null;
 
-    public ViewHolderPost(@NonNull ItemStockInfoRecyclerBinding itemStockInfoRecyclerBinding) {
-        super(itemStockInfoRecyclerBinding.getRoot());
-        this.itemStockInfoRecyclerBinding = itemStockInfoRecyclerBinding;
+    public ViewHolderPost(@NonNull ItemStockInfoRecyclerBinding binding, RecyclerCommunityAdapter.OnItemClickListener itemClickListener) {
+        super(binding.getRoot());
+        this.binding = binding;
+        this.itemClickListener = itemClickListener;
     }
 
-    public void onBind(Post post, RecyclerCommunityAdapter.OnItemClickListener itemClickListener) {
-        Post post1 = post;
+    public void onBind(Post post) {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,8 +30,7 @@ public class ViewHolderPost extends CommunityItemView {
                 }
             }
         });
-        itemStockInfoRecyclerBinding.stockTitle.setText(post1.getTitle());
-
+        binding.stockTitle.setText(post.getTitle());
     }
 
 
