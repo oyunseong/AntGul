@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.antgul.antgul_android.databinding.ItemStockInfoRecyclerBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.model.PostCase;
-import com.antgul.antgul_android.ui.community.recyclerView.CommunityItemView;
-import com.antgul.antgul_android.ui.community.recyclerView.ViewHolderPost;
-import com.antgul.antgul_android.ui.community.recyclerView.ViewHolderStock;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,8 +17,8 @@ import java.util.ArrayList;
 
 public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItemView> {
     private ArrayList<Post> postList= null;
-    private PostCase post_type;
-    private OnItemClickListener itemClickListener = null;
+    private final PostCase post_type;
+    public OnItemClickListener itemClickListener = null;
 
     public RecyclerCommunityAdapter(ArrayList<Post> postList, PostCase post_type){
         this.postList = postList;
@@ -53,6 +50,7 @@ public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItem
         if(holder instanceof ViewHolderStock){
             ViewHolderStock viewHolderStock = (ViewHolderStock)holder;
             viewHolderStock.onBind(postList.get(position));
+
 //            Post post = mData.get(position);
 //        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
 //        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
