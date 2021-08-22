@@ -15,8 +15,6 @@ import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.MainActivity;
 import com.antgul.antgul_android.R;
-import com.antgul.antgul_android.ui.start.login.LoginFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -49,7 +47,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"++onCreate");
+        Log.i(TAG, "++onCreate");
     }
 
     @Nullable
@@ -92,8 +90,8 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     public void replaceFragment(Fragment fragment) {
         Log.i(TAG, "++replaceFragment");
         requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_frame, fragment)
-                .addToBackStack(null)
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.main_activity_frame, fragment)
                 .commit();
     }
 

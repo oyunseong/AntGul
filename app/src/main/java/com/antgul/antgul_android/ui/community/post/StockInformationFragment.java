@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.community.stock;
+package com.antgul.antgul_android.ui.community.post;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,19 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentStockInfoBinding;
 import com.antgul.antgul_android.model.Post;
-import com.antgul.antgul_android.ui.community.board.RecyclerFreeBoardAdapter;
+import com.antgul.antgul_android.model.PostCase;
+import com.antgul.antgul_android.ui.community.recyclerView.RecyclerCommunityAdapter;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
+
 public class StockInformationFragment extends BaseFragment<FragmentStockInfoBinding> {
-    //    private RecyclerFreeBoardAdapter mAdapter;
-    private RecyclerViewStockInfoAdapter mAdapter;
+    private RecyclerCommunityAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -37,8 +38,7 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
     @Override
     protected void initView() {
         postList = new ArrayList<>();
-//        mAdapter = new RecyclerFreeBoardAdapter(postList);
-        mAdapter = new RecyclerViewStockInfoAdapter(postList);
+        mAdapter = new RecyclerCommunityAdapter(postList, PostCase.STOCK_INFO);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new RecyclerDecorationHeight(3));
@@ -53,22 +53,19 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
     }
 
     private void onClickItem() {
-//        mAdapter.setOnItemClickListener(new RecyclerFreeBoardAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int pos) {
-//                showToast(pos + "번 클릭");
-//                //TODO 포지션값 넘겨주기 + replaceFragment() 로 교체. 프레그먼트 데이터 전달 및 받기 검색. 객체를 넘길거면 추가 구현 필요. Parcelable.
-//                //mainActivity.callFragment(MainActivity.FRAGMENT_DETAIL_BOARD);
-//            }
-//        });
+        mAdapter.setOnItemClickListener(new RecyclerCommunityAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                showToast(pos + "번 클릭");
+            }
+        });
     }
 
     private void getPosts() {
         Log.i(TAG, "getPost");
         progressDialog.showProgress();
-        db.collection("boards")
+        db.collection(POSTS_COLLECTION)
                 .whereEqualTo("category", 0)
-//                .orderBy("createAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -77,7 +74,6 @@ public class StockInformationFragment extends BaseFragment<FragmentStockInfoBind
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Post post = document.toObject(Post.class);
-
                                 postList.add(post);
                             }
                             mAdapter.notifyDataSetChanged();

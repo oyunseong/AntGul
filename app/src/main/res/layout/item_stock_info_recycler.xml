@@ -20,7 +20,7 @@
         android:layout_height="80dp">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/stock_title"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -46,8 +46,8 @@
             android:textSize="10sp"
             android:layout_marginTop="2dp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/title"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintLeft_toLeftOf="@id/stock_title"
+            app:layout_constraintTop_toBottomOf="@id/stock_title" />
 
         <TextView
             android:id="@+id/brokerage"
@@ -59,7 +59,7 @@
             android:textSize="10sp"
             android:layout_marginTop="2dp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintLeft_toLeftOf="@id/stock_title"
             app:layout_constraintTop_toBottomOf="@id/hashtag" />
 
         <ImageView

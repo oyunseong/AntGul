@@ -26,7 +26,7 @@ public class ValueationFragment extends BaseFragment<FragmentValueationBinding> 
     protected void initView() {
         Log.i(TAG, "start setUpView()");
         rankingFragment = new RankingFragment();
-        mainActivity.callFragmentWithoutBackStack(R.id.valueation_frame,rankingFragment);
+        mainActivity.replaceFragment(R.id.valueation_frame,rankingFragment);
     }
 
     @Override

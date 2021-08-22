@@ -2,7 +2,6 @@ package com.antgul.antgul_android.ui.start.signup;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSignUpBinding;
 import com.antgul.antgul_android.model.User;
-import com.antgul.antgul_android.ui.home.HomeFragment;
 import com.antgul.antgul_android.util.TimeStamp;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,6 +23,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.antgul.antgul_android.base.ApplicationClass.REGEX_NICK;
+import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;
 
 public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
 
@@ -51,7 +52,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
 
         String regexEmail = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         String regexPw = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}$";                    // 숫자/영문/특수문자를 최소 1개를 포함하고 공백은 허용되지 않음 8~16글자
-        String regexNick = "^[가-힣a-zA-Z0-9]{2,12}$";                                               // 한글/영문/숫자 포함 2~12
+        String regexNick = REGEX_NICK;//                                                            // 한글/영문/숫자 포함 2~12
 
         Pattern patternEmail = Pattern.compile(regexEmail);
         Pattern patternNick = Pattern.compile(regexNick);
@@ -96,8 +97,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                         Log.d("createUser", "createUserWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            showToast("클릭");
-                            postUserInfo(user, nickname,password);
+                            postUserInfo(user, nickname, password);
                         }
                     } else {
                         Log.e("createUser", "createUserWithEmail:failure " + task.getException());
@@ -115,8 +115,6 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
     private void postUserInfo(FirebaseUser firebaseUser, String nickname, String password) {
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
-        // 폴더(Collection) - 파일...(Document) - 내용(key-value...)
-        // boards - docID 자동생성 - 게시물 커스텀 객체
         User user = new User();
         user.setUid(firebaseUser.getUid());
         user.setEmail(firebaseUser.getEmail());
@@ -124,14 +122,15 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         user.setNickname(nickname);
         user.setCreateAt(time);
 
-        DocumentReference usersReference = db.collection("users").document();
+        DocumentReference usersReference = db.collection(USERS_COLLECTION).document(firebaseUser.getUid());
         usersReference
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
-                        mainActivity.replaceFragment(new MainFragment());
+                        showToast("반갑습니다. " + nickname + "님");
+                        replaceFragment(new MainFragment());
                         progressDialog.hideProgress();
                     }
                 })
@@ -139,6 +138,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error updating document", e);
+                        showToast("회원가입 실패");
                         progressDialog.hideProgress();
                     }
                 });

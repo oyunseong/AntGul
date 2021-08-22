@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.community;
+package com.antgul.antgul_android.ui.community.post;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;

@@ -19,29 +19,31 @@
 
         <TextView
             android:id="@+id/sign_up_title"
-            style="@style/Text.MainFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:gravity="center"
+            android:letterSpacing="-0.04"
             android:text="개미굴 회원가입"
             android:textColor="@color/main_color"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
             android:id="@+id/et_id"
-            style="@style/Text.MainFont"
             android:layout_width="286.7dp"
             android:layout_height="36dp"
             android:layout_marginTop="23dp"
             android:background="@drawable/edittext_round"
             android:gravity="center_vertical"
-            android:textColor="@color/black"
             android:hint="아이디 ( 이메일 )"
             android:maxLines="1"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint_color"
+            android:textSize="13.3sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_title" />
@@ -53,6 +55,10 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_round"
             android:hint="닉네임 ( 제약조건 )"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:textColorHint="@color/hint_color"
+            android:textSize="13.3sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_id" />
@@ -63,7 +69,12 @@
             android:layout_height="36dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_round"
-            android:hint="비밀번호 ( 4자~12자 이하 영문, 숫자, 특수문자 )"
+            android:hint="비밀번호 ( 8자 이상 )"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:textColorHint="@color/hint_color"
+            android:textSize="13.3sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_nick_name" />
@@ -75,19 +86,26 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_round"
             android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+
+            android:textColorHint="@color/hint_color"
+            android:textSize="13.3sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_pw" />
 
         <TextView
             android:id="@+id/terms_of_service_button"
-            style="@style/Text.MainFont"
             android:layout_width="110.7dp"
             android:layout_height="44dp"
             android:layout_marginTop="17.64dp"
             android:background="@drawable/shape_button_round"
             android:gravity="center"
             android:text="이용약관"
+            android:textColor="@color/white"
+            android:textSize="13.3sp"
             android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -97,7 +115,6 @@
 
         <TextView
             android:id="@+id/privacy_policy_button"
-            style="@style/Text.MainFont"
             android:layout_width="152dp"
             android:layout_height="44dp"
             android:layout_marginLeft="30dp"
@@ -105,6 +122,9 @@
             android:background="@drawable/shape_button_round"
             android:gravity="center"
             android:text="개인정보취급방침"
+            android:textColor="@color/white"
+            android:textSize="13.3sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/terms_of_service_button"
             app:layout_constraintRight_toRightOf="@id/signup_constraintLayout"
             app:layout_constraintTop_toBottomOf="@id/et_confirm_pw" />
@@ -125,21 +145,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30.5dp"
             android:text="이용약관에 동의합니다."
-            android:textSize="13.3sp"
             android:textColor="@color/main_color"
+            android:textSize="13.3sp"
             app:layout_constraintLeft_toRightOf="@id/terms_of_service_checkBox"
             app:layout_constraintRight_toRightOf="@id/signup_constraintLayout"
             app:layout_constraintTop_toBottomOf="@id/terms_of_service_button" />
 
         <TextView
             android:id="@+id/sign_up_button"
-            style="@style/Text.MainFont"
             android:layout_width="312dp"
             android:layout_height="45dp"
             android:layout_marginBottom="45dp"
             android:background="@drawable/shape_button_round"
             android:gravity="center"
             android:text="회원가입"
+            android:textColor="@color/white"
+            android:textSize="13.3sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/signup_constraintLayout"
             app:layout_constraintLeft_toLeftOf="@id/signup_constraintLayout"
             app:layout_constraintRight_toRightOf="@id/signup_constraintLayout" />

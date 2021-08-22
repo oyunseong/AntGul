@@ -18,8 +18,8 @@ public class Post {
     private String createAt;
     private String documentId;
 
-    public Post() {
-    }
+    public Post(){}
+
 
     public String getPostId() {
         return postId;

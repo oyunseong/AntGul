@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.community.board;
+package com.antgul.antgul_android.ui.community.post;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
@@ -16,9 +16,7 @@ import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.util.TimeStamp;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_bottom_round_modal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="닉네임 설정"
+            android:textColor="@color/main_color"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/login_constraintLayout"
+            app:layout_constraintLeft_toLeftOf="@id/login_constraintLayout"
+            app:layout_constraintRight_toRightOf="@id/login_constraintLayout"
+            app:layout_constraintTop_toTopOf="@id/login_constraintLayout"
+            app:layout_constraintVertical_bias="0.1" />
+
+
+        <EditText
+            android:id="@+id/et_nickname"
+            android:layout_width="286.7dp"
+            android:layout_height="36dp"
+            android:background="@drawable/edittext_round"
+            android:hint="닉네임 ( 2 ~ 6자 )"
+            android:letterSpacing="-0.04"
+            android:textColor="@color/black"
+            android:textColorHint="@color/main_color_15p"
+            android:textSize="13.3sp"
+            android:layout_marginTop="18dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/login_constraintLayout"
+            app:layout_constraintRight_toRightOf="@id/login_constraintLayout"
+            app:layout_constraintTop_toBottomOf="@id/nickname_title" />
+
+        <TextView
+            android:id="@+id/ok_button"
+            android:layout_width="286.7dp"
+            android:layout_height="44dp"
+            android:background="@drawable/shape_button_round"
+            android:gravity="center"
+            android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="13.3sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/login_constraintLayout"
+            app:layout_constraintLeft_toLeftOf="@id/login_constraintLayout"
+            app:layout_constraintRight_toRightOf="@id/login_constraintLayout"
+            app:layout_constraintTop_toTopOf="@id/login_constraintLayout"
+            app:layout_constraintVertical_bias="0.9" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

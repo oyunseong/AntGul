@@ -8,7 +8,7 @@
     >
 
     <FrameLayout
-        android:id="@+id/fragment_frame"
+        android:id="@+id/main_activity_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
@@ -19,7 +19,7 @@
         />
 
     <FrameLayout
-        android:id="@+id/fragment_detail_frame"
+        android:id="@+id/main_activity_detail_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/fragment_background"

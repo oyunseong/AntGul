@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.MainFragment;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSplashBinding;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
@@ -49,7 +50,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     }
 
     private void autoLogin() {
-//        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),mainFragment);
-        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),new LoginFragment());
+        mainActivity.replaceFragment(R.id.main_activity_frame,mainFragment);
+//        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),new LoginFragment());
     }
 }

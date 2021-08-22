@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
+import com.antgul.antgul_android.ui.start.signup.SignUpFragment;
 import com.antgul.antgul_android.util.PreferenceManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,10 +24,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
@@ -65,6 +66,17 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getActivity(), PREF_AUTO_LOGIN, isChecked);
         });
+        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager =requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out);
+                transaction.replace(R.id.main_activity_frame, new SignUpFragment());
+                transaction.addToBackStack("LoginFragment");
+                transaction.commit();
+            }
+        });
 
         onClickLoginButton();
         onClickSignInGoogleButton();
@@ -103,7 +115,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             saveEmail(email);
-                            showToast("로그인 성공!!");
+                            showToast("로그인 성공!");
                             replaceFragment(new MainFragment());
                         } else {
                             Log.e(TAG, "user is null");
@@ -143,6 +155,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             // TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
+//                            db.collection(USERS_COLLECTION).document(currentUser.getUid())
+//                                    .get()
+//                                    .addOnCompleteListener(task ->{
+//
+//                                    })
                             showToast("구글 로그인 성공");
                             replaceFragment(new MainFragment());
                         }else{
@@ -159,7 +176,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
     private void autoLogin() {
 //        boolean isAutoLoginButton = PreferenceManager.getBoolean(getActivity(), PREF_AUTO_LOGIN);
         if (currentUser != null) {
-            mainActivity.replaceFragment(new MainFragment());
+//            mainActivity.replaceFragment(new MainFragment());
         }
     }
 

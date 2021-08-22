@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "551242977137",
+    "firebase_url": "https://antgul-default-rtdb.firebaseio.com",
     "project_id": "antgul",
     "storage_bucket": "antgul.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "551242977137-bi7ifthnlo63d0dqo421qitbceru0sat.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.antgul.antgul_android",
+            "certificate_hash": "3c6164f67fa1ea5a2af8b68ecf51227d8233e5e0"
+          }
+        },
         {
           "client_id": "551242977137-svk2n9lomj1eo9548cgf28vjehd4dqhr.apps.googleusercontent.com",
           "client_type": 1,

@@ -45,7 +45,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     @Override
     protected void initView() {
         mainActivity.visibleMainFrame();
-        mainActivity.callFragmentWithoutBackStack(binding.fragmentMainFrame.getId(), homeFragment);
+        mainActivity.replaceFragment(binding.fragmentMainFrame.getId(), homeFragment);
     }
 
     @Override
