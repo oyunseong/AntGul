@@ -51,6 +51,5 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     private void autoLogin() {
         mainActivity.replaceFragment(R.id.main_activity_frame,mainFragment);
-//        mainActivity.callFragmentWithoutBackStack(mainActivity.getFrameId(),new LoginFragment());
     }
 }

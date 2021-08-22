@@ -49,16 +49,18 @@ public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItem
     public void onBindViewHolder(@NonNull @NotNull CommunityItemView holder, int position) {
         if(holder instanceof ViewHolderStock){
             ViewHolderStock viewHolderStock = (ViewHolderStock)holder;
-            viewHolderStock.onBind(postList.get(position));
+            viewHolderStock.onBind(postList.get(position),itemClickListener);
 
-//            Post post = mData.get(position);
+
+
+            //        Post post = mData.get(position);
 //        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
-//        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
-//        holder.itemStockInfoRecyclerBinding.brokerage.setText(post.getWriterId());
+
+
 
         }else if(holder instanceof ViewHolderPost){
             ViewHolderPost viewHolderPost = (ViewHolderPost)holder;
-            viewHolderPost.onBind(postList.get(position));
+            viewHolderPost.onBind(postList.get(position),itemClickListener);
         }
     }
 

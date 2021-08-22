@@ -63,7 +63,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
         mAdapter.setOnItemClickListener(new RecyclerCommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                showToast(pos+" 클릭");
+                showToast(pos+"자유게시판 클릭");
                 // TODO DetailBoardFragment 이동 후 뒤로가기 버튼을 눌렀을 때 백스택에 제대로 안쌓이는 현상
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
@@ -74,10 +74,6 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 transaction.addToBackStack(null).commit();
             }
         });
-        onClickWriteButton();
-    }
-
-    private void onClickWriteButton() {
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentWriteBoardBinding;
 import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.antgul.antgul_android.util.TimeStamp;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,7 +40,6 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
             @Override
             public void onClick(View view) {
                 writePost();
-                showToast("버튼 클릭");
             }
         });
     }
@@ -64,7 +66,7 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         if (currentUser != null) {
             setPost(title, content);
         } else {
-            //로그인 화면으로 유도.
+            mainActivity.replaceFragment(R.id.main_activity_frame,new LoginFragment());
         }
     }
 
@@ -80,24 +82,30 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
         post.setCategory(1);
         post.setCreateAt(time);
 
-        DocumentReference usersReference = db.collection(POSTS_COLLECTION).document(currentUser.getUid());
+        DocumentReference usersReference = db.collection(POSTS_COLLECTION).document();
         usersReference
                 .set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.i(TAG, "DocumentSnapshot successfully updated!");
+                        showToast("업로드 완료!");
                         progressDialog.hideProgress();
+                        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().remove(WritePostFragment.this).commit();
+                        fragmentManager.popBackStack();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error updating document", e);
+                        showToast("업로드 실패!");
                         progressDialog.hideProgress();
+                        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().remove(WritePostFragment.this).commit();
+                        fragmentManager.popBackStack();
                     }
                 });
     }
-
-
 }
