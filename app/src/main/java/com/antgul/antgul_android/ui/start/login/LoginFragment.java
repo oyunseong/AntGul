@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +33,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -161,17 +163,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                             //TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
                             DocumentReference usersReference = db.collection(USERS_COLLECTION).document(user.getUid());
                             usersReference
-                                    .set(user)
+                                    .set(user) // TODO
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Log.d(TAG, "DocumentSnapshot successfully updated!");
-//                                                showToast(user1.getUid());
-                                            // TODO 번들로 getUid 보내기
-                                            Bundle bundle =new Bundle();
-                                            bundle.putString("UID",user.getUid());
-                                            mainActivity.replaceFragmentAddToBackStack(new NicknameFragment());
-                                            progressDialog.hideProgress();
+                                            getUserNickname(user);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -179,7 +175,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                                         public void onFailure(@NonNull Exception e) {
                                             Log.w(TAG, "Error updating document", e);
                                             showToast("회원가입 실패");
-                                            progressDialog.hideProgress();
                                         }
                                     });
                             showToast(user.getUid() + "");
@@ -191,6 +186,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         Log.w(TAG, "signInWithGoogleEmail:failure" + task.getException());
                         showToast("구글 회원정보를 찾을 수 없습니다.");
                     }
+                    progressDialog.hideProgress();
                 });
     }
 
@@ -205,4 +201,31 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         PreferenceManager.setString(getActivity(), PREF_SAVE_EMAIL, email);
     }
 
+    public void getUserNickname(FirebaseUser user) {
+        progressDialog.showProgress();
+        db.collection(USERS_COLLECTION)
+                .document(user.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null && document.exists()) {
+                            User user = document.toObject(User.class);
+                            if (user != null) {
+                                if (user.getNickname() != null) {
+                                    replaceFragmentWithBottomNav(new MainFragment());
+                                } else {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("UID", user.getUid());
+                                    mainActivity.replaceFragmentAddToBackStack(new NicknameFragment());
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        }
+                        progressDialog.hideProgress();
+                    }
+                });
+    }
 }
