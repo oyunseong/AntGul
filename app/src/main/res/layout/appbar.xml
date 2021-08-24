@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/setting_button"
-        android:layout_width="20.4dp"
-        android:layout_height="20.4dp"
+        android:layout_width="25.4dp"
+        android:layout_height="25.4dp"
         android:layout_marginEnd="29.5dp"
         android:background="@drawable/ic_setting"
         android:visibility="gone"

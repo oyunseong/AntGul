@@ -12,6 +12,7 @@ import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentSplashBinding;
+import com.antgul.antgul_android.ui.start.login.LoginFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,6 +45,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     }
 
     private void autoLogin() {
-        mainActivity.replaceFragment(R.id.activity_main_container, new MainFragment());
+//        mainActivity.replaceFragment(R.id.activity_main_container, new MainFragment());
+        mainActivity.replaceFragment(R.id.activity_main_container,new LoginFragment());
     }
 }

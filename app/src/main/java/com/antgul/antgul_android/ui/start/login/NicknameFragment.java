@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.ui.start.login;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.MainFragment;
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentNicknameBinding;
+import com.antgul.antgul_android.model.Post;
+import com.antgul.antgul_android.model.User;
+import com.antgul.antgul_android.util.TimeStamp;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,14 +34,46 @@ import static com.antgul.antgul_android.base.ApplicationClass.REGEX_NICK;
 import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;
 
 public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
+    private String UID;
+
     @Override
     protected FragmentNicknameBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentNicknameBinding.inflate(inflater, container, false);
     }
 
     @Override
-    protected void initView() {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            UID = getArguments().getString("UID");
+        }
+        if (UID != null) {
+            db.collection(USERS_COLLECTION).document(UID)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        Log.i(TAG, "onComplete");
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            User user = document.toObject(User.class);
+                            if (user != null) {
+                                if (user.getNickname() != null) {
+                                    replaceFragmentWithBottomNav(new MainFragment());
+                                }
+                            }
 
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                        progressDialog.hideProgress();
+                    });
+        }
+    }
+
+    @Override
+    protected void initView() {
+        showToast(UID + "");
     }
 
     @Override
@@ -56,17 +97,46 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
 
     private void saveNickname(String nickname) {
         progressDialog.showProgress();
+        TimeStamp timeStamp = new TimeStamp();
+        String time = timeStamp.getTime();
+        User user = new User();
+
+        user.setNickname(nickname);
+        user.setCreateAt(time);
+
+        DocumentReference usersReference = db.collection(USERS_COLLECTION).document(UID);
+        usersReference
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        showToast("구글 회원가입 성공");
+                        replaceFragmentWithBottomNav(new MainFragment());
+                        progressDialog.hideProgress();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                        showToast("회원가입 실패");
+                        progressDialog.hideProgress();
+                    }
+                });
+
+
         mAuth.createUserWithEmailAndPassword(currentUser.getUid(), null)
                 .addOnCompleteListener(mainActivity, task -> {
                     if (task.isSuccessful()) {
                         if (currentUser != null) {
-                            sendToDB(currentUser,nickname);
+                            sendToDB(currentUser, nickname);
                         }
                     }
                 });
     }
-    private void sendToDB(FirebaseUser firebaseUser,String nickname)
-    {
+
+    private void sendToDB(FirebaseUser firebaseUser, String nickname) {
         DocumentReference usersReference = db.collection(USERS_COLLECTION).document(firebaseUser.getUid());
         usersReference
                 .set(firebaseUser)

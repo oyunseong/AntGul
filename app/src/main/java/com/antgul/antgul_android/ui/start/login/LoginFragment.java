@@ -16,6 +16,7 @@ import com.antgul.antgul_android.MainFragment;
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentLoginBinding;
+import com.antgul.antgul_android.model.User;
 import com.antgul.antgul_android.ui.start.signup.SignUpFragment;
 import com.antgul.antgul_android.util.PreferenceManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,13 +25,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
 
 import org.jetbrains.annotations.NotNull;
 
+import static com.antgul.antgul_android.base.ApplicationClass.USERS_COLLECTION;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_AUTO_LOGIN;
 import static com.antgul.antgul_android.util.PreferenceManager.PREF_SAVE_EMAIL;
 
@@ -69,9 +74,9 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         binding.signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager =requireActivity().getSupportFragmentManager();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out);
+                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
                 transaction.replace(R.id.activity_main_container, new SignUpFragment());
                 transaction.addToBackStack("LoginFragment");
                 transaction.commit();
@@ -112,8 +117,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success");
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
+                        if (currentUser != null) {
                             saveEmail(email);
                             showToast("로그인 성공!");
                             replaceFragmentWithBottomNav(new MainFragment());
@@ -154,15 +158,32 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                         Log.d(TAG, "signInWithGoogleEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            // TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
-//                            db.collection(USERS_COLLECTION).document(currentUser.getUid())
-//                                    .get()
-//                                    .addOnCompleteListener(task ->{
-//
-//                                    })
-                            showToast("구글 로그인 성공");
-                            replaceFragmentWithBottomNav(new MainFragment());
-                        }else{
+                            //TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
+                            DocumentReference usersReference = db.collection(USERS_COLLECTION).document(user.getUid());
+                            usersReference
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+//                                                showToast(user1.getUid());
+                                            // TODO 번들로 getUid 보내기
+                                            Bundle bundle =new Bundle();
+                                            bundle.putString("UID",user.getUid());
+                                            mainActivity.replaceFragmentAddToBackStack(new NicknameFragment());
+                                            progressDialog.hideProgress();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error updating document", e);
+                                            showToast("회원가입 실패");
+                                            progressDialog.hideProgress();
+                                        }
+                                    });
+                            showToast(user.getUid() + "");
+                        } else {
                             Log.e(TAG, "user is null");
                             showToast("user is null");
                         }
