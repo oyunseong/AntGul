@@ -48,7 +48,7 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
             UID = getArguments().getString("UID");
         }
         if (UID != null) {
-            db.collection(USERS_COLLECTION).document(UID)
+            db.collection(USERS_COLLECTION).document(currentUser.getUid())
                     .get()
                     .addOnCompleteListener(task -> {
                         Log.i(TAG, "onComplete");
@@ -61,8 +61,6 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
                                     replaceFragmentWithBottomNav(new MainFragment());
                                 }
                             }
-
-
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -100,11 +98,9 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
         TimeStamp timeStamp = new TimeStamp();
         String time = timeStamp.getTime();
         User user = new User();
-
         user.setNickname(nickname);
         user.setCreateAt(time);
-
-        DocumentReference usersReference = db.collection(USERS_COLLECTION).document(UID);
+        DocumentReference usersReference = db.collection(USERS_COLLECTION).document(currentUser.getUid());
         usersReference
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -112,7 +108,7 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
                         showToast("구글 회원가입 성공");
-                        replaceFragmentWithBottomNav(new MainFragment());
+                        mainActivity.replaceFragment(R.id.activity_main_container, new MainFragment());
                         progressDialog.hideProgress();
                     }
                 })
@@ -122,16 +118,6 @@ public class NicknameFragment extends BaseFragment<FragmentNicknameBinding> {
                         Log.w(TAG, "Error updating document", e);
                         showToast("회원가입 실패");
                         progressDialog.hideProgress();
-                    }
-                });
-
-
-        mAuth.createUserWithEmailAndPassword(currentUser.getUid(), null)
-                .addOnCompleteListener(mainActivity, task -> {
-                    if (task.isSuccessful()) {
-                        if (currentUser != null) {
-                            sendToDB(currentUser, nickname);
-                        }
                     }
                 });
     }

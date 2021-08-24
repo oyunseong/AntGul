@@ -155,32 +155,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(requireActivity(), task -> {
-                    progressDialog.hideProgress();
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithGoogleEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            //TODO 닉네임이 없는 회원이라면 닉네임 입력창으로 이동시키고 스토어에 저장하기
-                            DocumentReference usersReference = db.collection(USERS_COLLECTION).document(user.getUid());
-                            usersReference
-                                    .set(user) // TODO
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            getUserNickname(user);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.w(TAG, "Error updating document", e);
-                                            showToast("회원가입 실패");
-                                        }
-                                    });
-                            showToast(user.getUid() + "");
-                        } else {
-                            Log.e(TAG, "user is null");
-                            showToast("user is null");
+                            getUserNickname(user);
                         }
                     } else {
                         Log.w(TAG, "signInWithGoogleEmail:failure" + task.getException());
@@ -214,15 +193,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
                             User user = document.toObject(User.class);
                             if (user != null) {
                                 if (user.getNickname() != null) {
-                                    replaceFragmentWithBottomNav(new MainFragment());
-                                } else {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("UID", user.getUid());
-                                    mainActivity.replaceFragmentAddToBackStack(new NicknameFragment());
+                                    mainActivity.replaceFragment(R.id.activity_main_container, new MainFragment());
                                 }
                             }
                         } else {
-                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            mainActivity.replaceFragmentAddToBackStack(new NicknameFragment());
                         }
                         progressDialog.hideProgress();
                     }
