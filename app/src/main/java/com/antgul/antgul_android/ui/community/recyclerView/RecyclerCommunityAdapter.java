@@ -53,7 +53,6 @@ public class RecyclerCommunityAdapter extends RecyclerView.Adapter<CommunityItem
             ViewHolderStock viewHolderStock = (ViewHolderStock)holder;
             viewHolderStock.onBind(postList.get(position));
 
-
 //            Post post = mData.get(position);
 //        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
 //        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());

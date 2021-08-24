@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Text.MainFont" parent="android:TextAppearance">
+    <style name="Text.MainColorFont" parent="android:TextAppearance">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/main_color</item>
+        <item name="android:letterSpacing">-0.04</item>
         <item name="android:textSize">13.3sp</item>
+    </style>
+
+    <style name="Text.WhiteFont" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.04</item>
+        <item name="android:textSize">13.3sp</item>
     </style>
 
 </resources>

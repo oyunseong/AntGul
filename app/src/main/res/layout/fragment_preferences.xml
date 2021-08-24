@@ -6,13 +6,13 @@
     android:background="@color/fragment_background">
 
     <include
-        android:id="@+id/my_page_appbar"
+        android:id="@+id/preferences_appbar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/my_page_title_card"
+        android:id="@+id/preferences_title_card"
         android:layout_width="311.3dp"
         android:layout_height="49.6dp"
         android:layout_marginTop="35.2dp"
@@ -20,10 +20,10 @@
         app:cardElevation="3.3dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_page_appbar">
+        app:layout_constraintTop_toBottomOf="@id/preferences_appbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/my_page_title_constraint"
+            android:id="@+id/preferences_title_constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/gradient_button_color">
@@ -32,17 +32,18 @@
                 style="@style/Text.WhiteFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="마이페이지"
+                android:text="환경설정"
                 android:textSize="16.7sp"
-                app:layout_constraintBottom_toBottomOf="@id/my_page_title_constraint"
-                app:layout_constraintLeft_toLeftOf="@id/my_page_title_constraint"
-                app:layout_constraintRight_toRightOf="@id/my_page_title_constraint"
-                app:layout_constraintTop_toTopOf="@id/my_page_title_constraint" />
+                app:layout_constraintBottom_toBottomOf="@id/preferences_title_constraint"
+                app:layout_constraintLeft_toLeftOf="@id/preferences_title_constraint"
+                app:layout_constraintRight_toRightOf="@id/preferences_title_constraint"
+                app:layout_constraintTop_toTopOf="@id/preferences_title_constraint" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/my_page_myInfo_card"
+        android:id="@+id/preferences_myInfo_card"
         android:layout_width="311.3dp"
         android:layout_height="31.7dp"
         android:layout_marginTop="16.9dp"
@@ -51,42 +52,32 @@
         app:cardElevation="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_page_title_card">
+        app:layout_constraintTop_toBottomOf="@id/preferences_title_card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/my_page_nickname_constraint"
+            android:id="@+id/preferences_info_setting_constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
 
             <TextView
-                android:id="@+id/my_page_myInfo"
+                android:id="@+id/my_page_info_setting"
                 style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내 정보"
-                app:layout_constraintBottom_toBottomOf="@id/my_page_nickname_constraint"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintLeft_toLeftOf="@id/my_page_nickname_constraint"
-                app:layout_constraintRight_toLeftOf="@id/my_page_nickname"
-                app:layout_constraintTop_toTopOf="@id/my_page_nickname_constraint" />
+                android:text="개인정보 설정"
+                app:layout_constraintBottom_toBottomOf="@id/preferences_info_setting_constraint"
+                app:layout_constraintLeft_toLeftOf="@id/preferences_info_setting_constraint"
+                app:layout_constraintRight_toRightOf="@id/preferences_info_setting_constraint"
+                app:layout_constraintTop_toTopOf="@id/preferences_info_setting_constraint" />
 
-            <TextView
-                android:id="@+id/my_page_nickname"
-                style="@style/Text.MainColorFont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:text="( 닉네임 님 )"
-                app:layout_constraintLeft_toRightOf="@id/my_page_myInfo"
-                app:layout_constraintRight_toRightOf="@id/my_page_nickname_constraint"
-                app:layout_constraintTop_toTopOf="@id/my_page_myInfo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/my_page_like_stock_card"
+        android:id="@+id/preferences_notion_card"
         android:layout_width="311.3dp"
         android:layout_height="31.7dp"
         android:layout_marginTop="16.9dp"
@@ -95,10 +86,10 @@
         app:cardElevation="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_page_myInfo_card">
+        app:layout_constraintTop_toBottomOf="@id/preferences_myInfo_card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/my_page_like_constraint"
+            android:id="@+id/preferences_notion_constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
@@ -107,17 +98,18 @@
                 style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="관심정보 리스트"
-                app:layout_constraintBottom_toBottomOf="@id/my_page_like_constraint"
-                app:layout_constraintLeft_toLeftOf="@id/my_page_like_constraint"
-                app:layout_constraintRight_toRightOf="@id/my_page_like_constraint"
-                app:layout_constraintTop_toTopOf="@id/my_page_like_constraint" />
+                android:text="알람설정"
+                app:layout_constraintBottom_toBottomOf="@id/preferences_notion_constraint"
+                app:layout_constraintLeft_toLeftOf="@id/preferences_notion_constraint"
+                app:layout_constraintRight_toRightOf="@id/preferences_notion_constraint"
+                app:layout_constraintTop_toTopOf="@id/preferences_notion_constraint" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/my_page_notion_card"
+        android:id="@+id/preferences_marketing_card"
         android:layout_width="311.3dp"
         android:layout_height="31.7dp"
         android:layout_marginTop="16.9dp"
@@ -126,10 +118,10 @@
         app:cardElevation="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_page_like_stock_card">
+        app:layout_constraintTop_toBottomOf="@id/preferences_notion_card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/my_page_notion_constraint"
+            android:id="@+id/preferences_marketing_constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
@@ -138,11 +130,43 @@
                 style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="알람정보 리스트"
-                app:layout_constraintBottom_toBottomOf="@id/my_page_notion_constraint"
-                app:layout_constraintLeft_toLeftOf="@id/my_page_notion_constraint"
-                app:layout_constraintRight_toRightOf="@id/my_page_notion_constraint"
-                app:layout_constraintTop_toTopOf="@id/my_page_notion_constraint" />
+                android:text="마케팅 동의"
+                app:layout_constraintBottom_toBottomOf="@id/preferences_marketing_constraint"
+                app:layout_constraintLeft_toLeftOf="@id/preferences_marketing_constraint"
+                app:layout_constraintRight_toRightOf="@id/preferences_marketing_constraint"
+                app:layout_constraintTop_toTopOf="@id/preferences_marketing_constraint" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/preferences_revoke_card"
+        android:layout_width="311.3dp"
+        android:layout_height="31.7dp"
+        android:layout_marginTop="16.9dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/preferences_marketing_card">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/preferences_revoke_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                style="@style/Text.MainColorFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원탈퇴"
+                app:layout_constraintBottom_toBottomOf="@id/preferences_revoke_constraint"
+                app:layout_constraintLeft_toLeftOf="@id/preferences_revoke_constraint"
+                app:layout_constraintRight_toRightOf="@id/preferences_revoke_constraint"
+                app:layout_constraintTop_toTopOf="@id/preferences_revoke_constraint" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -84,20 +84,19 @@
 
             <TextView
                 android:id="@+id/ranking_title"
+                style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23.5dp"
                 android:layout_marginTop="17.7dp"
-                android:letterSpacing="-0.04"
                 android:text="관심종목, 재무자료 랭킹"
-                android:textColor="@color/main_color"
                 android:textSize="16.7sp"
-                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/ranking_constraint"
                 app:layout_constraintTop_toTopOf="@id/ranking_constraint" />
 
             <TextView
                 android:id="@+id/ranking_sub_title"
+                style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23.5dp"
@@ -107,9 +106,6 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="3dp"
                 android:text="랭킹 바로가기"
-                android:textColor="@color/main_color"
-                android:textSize="13.3sp"
-                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/ranking_constraint"
                 app:layout_constraintTop_toBottomOf="@id/ranking_title"
                 app:layout_goneMarginTop="7.7dp" />
@@ -148,15 +144,12 @@
             android:layout_height="match_parent">
 
             <TextView
+                style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="18dp"
                 android:gravity="center"
-                android:letterSpacing="-0.04"
                 android:text="계산기"
-                android:textColor="@color/main_color"
-                android:textSize="13.3sp"
-                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/calculator_constraint"
                 app:layout_constraintTop_toTopOf="@id/calculator_constraint" />
 
@@ -191,15 +184,12 @@
             android:layout_height="match_parent">
 
             <TextView
+                style="@style/Text.MainColorFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="18dp"
                 android:gravity="center"
-                android:letterSpacing="-0.04"
                 android:text="오늘의 레포트"
-                android:textColor="@color/main_color"
-                android:textSize="13.3sp"
-                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/report_constraint"
                 app:layout_constraintTop_toTopOf="@id/report_constraint" />
 

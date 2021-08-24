@@ -27,8 +27,5 @@ public class ViewHolderStock extends CommunityItemView {
                 }
             }
         });
-//        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
-////        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
-////        holder.itemStockInfoRecyclerBinding.brokerage.setText(post.getWriterId());
     }
 }

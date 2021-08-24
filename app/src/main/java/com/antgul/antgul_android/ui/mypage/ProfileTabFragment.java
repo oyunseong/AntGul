@@ -27,76 +27,39 @@ public class ProfileTabFragment extends BaseFragment<FragmentMyPageBinding> {
 
     @Override
     protected void initView() {
+        binding.myPageAppbar.settingButton.setVisibility(View.VISIBLE);
+        binding.myPageAppbar.bellButton.setVisibility(View.INVISIBLE);
     }
 
     @Override
     protected void initClickListener() {
-        onClickLogoutButton();
-        onClickRevokeButton();
+        binding.myPageAppbar.settingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.preferencesAddFragment(new PreferencesFragment());
+            }
+        });
+//        onClickLogoutButton();
+//        onClickRevokeButton();
 //        onClickWithdrawalButton();
     }
 
-    private void onClickRevokeButton() {
-        binding.myPageWithdrawalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (currentUser != null) {
-                    currentUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            showToast("회원탈퇴 되었습니다.");
-                        }
-                    });
-                } else {
-                    showToast("회원을 찾을 수 없습니다.");
-                }
-            }
-        });
 
-    }
+//    private void onClickLogoutButton() {
+//        binding.myPageLogoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("onClickLogoutButton", "logout button click");
+//                showToast("로그아웃 버튼 클릭");
+//                if (currentUser != null) {
+//                    mAuth.signOut();
+//                    mainActivity.replaceFragment(new LoginFragment());
+//                } else {
+//                    showToast("로그인되어있지 않습니다.");
+//                }
+//            }
+//        });
+//    }
 
-    private void onClickLogoutButton() {
-        binding.myPageLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("onClickLogoutButton", "logout button click");
-                showToast("로그아웃 버튼 클릭");
-                if (currentUser != null) {
-                    mAuth.signOut();
-                    mainActivity.replaceFragment(new LoginFragment());
-                } else {
-                    showToast("로그인되어있지 않습니다.");
-                }
-            }
-        });
-    }
 
-    private void onClickWithdrawalButton() {
-        binding.myPageWithdrawalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("회원탈퇴 버튼 클릭");
-                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(getContext());
-                alert_confirm.setMessage("계정을 삭제하시겠습니까?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        currentUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                showToast("계정이 삭제 되었습니다.");
-//                                startActivity(new Intent(getContext(), MainActivity.class));
-                            }
-                        });
-                        alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                showToast("취소되었습니다.");
-                            }
-                        });
-                        alert_confirm.show();
-                    }
-                });
-            }
-        });
-    }
 }

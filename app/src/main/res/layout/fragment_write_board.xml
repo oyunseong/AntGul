@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint"
+            android:id="@+id/stock_info_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp">
@@ -26,8 +26,8 @@
                 android:layout_height="12.1dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/ic_cancel"
-                app:layout_constraintLeft_toLeftOf="@id/constraint"
-                app:layout_constraintTop_toTopOf="@id/constraint" />
+                app:layout_constraintLeft_toLeftOf="@id/stock_info_constraintLayout"
+                app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout" />
 
             <TextView
                 android:id="@+id/button"
@@ -40,8 +40,8 @@
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                app:layout_constraintRight_toRightOf="@id/constraint"
-                app:layout_constraintTop_toTopOf="@id/constraint" />
+                app:layout_constraintRight_toRightOf="@id/stock_info_constraintLayout"
+                app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout" />
 
             <EditText
                 android:id="@+id/title"

@@ -32,21 +32,6 @@ public class ViewHolderPost extends CommunityItemView {
         });
         binding.stockTitle.setText(post.getTitle());
     }
-
-
-//                @Override
-//                public void onClick(View v) {
-//                    itemClickListener.onItemClick(v,position);
-//                }
-//            });
-    //클릭리스너
-//        title.setText(this.post.getTitle());
-
-//        Post post = mData.get(position);
-//        holder.itemStockInfoRecyclerBinding.title.setText(post.getTitle());
-////        holder.itemStockInfoRecyclerBinding.hashtag.setText(post.getHashTags());
-////        holder.itemStockInfoRecyclerBinding.brokerage.setText(post.getWriterId());
-
 }
 
 

@@ -10,16 +10,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.antgul.antgul_android.R;
+import com.antgul.antgul_android.base.BaseFragment;
+import com.antgul.antgul_android.databinding.FragmentHomeBinding;
 
-public class HomeTabFragment extends Fragment {
+import org.jetbrains.annotations.NotNull;
 
-    public HomeTabFragment(){
+public class HomeTabFragment extends BaseFragment<FragmentHomeBinding> {
+    @Override
+    protected FragmentHomeBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container) {
+        return FragmentHomeBinding.inflate(inflater,container,false);
+    }
+
+    @Override
+    protected void initView() {
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,container,false);
+    protected void initClickListener() {
+
     }
 }
