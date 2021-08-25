@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="10dp">
+
+    <EditText
+        android:id="@+id/search_et"
+        style="@style/Text.BlackFont"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_round_aaa_1dp"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/black"
+        android:hint="글 제목, 내용, 해시태그"
+        android:maxLines="1"
+        android:paddingStart="5dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/search_ok_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/search_ok_button"
+        style="@style/Text.BlackFont"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/shape_round_aaa_1dp"
+        android:gravity="center"
+        android:text="검색"
+        app:layout_constraintHorizontal_weight="0.1"
+        app:layout_constraintLeft_toRightOf="@id/search_et"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/search_et" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_et"
+        tools:listitem="@layout/item_post_recycler" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

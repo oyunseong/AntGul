@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CommunityItemView extends RecyclerView.ViewHolder {
-    public CommunityItemView(@NonNull View itemView) {
+public class CommunityHolder extends RecyclerView.ViewHolder {
+    public CommunityHolder(@NonNull View itemView) {
         super(itemView);
     }
 }

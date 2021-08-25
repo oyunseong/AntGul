@@ -1,7 +1,6 @@
 package com.antgul.antgul_android.ui.community.post;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,18 +19,17 @@ import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.model.PostCase;
-import com.antgul.antgul_android.ui.community.recyclerView.RecyclerCommunityAdapter;
+import com.antgul.antgul_android.ui.community.recyclerView.CommunityAdapter;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.antgul.antgul_android.util.RecyclerDecorationHeight;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 
 import java.util.ArrayList;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
-public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> implements TextWatcher {
-    private RecyclerCommunityAdapter mAdapter;
+public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
+    private CommunityAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -41,9 +40,8 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> im
 
     @Override
     protected void initView() {
-        binding.etSearch.addTextChangedListener(this);
         postList = new ArrayList<>();
-        mAdapter = new RecyclerCommunityAdapter(postList, PostCase.STOCK_INFO);
+        mAdapter = new CommunityAdapter(postList, PostCase.STOCK_INFO);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
@@ -54,23 +52,25 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> im
 
     @Override
     protected void initClickListener() {
-        mAdapter.setOnItemClickListener(new RecyclerCommunityAdapter.OnItemClickListener() {
+        // TODO 뒤로가기 했을 때 커뮤니티 프래그먼트가 제대로 안띄워짐 transaction.popFragment 사용해야할 것같음
+        mAdapter.setOnItemClickListener(new CommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                DetailBoardFragment detailBoardFragment = new DetailBoardFragment();
-                detailBoardFragment.setArguments(bundle);
-                transaction.replace(R.id.community_tab_container, detailBoardFragment);
+                PostDetailFragment postDetailFragment = new PostDetailFragment();
+                postDetailFragment.setArguments(bundle);
+                transaction.replace(R.id.community_tab_container, postDetailFragment);
                 transaction.addToBackStack(null).commit();
+
             }
         });
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentUser != null) {
-                    mainActivity.addFragment(R.id.activity_main_container, new WritePostFragment());
+                    mainActivity.addFragment(R.id.activity_main_container, new PostWriteFragment());
                 }else{
                     showToast("로그인이 필요한 기능입니다.");
                     mainActivity.addFragment(R.id.activity_main_container,new LoginFragment());
@@ -104,18 +104,4 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> im
     }
 
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        mAdapter.getFilter().filter(s);
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 }

@@ -39,7 +39,6 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getChildFragmentManager();
-
         homeTabFragment = new HomeTabFragment();
         valuationTabFragment = new ValuationTabFragment();
         communityTabFragment = new CommunityTabFragment();
@@ -67,6 +66,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
                 return true;
             }
         });
+
     }
 
     private void BottomNavigate(int id) {

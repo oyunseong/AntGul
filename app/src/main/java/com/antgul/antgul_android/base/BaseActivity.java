@@ -45,6 +45,16 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .replace(R.id.activity_main_container, fragment)
                 .commit();
     }
+    /**
+     * replace : remove() + add()
+     */
+    public void replaceFragment(@IdRes int fragmentContainerId, Fragment fragment){
+        Log.i(TAG,"++" + TAG + " replace -> " + fragment.getClass().getSimpleName());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
+                .replace(fragmentContainerId, fragment)
+                .commit();
+    }
 
     public void replaceFragmentAddToBackStack(Fragment fragment){
         Log.i(TAG,TAG + " replace -> " + fragment.getTag());
@@ -55,15 +65,12 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .commit();
     }
 
-
-    /**
-     * replace : remove() + add()
-     */
-    public void replaceFragment(@IdRes int fragmentContainerId, Fragment fragment){
-        Log.i(TAG,"++" + TAG + " replace -> " + fragment.getClass().getSimpleName());
+    public void replaceFragmentAddToBackStack(@IdRes int fragmentContainerId,Fragment fragment){
+        Log.i(TAG,TAG + " replace -> " + fragment.getTag());
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
                 .replace(fragmentContainerId, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 

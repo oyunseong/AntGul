@@ -127,6 +127,7 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding> {
         user.setNickname(nickname);
         user.setCreateAt(time);
 
+        //TODO 회원가입하면 팅기는 현상
         DocumentReference usersReference = db.collection(USERS_COLLECTION).document(firebaseUser.getUid());
         usersReference
                 .set(user)

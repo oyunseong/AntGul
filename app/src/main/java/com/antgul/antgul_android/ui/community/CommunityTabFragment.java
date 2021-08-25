@@ -1,19 +1,21 @@
 package com.antgul.antgul_android.ui.community;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.antgul.antgul_android.SearchFragment;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentCommunityBinding;
-import com.antgul.antgul_android.ui.community.post.FreeBoardFragment;
+import com.antgul.antgul_android.ui.community.post.PostFragment;
 import com.antgul.antgul_android.ui.community.post.StockInfoFragment;
 
 public class CommunityTabFragment extends BaseFragment<FragmentCommunityBinding> {
     StockInfoFragment stockInfoFragment;
-    FreeBoardFragment freeBoardFragment;
+    PostFragment postFragment;
 
     @Override
     protected FragmentCommunityBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -23,7 +25,7 @@ public class CommunityTabFragment extends BaseFragment<FragmentCommunityBinding>
     @Override
     protected void initView() {
         stockInfoFragment = new StockInfoFragment();
-        freeBoardFragment = new FreeBoardFragment();
+        postFragment = new PostFragment();
         mainActivity.addFragment(binding.communityTabContainer.getId(), stockInfoFragment);
         binding.stockInfoButton.setSelected(true);
     }
@@ -32,6 +34,13 @@ public class CommunityTabFragment extends BaseFragment<FragmentCommunityBinding>
     protected void initClickListener() {
         onClickStockInfoButton();
         onClickFreeBoardButton();
+
+        binding.communityAppbar.appbarSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.replaceFragmentAddToBackStack(new SearchFragment());
+            }
+        });
     }
 
     private void onClickStockInfoButton() {
@@ -45,7 +54,7 @@ public class CommunityTabFragment extends BaseFragment<FragmentCommunityBinding>
 
     private void onClickFreeBoardButton() {
         binding.freeboardButton.setOnClickListener(view -> {
-            mainActivity.replaceFragment(binding.communityTabContainer.getId(), freeBoardFragment);;
+            mainActivity.replaceFragment(binding.communityTabContainer.getId(), postFragment);;
             binding.freeboardButton.setSelected(true);
             binding.stockInfoButton.setSelected(false);
         });

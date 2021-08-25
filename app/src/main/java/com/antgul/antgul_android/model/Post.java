@@ -7,11 +7,12 @@ import java.util.Map;
 public class Post {
     private String postId;
     private String writerId; //User - uid
+    private String writerNickname;
     private String title;
     private String content;
     private List<String> imageList;
     private List<Comment> commentList;
-    private List<String> hashTags;
+    private String hashTags;
     private int likeCount = 0;
     private int hateCount=0;
     public Map<String, Boolean> likeUser = new HashMap<>();
@@ -20,6 +21,22 @@ public class Post {
     private String documentId;
 
     public Post() {
+    }
+
+    public String getWriterNickname() {
+        return writerNickname;
+    }
+
+    public void setWriterNickname(String writerNickname) {
+        this.writerNickname = writerNickname;
+    }
+
+    public String getHashTags() {
+        return hashTags;
+    }
+
+    public void setHashTags(String hashTags) {
+        this.hashTags = hashTags;
     }
 
     public int getHateCount() {
@@ -78,13 +95,7 @@ public class Post {
         this.commentList = commentList;
     }
 
-    public List<String> getHashTags() {
-        return hashTags;
-    }
 
-    public void setHashTags(List<String> hashTags) {
-        this.hashTags = hashTags;
-    }
 
     public int getCategory() {
         return category;

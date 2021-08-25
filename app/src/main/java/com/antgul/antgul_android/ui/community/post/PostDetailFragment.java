@@ -22,15 +22,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding> {
+public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding> {
     private String documentId;
-    private String nickname;
-    private String content;
-    private String writerId; //User - uid
-    private String title;
-    private int likeCount = 0;
-    private String createAt;
-
 
     @Override
     protected FragmentDetailBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {

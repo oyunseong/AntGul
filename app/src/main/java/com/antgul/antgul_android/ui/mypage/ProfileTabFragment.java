@@ -27,13 +27,13 @@ public class ProfileTabFragment extends BaseFragment<FragmentMyPageBinding> {
 
     @Override
     protected void initView() {
-        binding.myPageAppbar.settingButton.setVisibility(View.VISIBLE);
-        binding.myPageAppbar.bellButton.setVisibility(View.INVISIBLE);
+        binding.myPageAppbar.appbarSettingButton.setVisibility(View.VISIBLE);
+        binding.myPageAppbar.appbarBellButton.setVisibility(View.INVISIBLE);
     }
 
     @Override
     protected void initClickListener() {
-        binding.myPageAppbar.settingButton.setOnClickListener(new View.OnClickListener() {
+        binding.myPageAppbar.appbarSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity.preferencesAddFragment(new PreferencesFragment());
