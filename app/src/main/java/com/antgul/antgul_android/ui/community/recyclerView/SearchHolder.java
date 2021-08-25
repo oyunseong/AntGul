@@ -30,7 +30,6 @@ public class SearchHolder extends CommunityHolder {
         });
         itemPostRecyclerBinding.postTitle.setText(post.getTitle());
         itemPostRecyclerBinding.postContent.setText(post.getContent());
-        // TODO 닉네임으로 변경
-        itemPostRecyclerBinding.postWriter.setText(post.getWriterId());
+        itemPostRecyclerBinding.postWriter.setText(post.getWriterNickname());
     }
 }

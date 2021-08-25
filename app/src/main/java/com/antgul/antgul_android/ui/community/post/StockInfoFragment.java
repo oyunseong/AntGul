@@ -29,11 +29,10 @@ import java.util.ArrayList;
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
 // TODO 뉴스를 올릴 예정인데 왜 종목정보인지 ??
+// 자유게시판이랑 뷰가 같아서 합쳐도되는데 일단 디자인이 바뀔수도있으니까 나중에 수정
 public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
     private CommunityAdapter mAdapter;
     private ArrayList<Post> postList;
-    private RecyclerView.LayoutManager layoutManager;
-
     @Override
     protected FragmentStockInfoBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentStockInfoBinding.inflate(inflater, container, false);
@@ -43,7 +42,7 @@ public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
     protected void initView() {
         postList = new ArrayList<>();
         mAdapter = new CommunityAdapter(postList, PostCase.STOCK_INFO);
-        layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.addItemDecoration(new RecyclerDecorationHeight(3));
         binding.recycler.setAdapter(mAdapter);

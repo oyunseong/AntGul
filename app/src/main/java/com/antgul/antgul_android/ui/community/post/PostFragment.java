@@ -31,7 +31,6 @@ import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
     private CommunityAdapter mAdapter;
     private ArrayList<Post> postList;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -42,7 +41,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
     protected void initView() {
         postList = new ArrayList<>();
         mAdapter = new CommunityAdapter(postList, PostCase.STOCK_INFO);
-        layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
         binding.freeBoardRecycler.setLayoutManager(layoutManager);
         binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
         binding.freeBoardRecycler.setAdapter(mAdapter);
@@ -52,7 +51,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initClickListener() {
-        // TODO 뒤로가기 했을 때 커뮤니티 프래그먼트가 제대로 안띄워짐 transaction.popFragment 사용해야할 것같음
+        // TODO 뒤로가기 했을 때 커뮤니티 프래그먼트가 제대로 안띄워짐
         mAdapter.setOnItemClickListener(new CommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
@@ -60,10 +59,10 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 bundle.putString("docId", postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 PostDetailFragment postDetailFragment = new PostDetailFragment();
-                postDetailFragment.setArguments(bundle);
-                transaction.replace(R.id.community_tab_container, postDetailFragment);
+                transaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out);
+                transaction.add(R.id.activity_main_container, postDetailFragment);
                 transaction.addToBackStack(null).commit();
-
+                postDetailFragment.setArguments(bundle);
             }
         });
         binding.writeButton.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +71,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 if (currentUser != null) {
                     mainActivity.addFragment(R.id.activity_main_container, new PostWriteFragment());
                 }else{
+                    //TODO "로그인하시겠습니까?" 라고 출력하는 커스텀 다이얼로그 제작 필요
                     showToast("로그인이 필요한 기능입니다.");
                     mainActivity.addFragment(R.id.activity_main_container,new LoginFragment());
                 }

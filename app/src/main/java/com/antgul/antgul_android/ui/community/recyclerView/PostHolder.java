@@ -48,6 +48,5 @@ public class PostHolder extends CommunityHolder {
         itemPostRecyclerBinding.postTitle.setText(post.getTitle());
         itemPostRecyclerBinding.postContent.setText(post.getContent());
         itemPostRecyclerBinding.postWriter.setText(post.getWriterNickname());
-
     }
 }

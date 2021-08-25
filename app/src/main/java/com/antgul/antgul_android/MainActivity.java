@@ -30,25 +30,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     }
 
-
-//    // writeFragment 에서 사용 중
-//    public void replaceDetailFragment(Fragment fragment) {
-//        Log.i(TAG, "replaceFragment");
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.main_activity_detail_frame, fragment)
-//                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_out, R.anim.fade_in)
-//                .addToBackStack(null)
-//                .commit();
-//        binding.mainActivityDetailFrame.setVisibility(View.VISIBLE);
-//        binding.mainActivityFrame.setVisibility(View.GONE);
-//    }
-//
-//    public void visibleMainFrame() {
-//        binding.mainActivityDetailFrame.setVisibility(View.GONE);
-//        binding.mainActivityFrame.setVisibility(View.VISIBLE);
-//    }
-
-
     //    @Override
 //    public void onBackPressed() {
 //        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료");

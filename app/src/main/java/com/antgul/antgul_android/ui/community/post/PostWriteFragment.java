@@ -33,7 +33,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
-
     @Override
     protected FragmentWriteBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
         return FragmentWriteBoardBinding.inflate(inflater, container, false);
@@ -52,9 +51,8 @@ public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
                 String title = binding.title.getText().toString();
                 String content = binding.content.getText().toString();
                 String hashTags = binding.title.getText().toString();
-                //비회원인 경우, 글쓰기 불가능
-                if (currentUser != null) {
 
+                if (currentUser != null) {
                     setPost(title, content, hashTags);
                 } else {
                     mainActivity.addFragment(R.id.activity_main_container, new LoginFragment());
@@ -72,35 +70,12 @@ public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
         });
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
 
-//    private void searchNickname(String UId) {
-//        progressDialog.showProgress();
-//        DocumentReference docRef = db.collection(USERS_COLLECTION).document(UId);
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        User user = document.toObject(User.class);
-//                        if (user != null) {
-//                            writerNickname = user.getNickname();
-//                            progressDialog.hideProgress();
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//
-//    }
-
     private void setPost(String title, String content, String hashTags) {
-
         db.collection(USERS_COLLECTION)
                 .document(currentUser.getUid())
                 .get()
@@ -122,39 +97,39 @@ public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
                                 post.setCategory(1);
                                 post.setCreateAt(time);
                                 post.setHashTags(hashTags);
-
-                                DocumentReference usersReference = db.collection(POSTS_COLLECTION).document();
-                                usersReference
-                                        .set(post)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.i(TAG, "DocumentSnapshot successfully updated!");
-                                                showToast("업로드 완료!");
-                                                progressDialog.hideProgress();
-                                                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                                                fragmentManager.beginTransaction().remove(PostWriteFragment.this).commit();
-                                                fragmentManager.popBackStack();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.w(TAG, "Error updating document", e);
-                                                showToast("업로드 실패!");
-                                                progressDialog.hideProgress();
-                                                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                                                fragmentManager.beginTransaction().remove(PostWriteFragment.this).commit();
-                                                fragmentManager.popBackStack();
-                                            }
-                                        });
-
+                                postUpLoad(post);
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
                     }
                 });
+    }
 
+    private void postUpLoad(Post post) {
+        DocumentReference usersReference = db.collection(POSTS_COLLECTION).document();
+        usersReference
+                .set(post)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.i(TAG, "DocumentSnapshot successfully updated!");
+                        showToast("업로드 완료");
+                        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().remove(PostWriteFragment.this).commit();
+                        fragmentManager.popBackStack();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                        showToast("업로드 실패");
+                        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().remove(PostWriteFragment.this).commit();
+                        fragmentManager.popBackStack();
+                    }
+                });
+        progressDialog.hideProgress();
     }
 }
