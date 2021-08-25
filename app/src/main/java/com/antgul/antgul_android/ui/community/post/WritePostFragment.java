@@ -36,10 +36,17 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
 
     @Override
     protected void initClickListener() {
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.writePostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                writePost();
+                String title = binding.title.getText().toString();
+                String content = binding.content.getText().toString();
+                //비회원인 경우, 글쓰기 불가능
+                if (currentUser != null) {
+                    setPost(title, content);
+                } else {
+                    mainActivity.addFragment(R.id.activity_main_container,new LoginFragment());
+                }
             }
         });
     }
@@ -56,17 +63,6 @@ public class WritePostFragment extends BaseFragment<FragmentWriteBoardBinding> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    private void writePost() {
-        String title = binding.title.getText().toString();
-        String content = binding.content.getText().toString();
-        //비회원인 경우, 글쓰기 불가능
-        if (currentUser != null) {
-            setPost(title, content);
-        } else {
-            mainActivity.addFragment(R.id.activity_main_container,new LoginFragment());
-        }
     }
 
     private void setPost(String title, String content) {

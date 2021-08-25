@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout" />
 
             <TextView
-                android:id="@+id/button"
+                android:id="@+id/write_post_button"
                 android:layout_width="52.8dp"
                 android:layout_height="28dp"
                 android:background="@drawable/main_button_state_click"

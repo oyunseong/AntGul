@@ -33,7 +33,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                autoLogin();
+                mainActivity.replaceFragment(R.id.activity_main_container,new MainFragment());
             }
         }, 800L);
 
@@ -42,10 +42,5 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
     @Override
     protected void initClickListener() {
 
-    }
-
-    private void autoLogin() {
-//        mainActivity.replaceFragment(R.id.activity_main_container, new MainFragment());
-        mainActivity.replaceFragment(R.id.activity_main_container,new LoginFragment());
     }
 }

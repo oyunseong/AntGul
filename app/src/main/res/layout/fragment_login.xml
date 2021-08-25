@@ -90,7 +90,8 @@
             android:textColor="@color/white"
             android:textSize="13.3sp"
             android:textStyle="bold"
-            app:layout_constraintHorizontal_chainStyle="spread"
+            android:layout_marginRight="20dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="@id/login_constraintLayout"
             app:layout_constraintRight_toLeftOf="@id/search_pw_button"
             app:layout_constraintTop_toBottomOf="@id/auto_login_checkBox" />
