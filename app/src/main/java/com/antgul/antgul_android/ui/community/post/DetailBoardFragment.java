@@ -58,12 +58,31 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
 
     @Override
     protected void initClickListener() {
-//        binding.boardLikeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        binding.detailCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 취소버튼시 커뮤니티 자유게시판 프래그먼트 띄우기
+            }
+        });
+
+        binding.detailLikeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 추천 버튼 클릭시 반응 추가
+            }
+        });
+        binding.detailHateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 비추천 버튼 클릭시 반응 추가
+            }
+        });
+        binding.detailDeclaration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 신고 버튼 클릭시 반응 추가
+            }
+        });
     }
 
     public void getDetailPost() {
@@ -99,9 +118,13 @@ public class DetailBoardFragment extends BaseFragment<FragmentDetailBoardBinding
                             Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             User user = document.toObject(User.class);
                             if (user != null) {
-//                                binding.boardNickName.setText(user.nickname);
-//                                binding.boardContent.setText(post.getContent());
-//                                binding.boardTime.setText(post.getCreateAt());
+//                                binding.detailProfileImage.setImageDrawable(user.getProfileImage());
+                                binding.detailNickname.setText(user.getNickname());
+                                binding.detailTime.setText(post.getCreateAt());
+                                binding.detailTitle.setText(post.getTitle());
+                                binding.detailContent.setText(post.getContent());
+//                                binding.detailLikeButton.setText(post.getLikeCount());
+//                                binding.detailHateButton.setText(post.getHateCount());
                                 // TODO UI 업데이트 후 항목 추가
                             }
                         } else {

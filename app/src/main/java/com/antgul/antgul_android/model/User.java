@@ -8,6 +8,7 @@ public class User {
     public String email;
     public String password;
     public String nickname;
+    public String profileImage;
     public List<String> postList;
     public List<String> likeStockList;
     public String createAt; //timestamp 참고
@@ -18,15 +19,17 @@ public class User {
 
     }
 
-    public User(String uid, String email, String password, String nickname, List<String> postList, List<String> likeStockList, String createAt) {
+    public User(String uid, String email, String password, String nickname, String profileImage, List<String> postList, List<String> likeStockList, String createAt) {
         this.uid = uid;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
+        this.profileImage = profileImage;
         this.postList = postList;
         this.likeStockList = likeStockList;
         this.createAt = createAt;
     }
+
 
     public String getUid() {
         return uid;

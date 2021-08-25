@@ -1,6 +1,8 @@
 package com.antgul.antgul_android.ui.community.post;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
-public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
+public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> implements TextWatcher {
     private RecyclerCommunityAdapter mAdapter;
     private ArrayList<Post> postList;
     private RecyclerView.LayoutManager layoutManager;
@@ -39,6 +41,7 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
 
     @Override
     protected void initView() {
+        binding.etSearch.addTextChangedListener(this);
         postList = new ArrayList<>();
         mAdapter = new RecyclerCommunityAdapter(postList, PostCase.STOCK_INFO);
         layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
@@ -100,4 +103,19 @@ public class FreeBoardFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 });
     }
 
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        mAdapter.getFilter().filter(s);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }

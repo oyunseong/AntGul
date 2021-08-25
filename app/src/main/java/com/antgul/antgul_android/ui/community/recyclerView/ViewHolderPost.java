@@ -31,6 +31,9 @@ public class ViewHolderPost extends CommunityItemView {
             }
         });
         binding.stockTitle.setText(post.getTitle());
+        binding.secondText.setText(post.getContent());
+        // TODO 닉네임으로 변경
+        binding.brokerage.setText(post.getWriterId());
     }
 }
 

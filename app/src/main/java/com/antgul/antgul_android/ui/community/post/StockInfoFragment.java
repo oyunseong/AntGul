@@ -56,7 +56,7 @@ public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
             @Override
             public void onItemClick(View v, int pos) {
                 showToast(pos+"종목정보 클릭");
-                // TODO DetailBoardFragment 이동 후 뒤로가기 버튼을 눌렀을 때 백스택에 제대로 안쌓이는 현상
+                // TODO 만든 프래그먼트 전환 메서드로 바꾸기
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();

@@ -13,13 +13,22 @@ public class Post {
     private List<Comment> commentList;
     private List<String> hashTags;
     private int likeCount = 0;
+    private int hateCount=0;
     public Map<String, Boolean> likeUser = new HashMap<>();
     private int category;    // 0 : 관리자(종목정보) , 1 : 사용자(자유게시판)
     private String createAt;
     private String documentId;
 
-    public Post(){}
+    public Post() {
+    }
 
+    public int getHateCount() {
+        return hateCount;
+    }
+
+    public void setHateCount(int hateCount) {
+        this.hateCount = hateCount;
+    }
 
     public String getPostId() {
         return postId;
