@@ -1,7 +1,6 @@
 package com.antgul.antgul_android.ui.community.post;
 
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.databinding.FragmentFreeBoardBinding;
+import com.antgul.antgul_android.databinding.FragmentPostBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.model.PostCase;
 import com.antgul.antgul_android.ui.community.recyclerView.CommunityAdapter;
@@ -29,13 +27,13 @@ import java.util.ArrayList;
 
 import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
-public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
+public class PostFragment extends BaseFragment<FragmentPostBinding> {
     private CommunityAdapter mAdapter;
     private ArrayList<Post> postList;
 
     @Override
-    protected FragmentFreeBoardBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentFreeBoardBinding.inflate(inflater, container, false);
+    protected FragmentPostBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentPostBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -43,9 +41,9 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
         postList = new ArrayList<>();
         mAdapter = new CommunityAdapter(postList, PostCase.STOCK_INFO);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
-        binding.freeBoardRecycler.setLayoutManager(layoutManager);
-        binding.freeBoardRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
-        binding.freeBoardRecycler.setAdapter(mAdapter);
+        binding.postRecycler.setLayoutManager(layoutManager);
+        binding.postRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
+        binding.postRecycler.setAdapter(mAdapter);
         getPosts();
         mAdapter.notifyDataSetChanged();
         swipeRefresh();
@@ -57,7 +55,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
         mAdapter.setOnItemClickListener(new CommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                binding.writeButton.setVisibility(View.GONE);
+                binding.postWriteButton.setVisibility(View.GONE);
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -68,7 +66,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
                 postDetailFragment.setArguments(bundle);
             }
         });
-        binding.writeButton.setOnClickListener(new View.OnClickListener() {
+        binding.postWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentUser != null) {

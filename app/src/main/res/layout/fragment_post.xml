@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/free_board_recycler"
+        android:id="@+id/post_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
-        android:id="@+id/write_button"
+        android:id="@+id/post_write_button"
         android:layout_width="153dp"
         android:layout_height="31.7dp"
         android:layout_marginBottom="17.2dp"

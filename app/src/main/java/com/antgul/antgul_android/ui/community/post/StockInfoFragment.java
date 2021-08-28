@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.databinding.FragmentStockInfoBinding;
+import com.antgul.antgul_android.databinding.FragmentPostBinding;
 import com.antgul.antgul_android.model.Post;
 import com.antgul.antgul_android.model.PostCase;
 import com.antgul.antgul_android.ui.community.recyclerView.CommunityAdapter;
@@ -30,12 +31,13 @@ import static com.antgul.antgul_android.base.ApplicationClass.POSTS_COLLECTION;
 
 // TODO 뉴스를 올릴 예정인데 왜 종목정보인지 ??
 // 자유게시판이랑 뷰가 같아서 합쳐도되는데 일단 디자인이 바뀔수도있으니까 나중에 수정
-public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
+public class StockInfoFragment extends BaseFragment<FragmentPostBinding> {
     private CommunityAdapter mAdapter;
     private ArrayList<Post> postList;
+
     @Override
-    protected FragmentStockInfoBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentStockInfoBinding.inflate(inflater, container, false);
+    protected FragmentPostBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentPostBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -43,11 +45,12 @@ public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
         postList = new ArrayList<>();
         mAdapter = new CommunityAdapter(postList, PostCase.STOCK_INFO);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
-        binding.recycler.setLayoutManager(layoutManager);
-        binding.recycler.addItemDecoration(new RecyclerDecorationHeight(3));
-        binding.recycler.setAdapter(mAdapter);
+        binding.postRecycler.setLayoutManager(layoutManager);
+        binding.postRecycler.addItemDecoration(new RecyclerDecorationHeight(3));
+        binding.postRecycler.setAdapter(mAdapter);
         getPosts();
         mAdapter.notifyDataSetChanged();
+        swipeRefresh();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
         mAdapter.setOnItemClickListener(new CommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                showToast(pos+"종목정보 클릭");
+                showToast(pos + "종목정보 클릭");
                 // TODO 만든 프래그먼트 전환 메서드로 바꾸기
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
@@ -92,4 +95,17 @@ public class StockInfoFragment extends BaseFragment<FragmentStockInfoBinding> {
                     }
                 });
     }
+
+    private void swipeRefresh() {
+        binding.postRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                postList.clear();
+                getPosts();
+                showToast("새로고침 완료");
+                binding.postRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
 }
+
