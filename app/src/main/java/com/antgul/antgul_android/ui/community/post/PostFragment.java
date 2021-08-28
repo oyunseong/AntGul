@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
@@ -47,6 +48,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
         binding.freeBoardRecycler.setAdapter(mAdapter);
         getPosts();
         mAdapter.notifyDataSetChanged();
+        swipeRefresh();
     }
 
     @Override
@@ -55,6 +57,7 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
         mAdapter.setOnItemClickListener(new CommunityAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
+                binding.writeButton.setVisibility(View.GONE);
                 Bundle bundle = new Bundle();
                 bundle.putString("docId", postList.get(pos).getDocumentId());
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -102,6 +105,16 @@ public class PostFragment extends BaseFragment<FragmentFreeBoardBinding> {
                     progressDialog.hideProgress();
                 });
     }
-
+    private void swipeRefresh(){
+        binding.postRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                postList.clear();
+                getPosts();
+                showToast("새로고침 완료");
+                binding.postRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
 
 }

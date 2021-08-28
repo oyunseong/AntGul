@@ -9,9 +9,12 @@ import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewbinding.ViewBinding;
 
 import com.antgul.antgul_android.R;
+import com.antgul.antgul_android.ui.community.post.PostWriteFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**

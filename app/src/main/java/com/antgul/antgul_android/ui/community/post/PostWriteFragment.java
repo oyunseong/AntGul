@@ -41,6 +41,7 @@ public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
     @Override
     protected void initView() {
 
+
     }
 
     @Override

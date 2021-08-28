@@ -8,10 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
+import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentDetailBoardBinding;
 import com.antgul.antgul_android.model.Post;
@@ -24,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding> {
     private String documentId;
+    PostFragment postFragment;
 
     @Override
     protected FragmentDetailBoardBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -33,9 +37,16 @@ public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             documentId = getArguments().getString("docId");
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
     }
 
     @Override
@@ -54,7 +65,10 @@ public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding>
         binding.detailCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 취소버튼시 커뮤니티 자유게시판 프래그먼트 띄우기
+                // TODO remove 애니메이션 추가
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(PostDetailFragment.this).commit();
+                fragmentManager.popBackStack();
             }
         });
 
@@ -62,6 +76,7 @@ public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding>
             @Override
             public void onClick(View v) {
                 //TODO 추천 버튼 클릭시 반응 추가
+
             }
         });
         binding.detailHateButton.setOnClickListener(new View.OnClickListener() {
