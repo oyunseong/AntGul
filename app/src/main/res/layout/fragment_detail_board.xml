@@ -133,6 +133,7 @@
                 app:layout_constraintTop_toTopOf="@id/detail_like_button" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21.5dp"
@@ -140,7 +141,7 @@
                 tools:listitem="@layout/item_comment_recycler" />
 
             <EditText
-                android:id="@+id/detail_et"
+                android:id="@+id/detail_edit_comment"
                 style="@style/Text.BlackFont"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -148,23 +149,23 @@
                 android:backgroundTint="@color/fragment_background"
                 android:hint="댓글을 입력해주세요."
                 android:paddingStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintRight_toLeftOf="@id/detail_ok_button"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintRight_toLeftOf="@id/detail_ok_button" />
 
             <TextView
                 android:id="@+id/detail_ok_button"
+                style="@style/Text.WhiteFont"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="클릭"
                 android:background="@drawable/shape_round_aaa_1dp"
-                android:gravity="center"
-                style="@style/Text.WhiteFont"
                 android:backgroundTint="@color/main_color"
-                app:layout_constraintHorizontal_weight="0.17"
+                android:gravity="center"
+                android:text="클릭"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/detail_et"
+                app:layout_constraintHorizontal_weight="0.17"
+                app:layout_constraintLeft_toRightOf="@id/detail_edit_comment"
                 app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

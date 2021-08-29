@@ -6,14 +6,14 @@
     android:background="@color/fragment_background">
 
     <include
-        android:id="@+id/valueation_include"
+        android:id="@+id/valueation_appbar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ranking_button"
+        android:id="@+id/valueation_ranking_button"
         android:layout_width="98.7dp"
         android:layout_height="31.7dp"
         android:layout_marginEnd="10dp"
@@ -26,11 +26,11 @@
         android:textStyle="bold"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/calculator_button"
-        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+        app:layout_constraintRight_toLeftOf="@id/valueation_calculator_button"
+        app:layout_constraintTop_toBottomOf="@id/valueation_appbar" />
 
     <TextView
-        android:id="@+id/calculator_button"
+        android:id="@+id/valueation_calculator_button"
         android:layout_width="98.7dp"
         android:layout_height="31.7dp"
         android:layout_marginEnd="10dp"
@@ -41,12 +41,12 @@
         android:textColor="@drawable/text_color_state"
         android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/ranking_button"
-        app:layout_constraintRight_toLeftOf="@id/like_stock_button"
-        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+        app:layout_constraintLeft_toRightOf="@id/valueation_ranking_button"
+        app:layout_constraintRight_toLeftOf="@id/valueation_like_stock_button"
+        app:layout_constraintTop_toBottomOf="@id/valueation_appbar" />
 
     <TextView
-        android:id="@+id/like_stock_button"
+        android:id="@+id/valueation_like_stock_button"
         android:layout_width="98.7dp"
         android:layout_height="31.7dp"
         android:background="@drawable/main_button_state"
@@ -56,15 +56,15 @@
         android:textColor="@drawable/text_color_state"
         android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/calculator_button"
+        app:layout_constraintLeft_toRightOf="@id/valueation_calculator_button"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/valueation_include" />
+        app:layout_constraintTop_toBottomOf="@id/valueation_appbar" />
 
     <FrameLayout
         android:id="@+id/valueation_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ranking_button" />
+        app:layout_constraintTop_toBottomOf="@id/valueation_ranking_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

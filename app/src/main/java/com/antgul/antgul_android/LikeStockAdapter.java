@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.antgul.antgul_android.model.Stock;
 import com.antgul.antgul_android.databinding.ItemLikeStockBinding;
+import com.antgul.antgul_android.ui.community.recyclerView.CommentAdapter;
 
 
 import java.util.ArrayList;

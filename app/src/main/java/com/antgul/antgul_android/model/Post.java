@@ -1,5 +1,6 @@
 package com.antgul.antgul_android.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Post {
     private String title;
     private String content;
     private List<String> imageList;
-    private List<Comment> commentList;
+    private ArrayList<Comment> commentList;
     private String hashTags;
     private int likeCount = 0;
     private int hateCount=0;
@@ -91,7 +92,7 @@ public class Post {
         return commentList;
     }
 
-    public void setCommentList(List<Comment> commentList) {
+    public void setCommentList(ArrayList<Comment> commentList) {
         this.commentList = commentList;
     }
 

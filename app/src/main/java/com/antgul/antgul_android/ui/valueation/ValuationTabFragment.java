@@ -2,6 +2,7 @@ package com.antgul.antgul_android.ui.valueation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,18 @@ public class ValuationTabFragment extends BaseFragment<FragmentValueationBinding
 
     @Override
     protected void initClickListener() {
-
+        binding.valueationCalculatorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("coming soon");
+            }
+        });
+        binding.valueationLikeStockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("coming soon");
+            }
+        });
     }
 
 }

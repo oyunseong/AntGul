@@ -71,11 +71,6 @@ public class PostWriteFragment extends BaseFragment<FragmentWriteBoardBinding> {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
     private void setPost(String title, String content, String hashTags) {
         db.collection(USERS_COLLECTION)
                 .document(currentUser.getUid())
