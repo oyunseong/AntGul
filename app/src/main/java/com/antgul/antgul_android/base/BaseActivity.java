@@ -86,7 +86,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .addToBackStack(null)
                 .commit();
     }
-    public void addFragmentAddToBackStack( Fragment fragment){
+    public void addFragmentAddToBackStack(Fragment fragment){
         Log.i(TAG,"++" + TAG + " add -> " + fragment.getClass().getSimpleName());
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)

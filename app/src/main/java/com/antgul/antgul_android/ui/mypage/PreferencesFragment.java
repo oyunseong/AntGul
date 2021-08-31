@@ -23,12 +23,6 @@ public class PreferencesFragment extends BaseFragment<FragmentPreferencesBinding
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mainActivity.replaceFragment(R.id.activity_main_container,new MainFragment());
-    }
-
-    @Override
     protected void initView() {
 
     }

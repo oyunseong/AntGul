@@ -29,7 +29,6 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     CommunityTabFragment communityTabFragment;
     ProfileTabFragment profileTabFragment;
     FragmentManager fragmentManager;
-    Fragment currentFragment;
 
     @Override
     protected FragmentMainBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -48,17 +47,12 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
 
     @Override
     protected void initView() {
-        if (currentFragment == null) {
             mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), homeTabFragment);
-        }else if (currentFragment == profileTabFragment) {
-            mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), profileTabFragment);
-        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG,"currentFragment : "+currentFragment);
     }
 
     @Override
@@ -76,15 +70,14 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
                 return true;
             }
         });
-
     }
 
     private void BottomNavigate(int id) {
         String tag = String.valueOf(id);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        currentFragment = fragmentManager.getPrimaryNavigationFragment();
-        Log.i(TAG,"currentFragment : "+currentFragment);
+        Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
+
         if (currentFragment != null) {
             transaction.hide(currentFragment);
         }
