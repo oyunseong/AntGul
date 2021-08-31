@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
+import com.antgul.antgul_android.ui.community.post.PostWriteFragment;
 import com.antgul.antgul_android.ui.start.login.LoginFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,7 +38,9 @@ public class ProfileTabFragment extends BaseFragment<FragmentMyPageBinding> {
         binding.myPageAppbar.appbarSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivity.preferencesAddFragment(new PreferencesFragment());
+//                mainActivity.replaceFragmentAddToBackStack(new PreferencesFragment());
+                mainActivity.addFragmentAddToBackStack(new PreferencesFragment());
+//                mainActivity.replaceFragmentAddToBackStack(new PreferencesFragment());
             }
         });
 //        onClickLogoutButton();

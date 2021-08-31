@@ -77,15 +77,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .commit();
     }
 
-    public void addFragmentAddToBackStack(Fragment fragment){
-        Log.i(TAG,TAG + " replace -> " + fragment.getTag());
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
-                .add(R.id.activity_main_container, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
-
     //mainActivity 내에 있는 컨테이너
     public void addFragment(@IdRes int fragmentContainerId, Fragment fragment){
         Log.i(TAG,"++" + TAG + " add -> " + fragment.getClass().getSimpleName());
@@ -95,11 +86,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .addToBackStack(null)
                 .commit();
     }
-    // preferences fragment 개인설정 진입 프래그먼트
-    public void preferencesAddFragment( Fragment fragment){
+    public void addFragmentAddToBackStack( Fragment fragment){
         Log.i(TAG,"++" + TAG + " add -> " + fragment.getClass().getSimpleName());
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.anim_enter_test,R.anim.anim_exit_test,R.anim.anim_enter_test,R.anim.anim_exit_test)
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
                 .add(R.id.activity_main_container, fragment)
                 .addToBackStack(null)
                 .commit();

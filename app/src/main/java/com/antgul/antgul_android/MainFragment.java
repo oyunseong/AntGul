@@ -2,6 +2,7 @@ package com.antgul.antgul_android;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -27,8 +28,8 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
     ValuationTabFragment valuationTabFragment;
     CommunityTabFragment communityTabFragment;
     ProfileTabFragment profileTabFragment;
-
     FragmentManager fragmentManager;
+    Fragment currentFragment;
 
     @Override
     protected FragmentMainBinding getViewBinding(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
@@ -47,13 +48,22 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
 
     @Override
     protected void initView() {
-        mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), homeTabFragment);
+        if (currentFragment == null) {
+            mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), homeTabFragment);
+        }else if (currentFragment == profileTabFragment) {
+            mainActivity.replaceFragment(binding.mainFragmentContainer.getId(), profileTabFragment);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG,"currentFragment : "+currentFragment);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -73,7 +83,8 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
         String tag = String.valueOf(id);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment currentFragment = fragmentManager.getPrimaryNavigationFragment();
+        currentFragment = fragmentManager.getPrimaryNavigationFragment();
+        Log.i(TAG,"currentFragment : "+currentFragment);
         if (currentFragment != null) {
             transaction.hide(currentFragment);
         }
@@ -97,6 +108,5 @@ public class MainFragment extends BaseFragment<FragmentMainBinding> {
         transaction.setPrimaryNavigationFragment(fragment);
         transaction.setReorderingAllowed(true);
         transaction.commitNow();
-
     }
 }

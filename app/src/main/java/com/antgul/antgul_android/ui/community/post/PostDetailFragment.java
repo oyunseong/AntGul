@@ -41,7 +41,6 @@ public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding>
     private String documentId;
     private ArrayList<Comment> commentList;
     private CommentAdapter commentAdapter = null;
-    RecyclerView.LayoutManager layoutManager;
     PostFragment postFragment;
 
     @Override
@@ -68,8 +67,8 @@ public class PostDetailFragment extends BaseFragment<FragmentDetailBoardBinding>
     protected void initView() {
         commentList = new ArrayList<>();
         commentAdapter = new CommentAdapter(commentList);
-        layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
-        binding.detailRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext());
+        binding.detailRecycler.setLayoutManager(layoutManager);
         binding.detailRecycler.setAdapter(commentAdapter);
         getComment();
         commentAdapter.notifyDataSetChanged();
