@@ -12,14 +12,14 @@ package com.antgul.antgul_android.model
  * 객체비교 user1 == user2, String 값 비교
  */
 data class User(
-    val uid: String?,
-    val email: String? = null,
-    val password: String? = null,
-    val nickname: String? = null,
-    val profileImage: String? = null,
-    val postList: List<String>? = null,
-    val likeStockList: List<String>? = null,
-    val createAt: String? = null,
+    var uid: String?= null,
+    var email: String? = null,
+    var password: String? = null,
+    var nickname: String? = null,
+    var profileImage: String? = null,
+    var postList: List<String>? = null,
+    var likeStockList: List<String>? = null,
+    var createAt: String? = null,
 ) {
 //    constructor() //java 생성자랑 유사
 }

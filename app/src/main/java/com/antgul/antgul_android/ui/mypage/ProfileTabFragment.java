@@ -1,30 +1,19 @@
 package com.antgul.antgul_android.ui.mypage;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
-import com.antgul.antgul_android.R;
 import com.antgul.antgul_android.base.BaseFragment;
-import com.antgul.antgul_android.databinding.FragmentMyPageBinding;
-import com.antgul.antgul_android.ui.community.post.PostWriteFragment;
-import com.antgul.antgul_android.ui.start.login.LoginFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.antgul.antgul_android.databinding.FragmentProfileTabBinding;
 
-import org.jetbrains.annotations.NotNull;
-
-public class ProfileTabFragment extends BaseFragment<FragmentMyPageBinding> {
+public class ProfileTabFragment extends BaseFragment<FragmentProfileTabBinding> {
     @Override
-    protected FragmentMyPageBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentMyPageBinding.inflate(inflater, container, false);
+    protected FragmentProfileTabBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentProfileTabBinding.inflate(inflater, container, false);
     }
 
     @Override
