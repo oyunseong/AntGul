@@ -26,13 +26,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
@@ -73,7 +70,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         binding.autoLoginCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             PreferenceManager.setBoolean(getActivity(), PREF_AUTO_LOGIN, isChecked);
         });
-        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+        binding.loginSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();

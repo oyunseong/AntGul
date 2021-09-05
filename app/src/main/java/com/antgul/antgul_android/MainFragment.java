@@ -2,7 +2,6 @@ package com.antgul.antgul_android;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import com.antgul.antgul_android.databinding.FragmentMainBinding;
 import com.antgul.antgul_android.ui.community.CommunityTabFragment;
 import com.antgul.antgul_android.ui.home.HomeTabFragment;
 import com.antgul.antgul_android.ui.mypage.ProfileTabFragment;
-import com.antgul.antgul_android.ui.valueation.ValuationTabFragment;
+import com.antgul.antgul_android.ui.valuation.ValuationTabFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;

@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.valueation.ranking;
+package com.antgul.antgul_android.ui.valuation.ranking;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentRankingBinding;
-import com.antgul.antgul_android.ui.valueation.ViewPagerValueationAdapter;
+import com.antgul.antgul_android.ui.valuation.ViewPagerValueationAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.jetbrains.annotations.NotNull;

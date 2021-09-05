@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.valueation;
+package com.antgul.antgul_android.ui.valuation;
 
 import android.util.Log;
 
@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.antgul.antgul_android.ui.valueation.ranking.PbrFragment;
-import com.antgul.antgul_android.ui.valueation.ranking.PerFragment;
-import com.antgul.antgul_android.ui.valueation.ranking.PsrFragment;
-import com.antgul.antgul_android.ui.valueation.ranking.TotalFragment;
+import com.antgul.antgul_android.ui.valuation.ranking.PbrFragment;
+import com.antgul.antgul_android.ui.valuation.ranking.PerFragment;
+import com.antgul.antgul_android.ui.valuation.ranking.PsrFragment;
+import com.antgul.antgul_android.ui.valuation.ranking.TotalFragment;
 
 public class ViewPagerValueationAdapter extends FragmentStateAdapter {
     private final int fragmentCount = 4;

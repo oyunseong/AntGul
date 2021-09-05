@@ -21,4 +21,11 @@
         <item name="android:textSize">13.3sp</item>
     </style>
 
+    <style name="Text.HintFont" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/hint_color</item>
+        <item name="android:letterSpacing">-0.04</item>
+        <item name="android:textSize">13.3sp</item>
+    </style>
+
 </resources>

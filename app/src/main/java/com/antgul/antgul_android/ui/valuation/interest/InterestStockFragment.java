@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.valueation.interest;
+package com.antgul.antgul_android.ui.valuation.interest;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

@@ -28,6 +28,12 @@ public class HomeTabFragment extends BaseFragment<FragmentHomeBinding> {
 
     @Override
     protected void initClickListener() {
+        binding.guideConstraint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 }

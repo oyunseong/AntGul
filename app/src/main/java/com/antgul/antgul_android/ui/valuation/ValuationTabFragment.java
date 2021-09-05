@@ -1,4 +1,4 @@
-package com.antgul.antgul_android.ui.valueation;
+package com.antgul.antgul_android.ui.valuation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.antgul.antgul_android.base.BaseFragment;
 import com.antgul.antgul_android.databinding.FragmentValuationBinding;
-import com.antgul.antgul_android.ui.valueation.ranking.RankingFragment;
+import com.antgul.antgul_android.ui.valuation.ranking.RankingFragment;
 
 public class ValuationTabFragment extends BaseFragment<FragmentValuationBinding> {
     private RankingFragment rankingFragment;

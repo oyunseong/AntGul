@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
     android:background="#fff">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -21,21 +22,17 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/post_write_button"
-        android:layout_width="153dp"
-        android:layout_height="31.7dp"
-        android:layout_marginBottom="17.2dp"
-        android:background="@drawable/main_button_state_unclick"
-        android:gravity="center"
-        android:letterSpacing="-0.04"
-        android:text="글쓰기"
-        android:textColor="@color/main_color"
-        android:textSize="13.3sp"
-        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:backgroundTint="@color/main_color"
+        android:layout_margin="15dp"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

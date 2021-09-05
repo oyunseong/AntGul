@@ -34,6 +34,7 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
             @Override
             public void run() {
                 mainActivity.replaceFragment(R.id.activity_main_container,new MainFragment());
+//                mainActivity.replaceFragment(R.id.activity_main_container,new LoginFragment());
             }
         }, 800L);
 

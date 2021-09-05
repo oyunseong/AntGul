@@ -18,16 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
-        <ImageView
-            android:id="@+id/comment_profile_image"
-            android:layout_width="35.9dp"
-            android:layout_height="35.9dp"
-            app:layout_constraintBottom_toBottomOf="@id/comment_constraintLayout"
-            android:background="@drawable/gradient_button_color"
-            android:layout_marginStart="13.2dp"
-            app:layout_constraintLeft_toLeftOf="@id/comment_constraintLayout"
-            app:layout_constraintTop_toTopOf="@id/comment_constraintLayout" />
-
         <TextView
             android:id="@+id/comment_nickname"
             style="@style/Text.MainColorFont"
@@ -36,7 +26,7 @@
             android:layout_marginTop="13.7dp"
             android:text="닉네임"
             android:layout_marginStart="24dp"
-            app:layout_constraintLeft_toRightOf="@id/comment_profile_image"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@id/comment_constraintLayout" />
 
         <TextView

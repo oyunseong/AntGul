@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="22dp"
+    android:layout_marginTop="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="9.3dp"
+    app:cardElevation="3.3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stock_info_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/post_title"
+            style="@style/Text.BlackFont"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18.8dp"
+            android:layout_marginTop="15.4dp"
+            android:ellipsize="end"
+            android:letterSpacing="-0.04"
+            android:maxLines="2"
+            app:layout_constraintLeft_toLeftOf="@id/stock_info_constraintLayout"
+            app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout"
+            tools:text="게시글 제목" />
+
+        <TextView
+            android:id="@+id/post_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:letterSpacing="-0.04"
+            android:textColor="#8c7e1717"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/post_title"
+            app:layout_constraintTop_toBottomOf="@id/post_title"
+            tools:text="게시글 제목" />
+
+        <TextView
+            android:id="@+id/post_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:letterSpacing="-0.04"
+            android:textColor="#8c7e1717"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/post_title"
+            app:layout_constraintTop_toBottomOf="@id/post_content"
+            tools:text="게시글 제목" />
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="71dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="10.7dp"
+            android:layout_marginRight="11.2dp"
+            app:layout_constraintRight_toRightOf="@id/stock_info_constraintLayout"
+            app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout"
+            tools:background="@drawable/ant_logo_3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

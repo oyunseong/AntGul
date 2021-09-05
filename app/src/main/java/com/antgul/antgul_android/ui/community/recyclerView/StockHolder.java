@@ -28,8 +28,9 @@ public class StockHolder extends CommunityHolder {
                 }
             }
         });
-        itemPostRecyclerBinding.postTitle.setText(post.getTitle());
-        itemPostRecyclerBinding.postContent.setText(post.getContent());
-        itemPostRecyclerBinding.postWriter.setText(post.getWriterNickname());
+        itemPostRecyclerBinding.itemPostTitle.setText(post.getTitle());
+        itemPostRecyclerBinding.itemPostContent.setText(post.getContent());
+        itemPostRecyclerBinding.itemPostNickname.setText(post.getWriterNickname());
+        itemPostRecyclerBinding.itemPostTime.setText(post.getCreateAt());
     }
 }

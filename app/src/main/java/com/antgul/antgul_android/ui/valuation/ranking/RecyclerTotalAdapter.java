@@ -1,7 +1,6 @@
-package com.antgul.antgul_android.ui.valueation.ranking;
+package com.antgul.antgul_android.ui.valuation.ranking;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;

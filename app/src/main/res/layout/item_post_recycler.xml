@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginHorizontal="22dp"
-    android:layout_marginTop="8dp"
+    android:background="@drawable/post_item_background"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="9.3dp"
-    app:cardElevation="3.3dp">
+    android:padding="12dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/stock_info_constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
+    <TextView
+        android:id="@+id/item_post_title"
+        style="@style/Text.BlackFont"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:text="[주간증시전망]외국인 컴백한 걸까…월말 美 FOMC 관건"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/post_title"
-            style="@style/Text.BlackFont"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18.8dp"
-            android:layout_marginTop="15.4dp"
-            android:ellipsize="end"
-            android:letterSpacing="-0.04"
-            android:maxLines="2"
-            app:layout_constraintLeft_toLeftOf="@id/stock_info_constraintLayout"
-            app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout"
-            tools:text="게시글 제목" />
+    <TextView
+        android:id="@+id/item_post_comment_count"
+        style="@style/Text.MainColorFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        app:layout_constraintLeft_toRightOf="@id/item_post_title"
+        app:layout_constraintTop_toTopOf="@id/item_post_title"
+        tools:text="[8]" />
 
-        <TextView
-            android:id="@+id/post_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:letterSpacing="-0.04"
-            android:textColor="#8c7e1717"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/post_title"
-            app:layout_constraintTop_toBottomOf="@id/post_title"
-            tools:text="게시글 제목" />
-
-        <TextView
-            android:id="@+id/post_writer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:letterSpacing="-0.04"
-            android:textColor="#8c7e1717"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/post_title"
-            app:layout_constraintTop_toBottomOf="@id/post_content"
-            tools:text="게시글 제목" />
-
-        <ImageView
-            android:id="@+id/post_image"
-            android:layout_width="71dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="10.7dp"
-            android:layout_marginRight="11.2dp"
-            app:layout_constraintRight_toRightOf="@id/stock_info_constraintLayout"
-            app:layout_constraintTop_toTopOf="@id/stock_info_constraintLayout"
-            tools:background="@drawable/ant_logo_3" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/item_post_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_post_comment_count"
+        tools:text="@string/string_test" />
 
 
-</androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/item_post_nickname"
+        style="@style/Text.HintFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="미글 운영진"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_post_content" />
+
+    <TextView
+        android:id="@+id/item_post_time"
+        style="@style/Text.HintFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toRightOf="@id/item_post_nickname"
+        app:layout_constraintTop_toTopOf="@id/item_post_nickname"
+        tools:text="3분전" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:drawableLeft="@drawable/ic_like_count"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@id/item_post_time"
+        app:layout_constraintTop_toTopOf="@id/item_post_time"
+        tools:text="3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
