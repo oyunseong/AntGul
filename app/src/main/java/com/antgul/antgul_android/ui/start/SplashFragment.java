@@ -30,12 +30,9 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
          * 1초 간 지연 후, run() 콜백 실행됨.
          * 일정 시간동안 타이머를 돌리고, 시간이 되면, run()이 호출됨.
          */
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mainActivity.replaceFragment(R.id.activity_main_container,new MainFragment());
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            mainActivity.replaceFragment(R.id.activity_main_container,new MainFragment());
 //                mainActivity.replaceFragment(R.id.activity_main_container,new LoginFragment());
-            }
         }, 800L);
 
     }

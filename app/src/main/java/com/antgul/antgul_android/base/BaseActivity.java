@@ -49,7 +49,8 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 .commit();
     }
     /**
-     * replace : remove() + add()
+     * replace : remove()
+     *+ add()
      */
     public void replaceFragment(@IdRes int fragmentContainerId, Fragment fragment){
         Log.i(TAG,"++" + TAG + " replace -> " + fragment.getClass().getSimpleName());
